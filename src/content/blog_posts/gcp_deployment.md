@@ -1,13 +1,11 @@
 ---
-title: Deploying FastAPI to Google Cloud Run with Docker and a Makefile
+title: Streamlining Your API Deployments - FastAPI, Docker, and a Makefile for Google Cloud Run
 date: 2024/10/27
 tags: Deployment, FastAPI, Docker, Makefile, GCP
 description: Here I show how to deploy a FastAPI application to Google Cloud Run with Docker and a Makefile. This allows me to deploy the application to the cloud easily with few commands.
 ---
 
-# Streamlining Your API Deployments: FastAPI, Docker, and a Makefile for Google Cloud Run
-
-## Introduction
+# Introduction
 
 Deploying web applications, especially APIs, can often feel like a complex maze of configurations and repetitive commands. If you're building with FastAPI and looking for a robust and reproducible way to get your creations onto the cloud, you've come to the right place. This post will guide you through deploying a simple FastAPI application to Google Cloud Run using Docker, all orchestrated with the power and simplicity of a Makefile.
 
@@ -15,7 +13,7 @@ Why this stack? FastAPI is a modern, fast (high-performance) web framework for b
 
 By the end of this tutorial, you'll have a clear understanding of how to package your FastAPI application, push it to Google Cloud's Artifact Registry, and deploy it as a scalable service on Cloud Run, all with a few `make` commands.
 
-## Requirements
+# Requirements
 
 Before we dive into the deployment process, let's ensure you have all the necessary tools and accounts set up:
 
@@ -26,11 +24,11 @@ Before we dive into the deployment process, let's ensure you have all the necess
 * **A Project in GCP:** Create a new project in the Google Cloud Console or choose an existing one. Note down the **Project ID** as it will be used in our Makefile.
 * **A Text Editor or IDE:** Any text editor or Integrated Development Environment (IDE) like VS Code, PyCharm, or Sublime Text will work for creating your FastAPI app, Dockerfile, and Makefile.
 
-## Deployment: Bringing it all Together with a Makefile
+# Deployment: Bringing it all Together with a Makefile
 
 Now for the exciting part! We'll set up a simple FastAPI application, create a Dockerfile to containerize it, and then use our Makefile to automate the deployment to Google Cloud Run.
 
-### Step 1: Create a Simple FastAPI Application
+## Step 1: Create a Simple FastAPI Application
 
 Let's start by creating a basic FastAPI application. Create a new directory for your project, and inside it, create a file named `main.py`:
 
@@ -51,7 +49,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 This simple application has two endpoints: a root endpoint (`/`) that returns a welcome message, and an endpoint (`/items/{item_id}`) that takes an item ID and an optional query parameter.
 
-### Step 2: Create the Dockerfile
+## Step 2: Create the Dockerfile
 
 Next, create a `Dockerfile` in the root of your project directory. This file contains the instructions to build your Docker image:
 
@@ -91,7 +89,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 * We `EXPOSE 8000` because Uvicorn will run on this port by default. Cloud Run will automatically map its external port (usually 80/443) to this internal container port.
 * The `CMD` instruction specifies the command to run when the container starts. `main:app` refers to the `app` instance in your `main.py` file.
 
-### Step 3: Create the Makefile
+## Step 3: Create the Makefile
 
 Now, create a file named `Makefile` in the root of your project directory. Copy and paste the following content, **making sure to replace `your-gcp-project-id` with your actual Google Cloud Project ID and `your-email@example.com` with the email associated with your GCP account.**
 
@@ -214,7 +212,7 @@ Let's break down what each part of the `deploy_back` target in our Makefile does
 12. **`.PHONY: deploy_back`**:
     * This declares `deploy_back` as a "phony" target. This means that `make` will always run the commands for this target, even if a file named `deploy_back` exists in the directory. It's good practice for targets that represent actions rather than file dependencies.
 
-### Step 4: Run the Makefile
+## Step 4: Run the Makefile
 
 Now that you have your `main.py`, `Dockerfile`, and `Makefile` set up, and you've updated the `PROJECT_ID` and `EMAIL` in the Makefile:
 

@@ -5,9 +5,7 @@ tags: Deployment, FastAPI, Docker, Makefile, Azure
 description: Here I show how to deploy a FastAPI application to Azure App Service with Docker and a Makefile. Allowing anyone to deploy the application to the cloud easily with few commands.
 ---
 
-# Effortless API Deployments: FastAPI, Docker, and Make on Azure
-
-## Intro
+# Introduction
 
 Modern application development often involves creating APIs that serve as the backbone for web and mobile applications. FastAPI has emerged as a popular Python framework for building high-performance APIs quickly. Docker simplifies packaging these applications into portable containers, ensuring consistency across different environments.
 
@@ -18,7 +16,7 @@ In this tutorial, we will:
 * Write a Dockerfile to containerize this application using Python 3.11.
 * Utilize a provided Makefile to automate the deployment to Azure App Service.
 
-## Requirements
+# Requirements
 
 Before we dive in, ensure you have the following set up:
 
@@ -28,11 +26,11 @@ Before we dive in, ensure you have the following set up:
 * **Python 3.11:** While our Docker container will use Python 3.11, it's good practice to have a compatible version for local development if needed.
 * **A Project Directory:** Create a new folder for your project. Inside this folder, we'll place our FastAPI application code, the Dockerfile, and the Makefile.
 
-## Deployment
+# Deployment
 
 Let's get our hands dirty and deploy our FastAPI application!
 
-### Step 1: Create your FastAPI Application
+## Step 1: Create your FastAPI Application
 
 First, let's create a very simple FastAPI application.
 
@@ -61,7 +59,7 @@ First, let's create a very simple FastAPI application.
     uvicorn[standard]
     ```
 
-### Step 2: Create the Dockerfile
+## Step 2: Create the Dockerfile
 
 Next, create a `Dockerfile` (no extension) in your project root. This file will define how to build the Docker image for our FastAPI application using Python 3.11.
 
@@ -103,7 +101,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 * `ENV PORT 80`: Sets an environment variable (often used by hosting platforms like App Service to determine the listening port).
 * `CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]`: Specifies the command to run when the container starts. It starts the Uvicorn server, making the FastAPI app accessible on port 80 from any IP address within the container's network.
 
-### Step 3: The Makefile
+## Step 3: The Makefile
 
 Now, for the automation part. Create a file named `Makefile` (no extension) in your project root and paste the following content:
 
@@ -218,7 +216,7 @@ The rest of the Makefile defines **targets**. You can execute these using the `m
 * `cors`:
     * `az webapp cors add --resource-group $(resourcegroup) --name $(webapp) --allowed-origins '*'`: Configures Cross-Origin Resource Sharing (CORS) for your web app, allowing requests from any origin (`'*'`). **For production, you should restrict this to specific domains.**
 
-### Step 4: Customize Makefile Variables
+## Step 4: Customize Makefile Variables
 
 **Important:** Before running any `make` commands, open the `Makefile` and change the values of `resourcegroup`, `containerregistry`, `image`, `appserviceplan`, and `webapp` to something unique. ACR names and Web App names need to be globally unique across Azure.
 
@@ -233,7 +231,7 @@ location=eastus
 ```
 Choose a `location` that is suitable for you.
 
-### Step 5: Deploy!
+## Step 5: Deploy!
 
 Now, open your terminal in the project directory where your `main.py`, `Dockerfile`, and `Makefile` are located.
 
@@ -257,7 +255,7 @@ Now, open your terminal in the project directory where your `main.py`, `Dockerfi
 
     This process might take a few minutes as Azure provisions the resources. You'll see output from the Azure CLI for each step.
 
-### Step 6: Verify Your Deployment
+## Step 6: Verify Your Deployment
 
 Once the `make all` command completes successfully, Azure will provide you with the default URL for your web app (usually in the output of the `az webapp create` step, looking something like `http://<webapp-name>.azurewebsites.net`).
 
@@ -267,7 +265,7 @@ Open this URL in your web browser. You should see:
 You can also test the other endpoint: `http://<webapp-name>.azurewebsites.net/items/10?q=test`
 Which should return: `{"item_id":10,"q":"test"}`
 
-### Step 7: Redeploying Changes
+## Step 7: Redeploying Changes
 
 If you make changes to your `main.py` or other application files:
 
@@ -278,7 +276,7 @@ If you make changes to your `main.py` or other application files:
     ```
     This will rebuild the image in ACR with your new code and then restart your Azure Web App, which will pull the updated image. Wait a minute or two for the new image to be pulled and the app to restart, then refresh your browser.
 
-### Step 8: (Optional) Enable CORS
+## Step 8: (Optional) Enable CORS
 
 If your API needs to be accessed from web applications hosted on different domains, you'll need to enable CORS:
 ```bash
@@ -286,7 +284,7 @@ make cors
 ```
 This allows all origins (`*`). For production, specify your frontend's domain instead of `*`.
 
-### Step 9: Cleaning Up
+## Step 9: Cleaning Up
 
 Once you're done experimenting, it's a good idea to remove the Azure resources to avoid ongoing charges. The easiest way to do this is to delete the entire resource group:
 
