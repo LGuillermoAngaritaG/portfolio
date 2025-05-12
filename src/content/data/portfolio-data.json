@@ -1,0 +1,201 @@
+{
+    "basePath": "/portfolio",
+    "theme": "ocean",
+    "name": "Luis Guillermo Angarita",
+    "title": "Senior Data Scientist",
+    "image": "images/Portrait_Placeholder.png",
+    "bio": "Data Scientist with a strong focus on Natural Language Processing (NLP) and experience in implementing Large Language Models (LLMs) for business solutions such as chatbots and predictive models. Skilled in developing Python web applications and APIs, with a record of improving efficiency and customer satisfaction. [cite: 4] Significant experience in MLOps, specifically within the Azure Machine Learning environment, and demonstrated expertise in machine learning and deep learning models. [cite: 5] Contributed to research projects in material science and efficiency in turbines, employing data analysis and machine learning techniques. [cite: 6] Expertise in a variety of data analysis and AI tools, including Python, SQL, R, and relevant libraries. [cite: 7]",
+    "cv_icon" :"icons/cv-icon.svg",
+    "cv_link": "CV.pdf",
+    "copy_icon": "icons/copy-icon.svg",
+    "check_icon": "icons/check-icon.svg",
+    "expertises": [
+        "Natural Language Processing (NLP)",
+        "Large Language Models (LLMs)",
+        "Python",
+        "API Development",
+        "MLOps",
+        "Azure Machine Learning",
+        "Deep Learning",
+        "Generative AI",
+        "Chatbots",
+        "Predictive Models"
+    ],
+    
+    "experience": [
+        {
+            "title": "Data Scientist",
+            "date": "September 2023 - Present",
+            "company": "SoftServe",
+            "description": "* Leveraged Generative AI to develop innovative solutions across diverse industries including construction software, contractor services, Human Resources, Education, and Healthcare, alongside internal SoftServe initiatives. \n\n * Engineered a chat-based API with streaming capabilities, achieving an 87% improvement in response quality and a 500% increase in speed compared to human counterparts. \n\n * Enhanced GenAI application performance and safety through techniques such as streaming, batching, robust guardrail implementation, and the deployment of both simple and agentic AI architectures. \n\n * Designed and deployed solutions across major cloud platforms (GCP, AWS, Azure) and on-premise environments. \n\n * Fine-tuned Large Language Models (LLMs) and Embedding models for specialized use-cases, enabling the use of smaller, more efficient models and reducing GenAI API call costs by 200%.",
+            "icon": "",
+            "link": "https://www.softserve.com/"
+        },
+        {
+            "title": "Data Science Technical Lead",
+            "date": "June 2023 - September 2023",
+            "company": "Xolit",
+            "description": "* Lead and manage a team of experienced Data Scientists to build and maintain scalable data solutions and applications * Collaborate with cross-functional teams including Data Scientists, Product Managers, Data Engineers and Business Analysts to design and implement data-driven solutions \n\n * Manage and optimize Azure resources and services to ensure cost-effective and efficient use of resources \n\n * Help junior and intermediate data scientists enhance their careers and their skill sets in data science \n\n * Using cutting-edge approaches and procedures, as well as developing new ones when necessary, support the redesign of the data science model development lifecycle",
+            "icon": "",
+            "link": "https://www.xolit.com/"
+        },
+        {
+            "title": "Senior Data Scientist",
+            "date": "January 2021 - June 2023",
+            "company": "Xolit",
+            "description": "* Implemented Large language models in chatbots and automation tools to analyze text and provide customer support, which resulted in significant improvements in communication efficiency and customer satisfaction. Developed more than 10 APIs and WebApps to serve machine learning models, which resulted in improved efficiency and broader functionality for business operations. \n\n * Use of AB testing and design of experiments for optimizing the transactions in a ChatBot. Made a ChatBot using Deep learning and natural processing techniques. Created a dashboard using PowerBi to support the product owner and scrum master in making decisions and tracking scrum velocity. Made 6 different APIs to process text using NLP with FastAPI. Made 5 different web apps using Streamlit and Javascript to control different processes and show the stake holders how our machine learning models work. Made a voice enable chatbot that calls clients using Twillio and Azure Speech Services. \n\n * Development and implementation of artificial intelligence models for user segmentation and text analysis using natural language processing techniques. Implementation and continuous improvement of chatbot services from IBM and Azure in a customer service platform with more than 1 million unique users per month. Implementation of a fraud detection system in chats using neural networks. Development of predictive algorithms for agent-based dimensioning in a call center. Design of an A/B testing platform for chatbots. Implementation of optimization algorithms to reduce costs in a call center. Time series Forecast of call volume in Call Centre using Statistical and Machine Learning Methods.",
+            "icon": "",
+            "link": "https://www.xolit.com/"
+        },
+        {
+            "title": "Research Assistant",
+            "date": "July 2013 - January 2021",
+            "company": "Universidad EAFIT",
+            "description": "* Developed a new method of characterization of vortex rope in pumps working as turbines. \n\n * Created Numerical simulations for pumps working as turbines using computational fluid dynamics software such as ANSYS CFX and ANSYS Fluent. \n\n * Engineered and produced super-hard coatings using PVD Magnetron Sputtering. \n\n * Support of classes of material science and fluid dynamics. \n\n * Developed a method to predict the hardness of hard coatings \n\n * Published 5 research papers in international journals and attended 8 conferences" ,
+            "icon": "",
+            "link": "https://www.eafit.edu.co/"
+        },
+        {
+            "title": "Web Developer (Part-Time)",
+            "date": "October 2009 - January 2013",
+            "company": "Arrendamientos Envigado",
+            "description": "Updating the company's website, resolving difficulties associated with the back-end and front-end of the website. Provider of tools for solving problems related to the company's daily routine.",
+            "icon": "",
+            "link": "https://www.arrendamientosenvigado.com/"
+        },
+        {
+            "title": "Production and Extrusion Intern",
+            "date": "April 2012 - October 2012",
+            "company": "ALUMINA S.A",
+            "description": "Characterization of raw material using optical emission spectroscopy and metallographic analysis, search for causes and solutions to problems associated with the production and processing of aluminum profiles. [cite: 26]",
+            "icon": "",
+            "link": "https://www.alumina.com.co/"
+        },
+        {
+            "title": "Monitor of Polymeric Materials Processing",
+            "date": "July 2011 - March 2012",
+            "company": "Universidad de Antioquía",
+            "description": "Preparation of reagents and equipment used in laboratory practices, support in extension services provided by the university.",
+            "icon": "",
+            "link": "https://www.udea.edu.co/"
+        },
+        {
+            "title": "Monitor of Polymeric Materials",
+            "date": "February 2010 - December 2010",
+            "company": "Universidad de Antioquia",
+            "description": "Preparation of reagents and equipment used in laboratory practices, support in extension services provided by the university.",
+            "icon": "",
+            "link": "https://www.udea.edu.co/"
+        }
+    ],
+    "education": [
+        {
+            "title": "Master in Applied Physics",
+            "date": "2015 - 2017",
+            "school": "Universidad EAFIT",
+            "icon": "",
+            "link": "https://www.eafit.edu.co/"
+        },
+        {
+            "title": "Materials Engineer",
+            "date": "2007 - 2013",
+            "school": "Universidad de Antioquía",
+            "icon": "",
+            "link": "https://www.udea.edu.co/"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Programming Languages",
+            "skills": ["Python", "R", "SQL", "JavaScript", "C#"],
+            "icon": "icons/programming-icon.svg"
+        },
+        {
+            "name": "Machine Learning",
+            "skills": ["Supervised Learning", "Unsupervised Learning", "Deep Learning", "Reinforcement Learning"],
+            "icon": "icons/ml-icon.svg"
+        },
+        {
+            "name": "Data Tools",
+            "skills": ["Pandas", "NumPy", "TensorFlow", "Scikit-Learn", "PyTorch"],
+            "icon": "icons/tools-icon.svg"
+        },
+        {
+            "name": "Databases",
+            "skills": ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
+            "icon": "icons/database-icon.svg"
+        }
+    ],
+    "publications": [
+        {
+            "title": "Optimizing Neural Networks for Natural Language Processing: A Case Study",
+            "date": "2020",
+            "publication": "Journal of Machine Learning Research",
+            "link": "https://example.com/neural-networks-nlp",
+            "icon": ""
+        },
+        {
+            "title": "Predictive Modeling for Healthcare Outcomes Using Ensemble Methods",
+            "date": "2019",
+            "publication": "Data Science Quarterly",
+            "link": "https://example.com/healthcare-predictive-modeling",
+            "icon": ""
+        }
+    ], 
+
+    "certifications": [
+        {
+            "date": "Unknown",
+            "title": "DP-100 Azure Machine Learning Using Azure Machine Learning",
+            "school": "Microsoft",
+            "link": "",
+            "icon": "icons/microsoft-icon.svg"
+        },
+        {
+            "title": "Machine Learning",
+            "date": "Unknown",
+            "school": "Unknown",
+            "link": "",
+            "icon": ""
+        },
+        {
+            "title": "Deep learning: Recurrent neural networks in Python",
+            "date": "Unknown",
+            "school": "Unknown",
+            "link": "",
+            "icon": ""
+        },
+        {
+            "title": "Cognotechnics: Tools to think more and better",
+            "date": "Unknown",
+            "school": "Unknown",
+            "link": "",
+            "icon": ""
+        },
+        {
+            "title": "Data Storytelling and Data Visualization",
+            "date": "Unknown",
+            "school": "Unknown",
+            "link": "",
+            "icon": ""
+        }
+    ],
+    
+    "social": [
+        {
+            "name": "Email",
+            "icon": "icons/email-icon.svg",
+            "link": "guillermo.angarita.gutierrez@gmail.com"
+        },
+        {
+            "name": "Github",
+            "icon": "icons/github-icon.svg",
+            "link": "https://github.com/LGuillermoA"
+        },
+        { 
+            "name": "linkedin",
+            "icon": "icons/linkedin-icon.svg",
+            "link": "https://www.linkedin.com/in/luis-guillermo-angarita-gutierrez-b700001b0/"
+        }
+    ]
+}
