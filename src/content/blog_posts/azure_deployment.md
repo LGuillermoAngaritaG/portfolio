@@ -2,6 +2,7 @@
 title: Deploying FastAPI to Azure with Docker and a Makefile
 date: 2024/10/27
 tags: Deployment, FastAPI, Docker, Makefile, Azure
+description: Here I show how to deploy a FastAPI application to Azure App Service with Docker and a Makefile. Allowing anyone to deploy the application to the cloud easily with few commands.
 ---
 
 # Effortless API Deployments: FastAPI, Docker, and Make on Azure

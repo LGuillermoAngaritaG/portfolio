@@ -2,6 +2,7 @@
 title: Deploying FastAPI to Google Cloud Run with Docker and a Makefile
 date: 2024/10/27
 tags: Deployment, FastAPI, Docker, Makefile, GCP
+description: Here I show how to deploy a FastAPI application to Google Cloud Run with Docker and a Makefile. This allows me to deploy the application to the cloud easily with few commands.
 ---
 
 # Streamlining Your API Deployments: FastAPI, Docker, and a Makefile for Google Cloud Run
