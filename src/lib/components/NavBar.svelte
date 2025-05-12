@@ -88,11 +88,11 @@
           <ul class="nav-links">
             <li><a href="{base}/#about" on:click={closeMenu}>About</a></li>
             <li><a href="{base}/#experience" on:click={closeMenu}>Experience</a></li>
-            <!-- <li><a href="{base}/#projects" on:click={closeMenu}>Projects</a></li> -->
+            <li><a href="{base}/#projects" on:click={closeMenu}>Projects</a></li>
             <li><a href="{base}/#skills" on:click={closeMenu}>Skills</a></li>
             <li><a href="{base}/#certifications" on:click={closeMenu}>Certifications</a></li>
             <li><a href="{base}/#education" on:click={closeMenu}>Education</a></li>
-            <!-- <li><a href="{base}/#blog-posts" on:click={closeMenu}>Blog posts</a></li> -->
+            <li><a href="{base}/#blog-posts" on:click={closeMenu}>Blog posts</a></li>
             <li><a href="{base}/#publications" on:click={closeMenu}>Publications</a></li>
             <li><a href="{base}/#contact" on:click={closeMenu}>Contact</a></li>
           </ul>

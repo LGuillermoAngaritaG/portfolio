@@ -15,13 +15,13 @@
   sectionTitle="Experience"
   items={portfolioData.experience}
 />
-<!-- 
+
 <SlugSection 
   sectionId="projects"
   sectionTitle="Projects"
   items={content.projects}
   availableTags={content.projectTags}
-/> -->
+/>
 
 <SkillsSection
   skillsData={portfolioData.skills}
@@ -39,12 +39,12 @@
   items={portfolioData.education}
 />
 
-<!-- <SlugSection 
+<SlugSection 
   sectionId="blog-posts"
   sectionTitle="Blog posts"
   items={content.blogs}
   availableTags={content.blogTags}
-/> -->
+/>
 
 <TimelineSection 
   sectionId="publications"
