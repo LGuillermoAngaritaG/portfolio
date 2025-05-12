@@ -54,7 +54,7 @@
 			await scrollToBottom();
 
 			try {
-				const response = await fetch('http://localhost:8000/ask', {
+				const response = await fetch('https://portfolio-909979642268.us-central1.run.app/ask', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
