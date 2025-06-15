@@ -89,7 +89,11 @@
 			{/each}
 		</div>
 	</div>
+
 	<div class="footer-bottom">
+		<p>
+			&copy; 2025 <a href="https://github.com/open-portfolio/open-portfolio">Open Portfolio</a>. All rights reserved. 
+		</p>
 	</div>
 </footer>
 
