@@ -14,7 +14,7 @@ const portfolioData = JSON.parse(readFileSync(join(process.cwd(), 'src', 'conten
     sections: PortfolioSection[];
 };
 
-export const prerender = true;
+export const prerender = portfolioData.sections.some(section => section.path);
 
 // Generate all possible routes
 export const entries: EntryGenerator = () => {
