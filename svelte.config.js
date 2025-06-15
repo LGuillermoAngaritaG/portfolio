@@ -11,7 +11,7 @@ try {
     portfolioData = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 } catch (error) {
     console.error('Error reading portfolio-data.json:', error);
-    portfolioData = { basePath: '' };
+    portfolioData = { settings: { basePath: '' } };
 }
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -37,7 +37,7 @@ const config = {
         paths: {
             // Apply '/your-repo-name' only when building for production (npm run build)
             // Use an empty string '' for local development (npm run dev)
-            base: process.env.NODE_ENV === 'production' ? portfolioData.basePath : '',
+            base: process.env.NODE_ENV === 'production' ? portfolioData.settings.basePath : '',
         }
     }
 };

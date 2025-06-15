@@ -1,11 +1,7 @@
 <script lang="ts">
   import type { PortfolioData } from '../types/types.js';
   import { marked } from 'marked';
-
   export let portfolioData: PortfolioData;
-
-  const linkedin = portfolioData.social.find(s => s.name.toLowerCase() === 'linkedin');
-  const github = portfolioData.social.find(s => s.name.toLowerCase() === 'github');
 
 </script>
 
@@ -13,37 +9,29 @@
   <div class="intro-content">
       <div class="left-content">
         <div class="links-container">
-          <span class="tag">{portfolioData.title}</span>
+          <span class="title-tag">{portfolioData.settings.title}</span>
           <div class="social-links">
-            {#if linkedin}
-            <a href={linkedin.link} class="social-link" title="LinkedIn profile" target="_blank" rel="noopener noreferrer">
-              <img src={linkedin.icon} alt="LinkedIn icon">
-            </a>
+          {#each portfolioData.social as social}
+            {#if social.name.toLowerCase() !== 'email'}
+              <a href={social.link} class="social-link" title={social.name} target="_blank" rel="noopener noreferrer">
+                <img src={social.icon} alt={social.name + ' icon'}>
+              </a>
             {/if}
-            {#if github}
-            <a href={github.link} class="social-link" title="Github profile" target="_blank" rel="noopener noreferrer">
-              <img src={github.icon} alt="Github icon">
-            </a>
-            {/if}
-            {#if portfolioData.cv_link && portfolioData.cv_icon}
-            <a href={portfolioData.cv_link} class="social-link" title="Download CV" download>
-              <img src={portfolioData.cv_icon} alt="Download CV icon">
-            </a>
-            {/if}
+          {/each}
           </div>
         </div>
-          <h2>{portfolioData.name}</h2>
+          <h2>{portfolioData.settings.name}</h2>
           <div class="markdown-content">
-            {@html marked.parse(portfolioData.bio)}
+            {@html marked.parse(portfolioData.settings.bio)}
           </div>
           <div class="expertise-tags">
-              {#each portfolioData.expertises as expertise}
+              {#each portfolioData.settings.expertises as expertise}
                   <span class="expertise-tag">{expertise}</span>
               {/each}
           </div>
       </div>
       <div class="right-content">
-          <img src={portfolioData.image} alt={portfolioData.name} class="profile-image" />
+          <img src={portfolioData.settings.potrait_image} alt={portfolioData.settings.name} class="profile-image" />
       </div>
   </div>
 </section>
@@ -124,7 +112,7 @@
     text-align: justify;
 }
 
-  .tag {
+  .title-tag {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
     color: var(--text-on-primary, white); 
     box-shadow: 0 4px 15px var(--shadow-primary-medium, rgba(34, 139, 230, 0.2));
@@ -134,11 +122,6 @@
     font-weight: 500;
     display: inline-block;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, color 0.3s ease;
-  }
-
-  .tag:hover {
-    transform: translateY(-2px);  
-    box-shadow: 0 6px 20px var(--shadow-primary-medium-hover, rgba(34, 139, 230, 0.3));
   }
 
   .expertise-tags {
@@ -159,12 +142,6 @@
     font-size: 1rem;  
     font-weight: 500;  
     transition: all 0.2s ease;
-  }
-
-  .expertise-tag:hover {
-    transform: translateY(-2px);  
-    background: var(--tag-background-hover); 
-    box-shadow: var(--tag-shadow-hover); 
   }
 
   .right-content {
@@ -195,11 +172,6 @@
     transition: all 0.3s ease; 
   }
 
-  .profile-image:hover {
-    box-shadow: var(--image-shadow-hover, var(--card-shadow-hover)); 
-  }
-
- 
   @media (max-width: 1400px) {
     .intro {
       padding: 20px 10px;  
@@ -226,7 +198,7 @@
       margin-top: 20px;
     }
 
-    .tag { 
+    .title-tag { 
       font-size: 14px;
     }
 
@@ -249,7 +221,7 @@
     .intro{
       margin-top: 100px;  
     }
-    .tag { 
+    .title-tag { 
       font-size: 12px;  
       position: relative;  
       left: 0;  

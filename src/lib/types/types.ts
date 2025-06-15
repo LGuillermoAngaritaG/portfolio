@@ -1,51 +1,5 @@
 import type { Theme } from "$lib/stores/themeStore";
 
-interface Experience {
-    date: string;
-    title: string;
-    company: string;
-    link: string;
-    description: string;
-    icon?: string;
-}
-
-interface Skill {
-    name: string;
-    skills: string[];
-    icon?: string;
-}
-
-interface Education {
-    date: string;
-    title: string;
-    school: string;
-    link: string;
-    description: string;
-    icon?: string;
-}
-
-interface Certifications {
-    title: string;
-    school: string;
-    date: string;
-    link: string;
-    icon?: string;
-}
-
-interface Publications{
-    title: string;
-    publication: string;
-    date: string;
-    link: string;
-    icon?: string;
-}
-
-interface SocialContact {
-    name: string;
-    icon?: string;
-    link?: string;
-}
-
 export interface Metadata {
     date: string;
     title: string;
@@ -54,6 +8,7 @@ export interface Metadata {
     description: string;
     skip: boolean;
     display_order?: number;
+    image?: string;
 }
 
 export type ContentListItem = {
@@ -62,51 +17,79 @@ export type ContentListItem = {
     rawContent: string;
 };
 
-export interface Project {
-    slug: string;
-    metadata: Metadata;
-    html: string | Promise<string>;
-    nextProject?: {
-        slug: string;
-        title: string;
-    };
-}
-export interface Blog {
-    slug: string;
-    metadata: Metadata;
-    html: string | Promise<string>;
-    nextBlog?: {
-        slug: string;
-        title: string;
-    };
+interface BaseContentItem {
+    [key: string]: any;
 }
 
-export interface PortfolioData {
+interface Section {
+    path?: string;
+    title: string;
+    type: string;
+    content?: BaseContentItem[];
+    truncation_limit?: number;
+}
+
+export interface Skill {
+    name: string;
+    description: string;
+    icon: string;
+    skills: string[];
+}
+
+interface Settings {
     basePath: string;
     theme: Theme;
     name: string;
     title: string;
     bio: string;
-    image: string;
-    cv_icon: string;
-    cv_link: string;
-    copy_icon: string;
-    check_icon: string;
+    potrait_image: string;
     expertises: string[];
-    experience: Experience[];
-    skills: Skill[];
-    education: Education[];
-    social: SocialContact[];
-    publications: Publications[];
-    certifications: Certifications[];
+    [key: string]: any;
+}
+
+export interface PortfolioData {
+    settings: Settings;
+    sections: Section[];
+    social: BaseContentItem[];
+    [key: string]: any;
+}
+
+export interface PortfolioSection {
+    path?: string;
+    title: string;
+    route?: string;
+    type: string;
+    content?: BaseContentItem[];
+    truncation_limit?: number;
+}
+
+export interface ContentSection {
+    content: BaseContentItem[];
+    tags: string[];
+}
+
+export interface ContentItem {
+    slug: string;
+    type: string;
+    metadata: Metadata;
+    html: string;
+    nextItem?: ContentReference;
+}
+
+export interface ContentReference {
+    slug: string;
+    title: string;
+    type: string;
+}
+
+export interface MarkdownContent {
+    slug: string;
+    metadata: Metadata;
+    html: string;
 }
 
 export interface PageData {
     content: {
-        projects: Project[];
-        blogs: Blog[];
-        projectTags: string[];
-        blogTags: string[];
+        [sectionName: string]: ContentSection;
     };
 }
-

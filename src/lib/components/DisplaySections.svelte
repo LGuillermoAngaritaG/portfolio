@@ -1,53 +1,54 @@
 <script lang="ts">
-  import type { PortfolioData, PageData } from '../types/types.js';
-  import SkillsSection from '$lib/components/sections/Skills/SkillsSection.svelte';
-  import TimelineSection from '$lib/components/sections/Timeline/TimelineSection.svelte';
-  import ExtraSection from './sections/Timeline/ExtraSection.svelte';
-  import SlugSection from '$lib/components/sections/Slug/SlugSection.svelte';
+	import type { PortfolioData, PageData } from '../types/types.js';
+	import CardsOutside from '$lib/components/sections/Cards/CardsOutside.svelte';
+	import CardsWithLink from './sections/Cards/CardsWithLink.svelte';
+	import Cards from './sections/Cards/Cards.svelte';
+	import CardsWithIcons from '$lib/components/sections/Cards/CardsWithIcons.svelte';
+	import { sortItemsByDate, shouldSortSectionByDate } from '$lib/utils/dateSortUtils';
 
-  export let portfolioData: PortfolioData;
-  export let content: PageData['content'];
+	export let portfolioData: PortfolioData;
+	export let content: PageData['content'];
+
+	// Extract the pagination setting
+	$: itemsPerPage = portfolioData.settings?.cards_before_pagination || 3;
+
+	// Function to get sorted items for a section
+	function getSortedItems(section: any): any[] {
+		if (!section.content) return [];
+
+		// Only sort if the section has items with date fields
+		if (shouldSortSectionByDate(section)) {
+			return sortItemsByDate(section.content);
+		}
+
+		return section.content;
+	}
 </script>
 
-
-<ExtraSection 
-  sectionId="experience"
-  sectionTitle="Experience"
-  items={portfolioData.experience}
-/>
-
-<SlugSection 
-  sectionId="projects"
-  sectionTitle="Projects"
-  items={content.projects}
-  availableTags={content.projectTags}
-/>
-
-<SkillsSection
-  skillsData={portfolioData.skills}
-/>
-
-<TimelineSection 
-  sectionId="certifications"
-  sectionTitle="Certifications"
-  items={portfolioData.certifications}
-/>
-
-<ExtraSection 
-  sectionId="education"
-  sectionTitle="Education"
-  items={portfolioData.education}
-/>
-
-<SlugSection 
-  sectionId="blog-posts"
-  sectionTitle="Blog posts"
-  items={content.blogs}
-  availableTags={content.blogTags}
-/>
-
-<TimelineSection 
-  sectionId="publications"
-  sectionTitle="Publications"
-  items={portfolioData.publications}
-/>
+{#each portfolioData.sections as section}
+	{#if section.type === 'cards_with_link'}
+		<CardsWithLink
+			sectionTitle={section.title}
+			items={getSortedItems(section)}
+			{itemsPerPage}
+			truncationLimit={section.truncation_limit || 150}
+		/>
+	{:else if section.type === 'cards_with_icons'}
+		<CardsWithIcons skillsData={section.content as any} />
+	{:else if section.type === 'cards'}
+		<Cards
+			sectionTitle={section.title}
+			items={getSortedItems(section)}
+			{itemsPerPage}
+			truncationLimit={section.truncation_limit || 150}
+		/>
+	{:else if section.type === 'cards_outside'}
+		<CardsOutside
+			sectionTitle={section.title}
+			items={content[section.title.toLowerCase()]?.content || []}
+			availableTags={content[section.title.toLowerCase()]?.tags || []}
+			{itemsPerPage}
+			truncationLimit={section.truncation_limit || 150}
+		/>
+	{/if}
+{/each}

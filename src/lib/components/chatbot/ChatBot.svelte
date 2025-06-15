@@ -2,14 +2,13 @@
 	import { onMount, tick } from 'svelte';
 	import type { PortfolioData } from '$lib/types/types.js';
 
-  	export let portfolioData: PortfolioData;
+	export let portfolioData: PortfolioData;
 
 	interface Message {
 		id: string;
 		role: 'user' | 'assistant';
 		content: string;
 	}
-	console.log("HOLA")
 
 	let messageHistory: Message[] = [];
 	let userInput: string = '';
@@ -54,14 +53,15 @@
 			await scrollToBottom();
 
 			try {
-				const response = await fetch('https://portfolio-phellyvqiq-uc.a.run.app/ask', {
+				const response = await fetch('https://portfolio-909979642268.us-central1.run.app/ask', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'Accept': 'text/plain'
+						Accept: 'text/plain'
 					},
 					body: JSON.stringify({
-						messages: apiHistory.map(msg => ({ // This inner map is redundant if apiHistory is already correct
+						messages: apiHistory.map((msg) => ({
+							// This inner map is redundant if apiHistory is already correct
 							role: msg.role,
 							content: msg.content
 						}))
@@ -98,7 +98,6 @@
 				}
 				assistantMessageContent += decoder.decode();
 				updateAssistantMessage(assistantMessageContent);
-
 			} catch (error) {
 				console.error('Error:', error);
 				const errorMessage = error instanceof Error ? error.message : 'Sorry, there was an error.';
@@ -131,11 +130,14 @@
 					if (Array.isArray(parsedHistory)) {
 						messageHistory = parsedHistory;
 					} else {
-						console.warn("Stored chat history is not an array, clearing invalid data.");
+						console.warn('Stored chat history is not an array, clearing invalid data.');
 						localStorage.removeItem(LOCAL_STORAGE_KEY);
 					}
 				} catch (e) {
-					console.error('Error parsing chat history from localStorage, clearing corrupted data:', e);
+					console.error(
+						'Error parsing chat history from localStorage, clearing corrupted data:',
+						e
+					);
 					localStorage.removeItem(LOCAL_STORAGE_KEY);
 				}
 			}
@@ -152,7 +154,7 @@
 </script>
 
 <div class="chat-container">
-	<h1>{portfolioData.name}'s Agent</h1>
+	<h1>{portfolioData.settings.name}'s Agent</h1>
 	<div class="messages" bind:this={messagesContainer}>
 		{#each messageHistory as message (message.id)}
 			<div class="message {message.role}-message">
@@ -182,15 +184,17 @@
 		overflow: hidden;
 		box-sizing: border-box;
 		font-family: var(--font-primary, var(--font-system, Arial, sans-serif));
-		
+
 		display: flex;
 		flex-direction: column;
-		
-		padding: 20px; 
+
+		padding: 20px;
 		background-color: var(--card-background);
 		color: var(--text-color);
 		margin: 0;
-        transition: background-color 0.3s ease, color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 	}
 
 	.chat-container h1 {
@@ -199,8 +203,8 @@
 		margin-top: 0;
 		margin-bottom: 1rem;
 		font-size: 1.8rem;
-        font-family: var(--font-secondary, var(--font-system, Arial, sans-serif));
-        transition: color 0.3s ease;
+		font-family: var(--font-secondary, var(--font-system, Arial, sans-serif));
+		transition: color 0.3s ease;
 	}
 
 	.messages {
@@ -210,8 +214,13 @@
 		padding: 15px;
 		border: var(--card-border);
 		border-radius: 8px;
-		background-color: var(--chatbot-messages-background, var(--background-color)); /* Use specific var or fallback */
-        transition: background-color 0.3s ease, border-color 0.3s ease;
+		background-color: var(
+			--chatbot-messages-background,
+			var(--background-color)
+		); /* Use specific var or fallback */
+		transition:
+			background-color 0.3s ease,
+			border-color 0.3s ease;
 	}
 
 	.message {
@@ -219,17 +228,19 @@
 		padding: 10px 15px; /* Adjusted padding */
 		border-radius: 18px; /* Rounded bubbles */
 		word-wrap: break-word;
-        white-space: pre-wrap; /* Respect newlines in messages */
+		white-space: pre-wrap; /* Respect newlines in messages */
 		line-height: 1.5;
 		max-width: 80%;
-        transition: background-color 0.3s ease, color 0.3s ease;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 	}
 
 	.user-message {
 		background-color: var(--primary-color);
 		color: var(--chatbot-text-on-primary);
-		margin-left: auto; 
-		text-align: left; 
+		margin-left: auto;
+		text-align: left;
 		border-bottom-right-radius: 5px; /* "Tail" effect */
 	}
 
@@ -244,7 +255,7 @@
 	.input-container {
 		display: flex;
 		gap: 8px;
-		margin-top: auto; 
+		margin-top: auto;
 	}
 
 	input[type='text'] {
@@ -255,14 +266,17 @@
 		background-color: var(--chatbot-input-background, var(--card-background));
 		color: var(--text-color);
 		font-size: 1rem;
-        font-family: var(--font-primary, var(--font-system, sans-serif));
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+		font-family: var(--font-primary, var(--font-system, sans-serif));
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease,
+			border-color 0.3s ease;
 	}
 
 	input[type='text']::placeholder {
 		color: var(--text-secondary-color);
 		opacity: 0.8;
-        transition: color 0.3s ease;
+		transition: color 0.3s ease;
 	}
 
 	button {
@@ -272,9 +286,12 @@
 		border: none;
 		border-radius: 8px;
 		cursor: pointer;
-		transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease,
+			opacity 0.2s ease;
 		font-weight: 500;
-        font-family: var(--font-primary, var(--font-system, sans-serif));
+		font-family: var(--font-primary, var(--font-system, sans-serif));
 		font-size: 0.95rem;
 	}
 
@@ -305,13 +322,13 @@
 	.messages::-webkit-scrollbar-track {
 		background: transparent; /* Make track transparent to show messages background */
 		border-radius: 10px;
-        margin: 5px 0;
+		margin: 5px 0;
 	}
 	.messages::-webkit-scrollbar-thumb {
 		background-color: var(--text-secondary-color);
 		border-radius: 10px;
 		border: 2px solid var(--chatbot-messages-background, var(--background-color)); /* Creates padding around thumb */
-        transition: background-color 0.3s ease;
+		transition: background-color 0.3s ease;
 	}
 	.messages::-webkit-scrollbar-thumb:hover {
 		background-color: var(--primary-color);

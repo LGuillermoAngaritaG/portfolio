@@ -3,14 +3,10 @@
 
     export let portfolioData: PortfolioData;
 
-    const email = portfolioData.social.find(s => s.name.toLowerCase() === 'email');
-    const linkedin = portfolioData.social.find(s => s.name.toLowerCase() === 'linkedin');
-    const github = portfolioData.social.find(s => s.name.toLowerCase() === 'github');
-
     let copied: boolean = false;
 
     function copyToClipboard(email: string): void {
-        if (!navigator.clipboard) {
+        if (!email) {
             // Fallback or error message for browsers without clipboard API support
             console.error("Clipboard API not available.");
             alert("Sorry, copying to clipboard is not supported in your browser.");
@@ -38,27 +34,26 @@
     <div class="contact-card">
         <h3>Let's Connect</h3>
         <p>I'm always open to discussing new projects, opportunities in tech, or just having a chat about the latest trends.</p>
-        {#if email}
-            <div class="contact-item">
-                {#if email.icon}<img src={email.icon} alt="Email" />{/if}
-                <a href={`mailto:${email.link}`}>
-                    <span>{email.link}</span>
-                </a>
-                <button class="copy-button" on:click={() => copyToClipboard(email.link!)} title="Copy email address">
-                    <img src={copied ? portfolioData.check_icon : portfolioData.copy_icon} alt={copied ? 'Copied' : 'Copy'} />
-                </button>
-            </div>
-        {/if}
+        
+        {#each portfolioData.social as social}
+            {#if social.name.toLowerCase() === 'email'}
+                <div class="contact-item">
+                    {#if social.icon}<img src={social.icon} alt="Email" />{/if}
+                    <a href={`mailto:${social.link}`}>
+                        <span>{social.link}</span>
+                    </a>
+                    <button class="copy-button" on:click={() => social.link && copyToClipboard(social.link)}  title="Copy email address">
+                        <img src={copied ? "icons/check-icon.svg" : "icons/copy-icon.svg"} alt={copied ? 'Copied' : 'Copy'} />
+                    </button>
+                </div>
+            {/if}
+        {/each}
         <div class="social-icons">
-            {#if linkedin}
-                <a class="social-icon" href={linkedin.link}><img src={linkedin.icon} alt="Linkedin Icon"></a>
-            {/if}
-            {#if github}
-                <a class="social-icon" href={github.link}><img src={github.icon} alt="Github Icon"></a>
-            {/if}
-            {#if email}
-                <a class="social-icon" href={portfolioData.cv_link} download><img src={portfolioData.cv_icon} alt="CV Icon"></a>
-            {/if}
+            {#each portfolioData.social as social}
+                {#if social.name.toLowerCase() !== 'email'}
+                    <a class="social-icon" href={social.link}><img src={social.icon} alt={`${social.name} Icon`}></a>
+                {/if}
+            {/each}
         </div>
     </div>
 </section>
@@ -75,6 +70,7 @@
     .social-icon img{
         width: 40px;
         height: 40px;
+        filter: var(--icon-filter);
     }
     .contact-section {
         text-align: center;
@@ -117,13 +113,6 @@
         border: var(--card-border);
         backdrop-filter: blur(8px);
         transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-5px);
-        box-shadow:
-            0 20px 25px var(--card-shadow-hover),
-            0 10px 10px var(--card-shadow-hover);
     }
 
     .contact-card h3 {
@@ -209,6 +198,13 @@
     .copy-button:hover img {
         opacity: 1;
     }
+
+    .social-icon:hover {
+		transform: translateY(-3px);
+	}
+    .social-icon:hover img {
+		transform: scale(1.1);
+	}
 
     @media (max-width: 900px) {
         .contact-section {

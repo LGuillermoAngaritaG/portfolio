@@ -1,0 +1,194 @@
+sections:
+  - title: Experience
+    type: cards_with_link
+    truncation_limit: 400
+    content:
+      - organization: SoftServe
+        date: "Sept 2023 - Present"
+        description: |-
+          * Developed multi-agent chatbots that improved performance of the llm models from 63 to 98%.
+          * Developed a chat-based assistant using llms from aws bedrock. This chatbot used guardrails, a react agent and retrieval augmented generation. Improving by 87% the quality of the responses to the users.
+          * Made an application that uses llms from Aws Bedrock to generate and query Graph databases, this improved the performance of Rag tasks by 70%.
+        link: https://www.softserve.com
+        title: Data Scientist
+
+      - organization: Xolit
+        date: "Jan 2021 - Sept 2023"
+        description: |-
+          * Implemented Large language models in chatbots and automation tools to analyze text and provide customer support, which resulted in 50x communication efficiency and 85% increase in client satisfaction.
+          * Created an A/B testing framework to improve customer experience for a ChatBot with 1 million conversations per month, resulting in an 80% growth in customer satisfaction.
+          * Developed more than 20 APIs and WebApps to serve machine learning models, which resulted in an average improvement in efficiency of 350% against existing APIs and processes.
+          * Leveraged NLP techniques and APIs from Azure, Twilio, and AWS to develop a voicebot application capable of calling 2000 clients per minute, providing them with information and responding to voice commands.
+        link: https://www.xolit.com
+        title: "AI Leader, Senior Data Scientist"
+
+      - organization: EAFIT University
+        date: "Jul 2013 - Jan 2021"
+        description: |-
+          * Worked as a research assistant in 5 projects about new materials and energy efficiency. I was also awarded an scholarships to pursue a Master's degree in Applied Physics.
+          * Employed data analysis techniques and machine learning models to communicate research findings in 5 scientific papers and 8 conferences.
+          * Served as a teaching assistant for 4 post-graduate courses, providing support to students in their academic pursuits.
+        link: https://www.eafit.edu.co
+        title: Research Assistant
+
+  - path: src/content/projects/
+    title: Projects
+    type: cards_outside
+    truncation_limit: 150
+
+  - title: Skills
+    type: cards_with_icons
+    content:
+      - name: Programming Languages
+        icon: icons/programming-icon.svg
+        skills:
+          - Python
+          - SQL
+          - R
+          - JavaScript
+          - Scala
+          - Go
+
+      - name: Data Analysis
+        icon: ""
+        skills:
+          - Pandas
+          - Polars
+          - NumPy
+          - Scipy
+          - Dask
+          - "Spark (PySpark)"
+
+      - name: Data Visualization
+        icon: icons/chart-icon.svg
+        skills:
+          - Tableau
+          - "Power BI"
+          - Matplotlib
+          - Plotly
+          - D3.js
+          - Seaborn
+
+      - name: Application Development
+        icon: ""
+        skills:
+          - FastApi
+          - Streamlit
+          - Gradio
+          - Chainlit
+          - Svelte
+          - NextJs
+
+      - name: Artificial Intelligence
+        icon: icons/ml-icon.svg
+        skills:
+          - PyTorch
+          - TensorFlow
+          - Scikit-Learn
+          - spaCy
+          - Gensim
+          - Pycaret
+          - H2O
+
+      - name: Cloud & MLOps
+        icon: icons/cloud-icon.svg
+        skills:
+          - AWS
+          - Azure
+          - "Google Cloud"
+          - Docker
+          - Kubernetes
+          - MLflow
+          - Airflow
+          - Databricks
+
+  - title: Certifications
+    type: cards
+    truncation_limit: 150
+    content:
+      - date: "Sept 2017"
+        icon: ""
+        link: https://www.eafit.edu.co/maestria-fisica-aplicada
+        organization: EAFIT University
+        title: "Ms.C in Applied Physics"
+      - date: "July 2013"
+        icon: ""
+        link: https://www.udea.edu.co/wps/portal/udea/web/inicio/unidades-academicas/ingenieria/estudiar-facultad/pregrados/ingenieria-materiales
+        organization: University of Antioquia
+        title: Materials Engineer
+
+  - title: Education
+    type: cards_with_link
+    truncation_limit: 150
+    content:
+      - date: "2013 - 2015"
+        description: "Thesis: 'Deep Learning Approaches for Large-Scale Natural Language Understanding'. Published 3 papers in top-tier ML conferences. GPA: 3.9/4.0"
+        icon: ""
+        link: https://www.stanford.edu
+        organization: Stanford University
+        title: "MS in Computer Science (AI/ML Focus)"
+      - date: "July 2013"
+        description: ""
+        icon: ""
+        link: https://www.udea.edu.co/wps/portal/udea/web/inicio/unidades-academicas/ingenieria/estudiar-facultad/pregrados/ingenieria-materiales
+        organization: University of Antioquia
+        title: Materials Engineering
+
+  - path: src/content/blogs/
+    title: Blogs
+    type: cards_outside
+    truncation_limit: 150
+
+  - title: Publications
+    type: cards
+    truncation_limit: 150
+    content:
+      - date: "11/20/2021"
+        icon: ""
+        link: https://arxiv.org/abs/2022.54321
+        publication: ICML 2022
+        title: "Federated Learning for Healthcare: Privacy-Preserving Medical Diagnosis"
+      - date: "01/06/2022"
+        icon: ""
+        link: https://example.com/neural-networks-nlp
+        publication: "Journal of Machine Learning Research"
+        title: "Optimizing Neural Networks for Natural Language Processing: A Case Study"
+      - date: "05/01/2021"
+        icon: ""
+        link: https://example.com/healthcare-predictive-modeling
+        publication: "Data Science Quarterly"
+        title: "Predictive Modeling for Healthcare Outcomes Using Ensemble Methods"
+
+settings:
+  basePath: /portfolio
+  bio: |-
+    Data Scientist with 5+ years of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in Python, SQL, and modern cloud/MLOps stacks (AWS, GCP, Azure, Docker, Kubernetes). Previously spent 7 years as a university research assistant in materials science and hydrodynamics, earning a B.S. in Materials Engineering and an M.S. in Applied Physics.
+
+    Passionate about NLP and generative AI; built and deployed 50+ LLM-powered applications over the last three years for clients across multiple sectors, I pride myself in delivering applications that consistently uphold the highest standards of performance, reliability, and best practices. I'm always looking for new challenges, things to learn and opportunities to grow as a data scientist and ML Engineer.
+  expertises:
+    - Machine Learning
+    - Deep Learning
+    - MLOps
+    - Python
+    - NLP
+    - "Computer Vision"
+    - "Generative AI and LLMs"
+  name: "Guillermo Angarita"
+  potrait_image: images/Portrait_Placeholder.png
+  theme: ocean-dark
+  title: "Data Scientist & ML Engineer"
+  cards_before_pagination: 3
+
+social:
+  - icon: icons/email-icon.svg
+    link: guillermo.angarita.gutierrez@gmail.com
+    name: Email
+  - icon: icons/github-icon.svg
+    link: https://github.com/LGuillermoAngaritaG
+    name: Github
+  - icon: icons/linkedin-icon.svg
+    link: https://www.linkedin.com/in/guillermoangaritag/
+    name: linkedin
+  - icon: icons/cv-icon.svg
+    link: CV.pdf
+    name: Resume

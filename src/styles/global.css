@@ -92,7 +92,7 @@
     --hover-background-color: #554d4d;
 }
 
-.theme-forest {
+.theme-forest-light {
     --primary-color: #4CAF50;
     --secondary-color: #2e7d32;
     --background-color: #f1f8e9;
@@ -128,7 +128,7 @@
     --hover-background-subtle: rgba(76, 175, 80, 0.08);
 }
 
-.theme-ocean {
+.theme-ocean-light {
     --primary-color: #2196F3;
     --secondary-color: #0D47A1;
     --background-color: #e3f2fd;
@@ -163,7 +163,7 @@
     --hover-background-subtle: rgba(33, 150, 243, 0.08);
 }
 
-.theme-sunset {
+.theme-sunset-light {
     --primary-color: #D32F2F;
     --secondary-color: #B71C1C;
     --background-color: #ffebee;
@@ -206,12 +206,170 @@
     --contact-item-background-hover: #f1bbbb;
 }
 
+.theme-forest-dark {
+    --primary-color: #66bb6a;
+    --secondary-color: #4caf50;
+    --background-color: #0d1b0f;
+    --text-color: #e8f5e9;
+    --text-secondary-color: #a5d6a7;
+
+    --card-background: #1b2e1f;
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --card-shadow-hover: rgba(255, 255, 255, 0.1);
+    --card-gradient-start: #2e4a32;
+    --card-gradient-end: #1b2e1f;
+    --card-border: 1px solid rgba(76, 175, 80, 0.2);
+
+    --icon-background: linear-gradient(135deg, #2e4a32 0%, #1b2e1f 100%);
+    --icon-shadow: rgba(0, 0, 0, 0.3);
+
+    --date-background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+    --date-color: #ffffff;
+    --date-shadow: rgba(0, 0, 0, 0.2);
+
+    --tag-background: linear-gradient(135deg, #2e4a32 0%, #243527 100%);
+    --tag-background-hover: linear-gradient(135deg, #388e3c 0%, #2e4a32 100%);
+    --tag-color: #81c784;
+    --tag-border: 1px solid rgba(76, 175, 80, 0.3);
+    --tag-shadow-hover: rgba(76, 175, 80, 0.25);
+
+    --h2-after-background: var(--primary-color);
+    --link-hover-color: var(--primary-color);
+
+    --navbar-background: rgba(13, 27, 15, 0.9);
+    --navbar-mobile-background: rgba(13, 27, 15, 0.98);
+    --navbar-shadow: rgba(0, 0, 0, 0.4);
+    --hover-background-subtle: rgba(76, 175, 80, 0.08);
+
+    --contact-item-background: rgba(46, 74, 50, 0.5);
+    --contact-item-background-hover: rgba(56, 142, 60, 0.3);
+
+    --icon-filter: invert(100%) brightness(1);
+
+    --next-button-background: #2e7d32;
+    --hover-background-color: #2e4a32;
+
+    --chatbot-text-on-primary: white;
+    --chatbot-text-on-secondary: white;
+    --destructive-color: #f44336;
+    --destructive-color-hover: #d32f2f;
+    --chatbot-input-background: var(--card-background);
+    --chatbot-messages-background: var(--background-color);
+}
+
+.theme-ocean-dark {
+    --primary-color: #64b5f6;
+    --secondary-color: #42a5f5;
+    --background-color: #0a1218;
+    --text-color: #e3f2fd;
+    --text-secondary-color: #90caf9;
+
+    --card-background: #1a2332;
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --card-shadow-hover: rgba(255, 255, 255, 0.1);
+    --card-gradient-start: #2d3e50;
+    --card-gradient-end: #1a2332;
+    --card-border: 1px solid rgba(33, 150, 243, 0.2);
+
+    --icon-background: linear-gradient(135deg, #2d3e50 0%, #1a2332 100%);
+    --icon-shadow: rgba(0, 0, 0, 0.3);
+
+    --date-background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+    --date-color: #ffffff;
+    --date-shadow: rgba(0, 0, 0, 0.2);
+
+    --tag-background: linear-gradient(135deg, #2d3e50 0%, #243447 100%);
+    --tag-background-hover: linear-gradient(135deg, #1976d2 0%, #2d3e50 100%);
+    --tag-color: #90caf9;
+    --tag-border: 1px solid rgba(33, 150, 243, 0.3);
+    --tag-shadow-hover: rgba(33, 150, 243, 0.25);
+
+    --h2-after-background: var(--primary-color);
+    --link-hover-color: var(--primary-color);
+
+    --navbar-background: rgba(10, 18, 24, 0.9);
+    --navbar-mobile-background: rgba(10, 18, 24, 0.98);
+    --navbar-shadow: rgba(0, 0, 0, 0.4);
+    --hover-background-subtle: rgba(33, 150, 243, 0.08);
+
+    --contact-item-background: rgba(45, 62, 80, 0.5);
+    --contact-item-background-hover: rgba(25, 118, 210, 0.3);
+
+    --icon-filter: invert(100%) brightness(1);
+
+    --next-button-background: #1565c0;
+    --hover-background-color: #2d3e50;
+
+    --chatbot-text-on-primary: white;
+    --chatbot-text-on-secondary: white;
+    --destructive-color: #f44336;
+    --destructive-color-hover: #d32f2f;
+    --chatbot-input-background: var(--card-background);
+    --chatbot-messages-background: var(--background-color);
+}
+
+.theme-sunset-dark {
+    --primary-color: #ff6b6b;
+    --secondary-color: #ff5252;
+    --background-color: #1a0e0e;
+    --text-color: #ffebee;
+    --text-secondary-color: #ffcdd2;
+
+    --card-background: #2d1818;
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --card-shadow-hover: rgba(255, 255, 255, 0.1);
+    --card-gradient-start: #3d2020;
+    --card-gradient-end: #2d1818;
+    --card-border: 1px solid rgba(255, 107, 107, 0.2);
+
+    --icon-background: linear-gradient(135deg, #3d2020 0%, #2d1818 100%);
+    --icon-shadow: rgba(0, 0, 0, 0.3);
+
+    --date-background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    --date-color: #ffffff;
+    --date-shadow: rgba(0, 0, 0, 0.2);
+
+    --tag-background: linear-gradient(135deg, #3d2020 0%, #332020 100%);
+    --tag-background-hover: linear-gradient(135deg, #d32f2f 0%, #3d2020 100%);
+    --tag-color: #ffab91;
+    --tag-border: 1px solid rgba(255, 107, 107, 0.3);
+    --tag-shadow-hover: rgba(255, 107, 107, 0.25);
+
+    --h2-after-background: var(--primary-color);
+    --link-hover-color: var(--primary-color);
+
+    --navbar-background: rgba(26, 14, 14, 0.9);
+    --navbar-mobile-background: rgba(26, 14, 14, 0.98);
+    --navbar-shadow: rgba(0, 0, 0, 0.4);
+    --hover-background-subtle: rgba(255, 107, 107, 0.08);
+
+    --contact-item-background: rgba(61, 32, 32, 0.5);
+    --contact-item-background-hover: rgba(211, 47, 47, 0.3);
+
+    --icon-filter: invert(100%) brightness(1);
+
+    --next-button-background: #b71c1c;
+    --hover-background-color: #3d2020;
+
+    --chatbot-text-on-primary: white;
+    --chatbot-text-on-secondary: white;
+    --destructive-color: #f44336;
+    --destructive-color-hover: #d32f2f;
+    --chatbot-input-background: var(--card-background);
+    --chatbot-messages-background: var(--background-color);
+}
+
 body {
     background-color: var(--background-color);
     font-family: var(--font-family);
     color: var(--text-color);
     margin: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .page-container {
@@ -234,21 +392,18 @@ body {
       opacity: 1;
     }
   }
+  
 a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--secondary-color);
     transition: color 0.2s ease;
-}
-
-a:hover {
-    color: var(--link-hover-color);
 }
 
 html {
     scroll-padding-top: 100px;
 }
 
-.section h2 {
+.section-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 2rem;
@@ -257,7 +412,7 @@ html {
     color: var(--secondary-color); 
 }
 
-.section h2::after {
+.section-title::after {
     content: '';
     position: absolute;
     bottom: 0;

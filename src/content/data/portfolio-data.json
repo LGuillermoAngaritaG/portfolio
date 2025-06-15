@@ -1,201 +1,405 @@
 {
-    "basePath": "/portfolio",
-    "theme": "ocean",
-    "name": "Luis Guillermo Angarita",
-    "title": "Senior Data Scientist",
-    "image": "images/Portrait_Placeholder.png",
-    "bio": "Data Scientist with a strong focus on Natural Language Processing (NLP) and experience in implementing Large Language Models (LLMs) for business solutions such as chatbots and predictive models. Skilled in developing Python web applications and APIs, with a record of improving efficiency and customer satisfaction. [cite: 4] Significant experience in MLOps, specifically within the Azure Machine Learning environment, and demonstrated expertise in machine learning and deep learning models. [cite: 5] Contributed to research projects in material science and efficiency in turbines, employing data analysis and machine learning techniques. [cite: 6] Expertise in a variety of data analysis and AI tools, including Python, SQL, R, and relevant libraries. [cite: 7]",
-    "cv_icon" :"icons/cv-icon.svg",
-    "cv_link": "CV.pdf",
-    "copy_icon": "icons/copy-icon.svg",
-    "check_icon": "icons/check-icon.svg",
-    "expertises": [
-        "Natural Language Processing (NLP)",
-        "Large Language Models (LLMs)",
-        "Python",
-        "API Development",
-        "MLOps",
-        "Azure Machine Learning",
-        "Deep Learning",
-        "Generative AI",
-        "Chatbots",
-        "Predictive Models"
-    ],
+    "sections": [
+        {
+            "content": [
+                {
+                    "organization": "SoftServe",
+                    "date": "Sept 2023 - Present",
+                    "description": "* Developed multi-agent chatbots that improved performance of the llm models from 63 to 98%.\n\n* Developed a chat-based assistant using llms from aws bedrock. This chatbot used guardrails, a react agent and retrieval augmented generation. Improving by 87% the quality of the responses to the users.\n\n* Made an application that uses llms from Aws Bedrock to generate and query Graph databases, this improved the performance of Rag tasks by 70%.",
+                    "link": "https://www.softserve.com",
+                    "title": "Data Scientist"
+                },
+                {
+                    "organization": "Xolit",
+                    "date": "Jan 2021 - Sept 2023",
+                    "description": "* Implemented Large language models in chatbots and automation tools to analyze text and provide customer support, which resulted in 50x communication efficiency and 85% increase in client satisfaction.\n\n* Created an A/B testing framework to improve customer experience for a ChatBot with 1 million conversations per month, resulting in an 80% growth in customer satisfaction.\n\n* Developed more than 20 APIs and WebApps to serve machine learning models, which resulted in an average improvement in efficiency of 350% against existing APIs and processes.\n\n* Leveraged NLP techniques and APIs from Azure, Twilio, and AWS to develop a voicebot application capable of calling 2000 clients per minute, providing them with information and responding to voice commands.",
+                    "link": "https://www.xolit.com",
+                    "title": "AI Leader, Senior Data Scientist"
+                },
+                {
+                    "organization": "EAFIT University",
+                    "date": "Jul 2013 - Jan 2021",
+                    "description": "* Worked as a research assistant in 5 projects about new materials and energy efficiency. I was also awarded an scholarships to pursue a Master's degree in Applied Physics.\n\n* Employed data analysis techniques and machine learning models to communicate research findings in 5 scientific papers and  8 conferences.\n\n* Served as a teaching assistant for 4 post-graduate courses, providing support to students in their academic pursuits.",
+                    "link": "https://www.eafit.edu.co",
+                    "title": "Research Assistant"
+                }
+            ],
+            "title": "Experience",
+            "type": "cards_with_link",
+            "truncation_limit": 400
+        },
+        {
+            "content": [
+                {
+                    "icon": "icons/programming-icon.svg",
+                    "name": "Programming Languages",
+                    "skills": [
+                        "Python",
+                        "SQL",
+                        "R",
+                        "JavaScript",
+                        "Scala",
+                        "Go"
+                    ]
+                },
+                {
+                    "name": "Data Analysis",
+                    "icon": "icons/database-icon.svg",
+                    "skills": [
+                        "Pandas",
+                        "Polars",
+                        "NumPy",
+                        "Scipy",
+                        "Dask",
+                        "Spark (PySpark)"
+                    ]
+                },
+                {
+                    "icon": "icons/chart-icon.svg",
+                    "name": "Data Visualization",
+                    "skills": [
+                        "Tableau",
+                        "Power BI",
+                        "Matplotlib",
+                        "Plotly",
+                        "D3.js",
+                        "Seaborn"
+                    ]
+                },
+                {
+                    "name": "Application Development",
+                    "icon": "icons/website-icon.svg",
+                    "skills": [
+                        "FastApi",
+                        "Streamlit",
+                        "Gradio",
+                        "Chainlit",
+                        "Svelte",
+                        "NextJs"
+                    ]
+                },
+                {
+                    "icon": "icons/ml-icon.svg",
+                    "name": "Artificial Intelligence",
+                    "skills": [
+                        "PyTorch",
+                        "TensorFlow",
+                        "Scikit-Learn",
+                        "spaCy",
+                        "Gensim",
+                        "Pycaret",
+                        "H2O"
+                    ]
+                }, 
+                {
+                    "icon": "icons/cloud-icon.svg",
+                    "name": "Cloud & MLOps",
+                    "skills": [
+                        "AWS",
+                        "Azure",
+                        "Google Cloud",
+                        "Docker",
+                        "Kubernetes",
+                        "MLflow",
+                        "Airflow",
+                        "Databricks"
+                    ]
+                }
+            ],
+            "title": "Skills",
+            "type": "cards_with_icons"
+        },
+        {
+            "content": [
+                {
+                    "date": "May 2025",
+                    "icon": "",
+                    "link": "https://www.credly.com/badges/50fcaab3-526d-4ed0-acb6-1d15737ebfd5",
+                    "organization": "NVIDIA",
+                    "title": "NVIDIA - Certified Associate: Generative AI LLMs",
+                    "description": ""
+                },
+                {
+                    "date": "Aug 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-01fe990b-7d9a-401f-ab70-27116d90b427.pdf",
+                    "organization": "UDEMY",
+                    "title": "Azure DataBricks & Spark for Data Engineers (Pyspark/SQL)",
+                    "description": ""
+                },
+                {
+                    "date": "Aug 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-b310e6a5-f6fe-4577-98e9-783ed1ce29db.pdf",
+                    "organization": "UDEMY",
+                    "title": "Deep learning: Recurrent neural networks in Python",
+                    "description": ""
+                },
+                {
+                    "date": "Jul 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-a8ac8901-4254-4a75-98ef-9cb3e0cec15c.pdf",
+                    "organization": "UDEMY",
+                    "title": "DP-100 Azure Machine Learning Using Azure Machine Learning",
+                    "description": ""
+                },
+                {
+                    "date": "Mar 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-34ec8d43-c680-4892-9cb3-c892f88c50b2.pdf",
+                    "organization": "UDEMY",
+                    "title": "Deep Learning: Neural Networks, AI & ChatGPT",
+                    "description": ""
+                },
+                {
+                    "date": "Jan 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-1cd480e1-8fcb-4f2f-8128-29954f4d8961.pdf",
+                    "organization": "UDEMY",
+                    "title": "Data Storytelling and Data Visualization",
+                    "description": ""
+                },
+                {
+                    "date": "Jan 2023",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-481be81f-1bd1-44ac-8e27-c59c431696fc.pdf",
+                    "organization": "UDEMY",
+                    "title": "Git Going Fast One Hour Git Crash Course",
+                    "description": ""
+                },
+                {
+                    "date": "Dec 2022",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-51b9301c-864e-4485-ae83-2dbef5350d3d.pdf",
+                    "organization": "UDEMY",
+                    "title": "Cognotechnics: Tools to think more and better",
+                    "description": ""
+                },
+                {
+                    "date": "Nov 2022",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-74b7bd41-1e6e-42cd-ae2a-02276bacd52a.pdf",
+                    "organization": "UDEMY",
+                    "title": "Essential Powerpoint for management consiultants & analysts",
+                    "description": ""
+                },
+                {
+                    "date": "Nov 2022",
+                    "icon": "",
+                    "link": "https://udemy-certificate.s3.amazonaws.com/pdf/UC-abe9a4ee-39d4-4ead-a5d7-5a395c50874e.pdf",
+                    "organization": "UDEMY",
+                    "title": "Write better emails: tactics for smarter team communication",
+                    "description": ""
+                },
+                {
+                    "date": "Mar 2022",
+                    "icon": "",
+                    "link": "https://pdf.classmarker.com/pdf/certificate/?certificate_id=59592&sid=65941551&nrg_id=996241&test_id=1644588&aid=4238890&utype=SD&cert_token=db1c00584e41f7d87f23f487b385361e&tprtoken=3ETG",
+                    "organization": "UDEMY",
+                    "title": "Scrum Master",
+                    "description": ""
+                },
+                {
+                    "date": "Jan 2021",
+                    "icon": "",
+                    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/DB7E39N8QE8B",
+                    "organization": "DeepLearning.AI",
+                    "title": "Deep Learning Specialization",
+                    "description": ""
+                },
+                {
+                    "date": "Dec 2020",
+                    "icon": "",
+                    "link": "https://www.coursera.org/account/accomplishments/certificate/NNPXYBQCDW7H",
+                    "organization": "McMaster University",
+                    "title": "Experimentation for Improvement",
+                    "description": ""
+                },
+                {
+                    "date": "Dec 2020",
+                    "icon": "",
+                    "link": "https://www.coursera.org/account/accomplishments/certificate/8C4HWXBH4UV6",
+                    "organization": "Stanford University",
+                    "title": "Machine Learning",
+                    "description": ""
+                },
+                {
+                    "date": "Aug 2020",
+                    "icon": "",
+                    "link": "https://www.credential.net/0dc88b94-484f-4a32-8806-8cbbef7a2330",
+                    "organization": "Correlation One",
+                    "title": "Data Science For All",
+                    "description": ""
+                },
+                {
+                    "date": "Apr 2020",
+                    "icon": "",
+                    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/CR47LGH4KXDV",
+                    "organization": "IBM",
+                    "title": "IBM Data Science Specialization",
+                    "description": ""
+                },
+                {
+                    "date": "Apr 2020",
+                    "icon": "",
+                    "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/DRKSQCUTHXW8",
+                    "organization": "University of Michigan",
+                    "title": "Python for Everybody Specialization",
+                    "description": ""
+                }
+            ],
+            "title": "Certifications",
+            "type": "cards_with_link",
+            "truncation_limit": 150
+        },
+        {
+            "content": [
+                {
+                    "date": "2017",
+                    "description": "My thesis was about ReB2, a super-hard material. I was able to synthesize this material using a novel Magnetron Sputtering production method, which was not done previously in the world. Additionally, discovered critical stability properties leading to the identification of Re2O3 as a superior catalyst material under specific conditions. This research contributed significantly to the field of advanced materials science and industrial applications.",
+                    "icon": "",
+                    "link": "https://www.eafit.edu.co/maestria-fisica-aplicada",
+                    "organization": "EAFIT University",
+                    "title": "Ms.C in Applied Physics"
+                },
+                {
+                    "date": "2013",
+                    "description": "My thesis focused on optimizing duraluminum alloy properties through innovative heat treatment processes. By developing a novel thermal treatment protocol, I achieved a 40% reduction in production defects while enhancing material strength by 25%. This breakthrough directly translated to $5,000-$8,000 in monthly cost savings for the manufacturing facility while delivering superior product quality to end users.",
+                    "icon": "",
+                    "link": "https://www.udea.edu.co/wps/portal/udea/web/inicio/unidades-academicas/ingenieria/estudiar-facultad/pregrados/ingenieria-materiales",
+                    "organization": "University of Antioquia",
+                    "title": "Materials Engineering"
+                }
+            ],
+            "title": "Education",
+            "type": "cards_with_link",
+            "truncation_limit": 400
+        },
+        {
+            "content": [
+                {
+                    "organization": "Improve Asset Management with LLM Evaluation Pipelines",
+                    "date": "2025",
+                    "description": "**Journal:** Softserve - Whitepapers. \n\n **Authors:** Luis Angarita and Constanza García",
+                    "link": "https://info.softserveinc.com/summarization-tasks-for-llm-white-paper",
+                    "title": ""
+                },
+                {
+                    "organization": "Data Science + MLOps, hacia donde va?",
+                    "date": "2024",
+                    "description": "**Podcast:** Softserve - Tech Connect Podcast. \n\n **Authors:** Luis Angarita y Leonardo Talero",
+                    "link": "https://open.spotify.com/episode/1MP6UCFZIjutxz2Ul1mQb2?si=DzszVhBNSo-CtO8OliG6Gg",
+                    "title": ""
+                },
+                {
+                    "organization": "El universo de la Inteligencia Artificial",
+                    "date": "2024",
+                    "description": "**Podcast:** Softserve - Tech Connect Podcast. \n\n **Authors:** John Howard, Luis Angarita, Daniel Restrepo",
+                    "link": "https://open.spotify.com/episode/4Xu6NKHM8zbQApoY59aPoI?si=rVdSGb0aSDW_QeEIh-B_lQ",
+                    "title": ""
+                },
+                {
+                    "organization": "Procesamiento de imágenes en la caracterización de una torcha hidráulica",
+                    "date": "2018",
+                    "description": "**Journal:** Revista Colombiana de Tecnologías de Avanzada (2018). Vol 3. Num 32-1. pp 101-108 \n\n **Conference:** IX Congreso Latinoamericano de Ingeniería Mecánica - 2018\n\n **Authors:** Hernán Bolaños, Guillermo Angarita, Sylvain Richard, Francisco Botero",
+                    "link": "https://ojs.unipamplona.edu.co/index.php/rcta/article/view/158",
+                    "title": ""
+                },
+                {
+                    "organization": "Synthesis of Alumina Thin Films Using Reactive Magnetron Sputtering Method",
+                    "date": "2017",
+                    "description": "**Journal:** IOP Conf. Series: Journal of Physics: Conf. Series 850 (2017) 012022 \n\n **Conference:** IX Congreso Internacional de materiales – CIM 2017\n\n **Authors:** G Angarita, C Palacio, M Trujillo, M Arroyave",
+                    "link": "https://iopscience.iop.org/article/10.1088/1742-6596/850/1/012022/pdf#:~:text=Alumina%20(Al2O3)%20thin%20films%20were,dwelling%20time%20was%203%20hours.",
+                    "title": ""
+                },
+                {
+                    "organization": "Drilling indent tests as a promising method to evaluate mechanical properties of coatings manufactured by thermal spraying process",
+                    "date": "2016",
+                    "description": "**Conference:** 7th International Workshop on Advanced Ceramics (IWAC) \n\n **Authors:** C. Palacio, H. Ageorges, F. Vargas, D. Chicot, M. Voda, G. Angarita",
+                    "link": "",
+                    "title": ""
+                },
+                {
+                    "organization": "Síntesis de películas delgadas de alúmina mediante la técnica de magnetrón sputtering reactivo.",
+                    "date": "2016",
+                    "description": "**Conference:** V Congreso de Ingeniería Física - CIF 2016 \n\n **Authors:** G. Angarita, C. Palacio, M. Trujillo, M. Arroyave",
+                    "link": "",
+                    "title": ""
+                },
+                {
+                    "organization": "Análisis de fatiga en tuberías de poliductos y oleoductos, tipo API 5LX",
+                    "date": "2015",
+                    "description": "**Conference:** VIII Congreso Internacional de Materiales - CIM 2015 \n\n **Authors:** C. Palacio, G. Latorre, V. Páez, A. Jaimes, A. Ossa, G. Angarita",
+                    "link": "",
+                    "title": ""
+                },
     
-    "experience": [
-        {
-            "title": "Data Scientist",
-            "date": "September 2023 - Present",
-            "company": "SoftServe",
-            "description": "* Leveraged Generative AI to develop innovative solutions across diverse industries including construction software, contractor services, Human Resources, Education, and Healthcare, alongside internal SoftServe initiatives. \n\n * Engineered a chat-based API with streaming capabilities, achieving an 87% improvement in response quality and a 500% increase in speed compared to human counterparts. \n\n * Enhanced GenAI application performance and safety through techniques such as streaming, batching, robust guardrail implementation, and the deployment of both simple and agentic AI architectures. \n\n * Designed and deployed solutions across major cloud platforms (GCP, AWS, Azure) and on-premise environments. \n\n * Fine-tuned Large Language Models (LLMs) and Embedding models for specialized use-cases, enabling the use of smaller, more efficient models and reducing GenAI API call costs by 200%.",
-            "icon": "",
-            "link": "https://www.softserve.com/"
-        },
-        {
-            "title": "Data Science Technical Lead",
-            "date": "June 2023 - September 2023",
-            "company": "Xolit",
-            "description": "* Lead and manage a team of experienced Data Scientists to build and maintain scalable data solutions and applications * Collaborate with cross-functional teams including Data Scientists, Product Managers, Data Engineers and Business Analysts to design and implement data-driven solutions \n\n * Manage and optimize Azure resources and services to ensure cost-effective and efficient use of resources \n\n * Help junior and intermediate data scientists enhance their careers and their skill sets in data science \n\n * Using cutting-edge approaches and procedures, as well as developing new ones when necessary, support the redesign of the data science model development lifecycle",
-            "icon": "",
-            "link": "https://www.xolit.com/"
-        },
-        {
-            "title": "Senior Data Scientist",
-            "date": "January 2021 - June 2023",
-            "company": "Xolit",
-            "description": "* Implemented Large language models in chatbots and automation tools to analyze text and provide customer support, which resulted in significant improvements in communication efficiency and customer satisfaction. Developed more than 10 APIs and WebApps to serve machine learning models, which resulted in improved efficiency and broader functionality for business operations. \n\n * Use of AB testing and design of experiments for optimizing the transactions in a ChatBot. Made a ChatBot using Deep learning and natural processing techniques. Created a dashboard using PowerBi to support the product owner and scrum master in making decisions and tracking scrum velocity. Made 6 different APIs to process text using NLP with FastAPI. Made 5 different web apps using Streamlit and Javascript to control different processes and show the stake holders how our machine learning models work. Made a voice enable chatbot that calls clients using Twillio and Azure Speech Services. \n\n * Development and implementation of artificial intelligence models for user segmentation and text analysis using natural language processing techniques. Implementation and continuous improvement of chatbot services from IBM and Azure in a customer service platform with more than 1 million unique users per month. Implementation of a fraud detection system in chats using neural networks. Development of predictive algorithms for agent-based dimensioning in a call center. Design of an A/B testing platform for chatbots. Implementation of optimization algorithms to reduce costs in a call center. Time series Forecast of call volume in Call Centre using Statistical and Machine Learning Methods.",
-            "icon": "",
-            "link": "https://www.xolit.com/"
-        },
-        {
-            "title": "Research Assistant",
-            "date": "July 2013 - January 2021",
-            "company": "Universidad EAFIT",
-            "description": "* Developed a new method of characterization of vortex rope in pumps working as turbines. \n\n * Created Numerical simulations for pumps working as turbines using computational fluid dynamics software such as ANSYS CFX and ANSYS Fluent. \n\n * Engineered and produced super-hard coatings using PVD Magnetron Sputtering. \n\n * Support of classes of material science and fluid dynamics. \n\n * Developed a method to predict the hardness of hard coatings \n\n * Published 5 research papers in international journals and attended 8 conferences" ,
-            "icon": "",
-            "link": "https://www.eafit.edu.co/"
-        },
-        {
-            "title": "Web Developer (Part-Time)",
-            "date": "October 2009 - January 2013",
-            "company": "Arrendamientos Envigado",
-            "description": "Updating the company's website, resolving difficulties associated with the back-end and front-end of the website. Provider of tools for solving problems related to the company's daily routine.",
-            "icon": "",
-            "link": "https://www.arrendamientosenvigado.com/"
-        },
-        {
-            "title": "Production and Extrusion Intern",
-            "date": "April 2012 - October 2012",
-            "company": "ALUMINA S.A",
-            "description": "Characterization of raw material using optical emission spectroscopy and metallographic analysis, search for causes and solutions to problems associated with the production and processing of aluminum profiles. [cite: 26]",
-            "icon": "",
-            "link": "https://www.alumina.com.co/"
-        },
-        {
-            "title": "Monitor of Polymeric Materials Processing",
-            "date": "July 2011 - March 2012",
-            "company": "Universidad de Antioquía",
-            "description": "Preparation of reagents and equipment used in laboratory practices, support in extension services provided by the university.",
-            "icon": "",
-            "link": "https://www.udea.edu.co/"
-        },
-        {
-            "title": "Monitor of Polymeric Materials",
-            "date": "February 2010 - December 2010",
-            "company": "Universidad de Antioquia",
-            "description": "Preparation of reagents and equipment used in laboratory practices, support in extension services provided by the university.",
-            "icon": "",
-            "link": "https://www.udea.edu.co/"
-        }
-    ],
-    "education": [
-        {
-            "title": "Master in Applied Physics",
-            "date": "2015 - 2017",
-            "school": "Universidad EAFIT",
-            "icon": "",
-            "link": "https://www.eafit.edu.co/"
-        },
-        {
-            "title": "Materials Engineer",
-            "date": "2007 - 2013",
-            "school": "Universidad de Antioquía",
-            "icon": "",
-            "link": "https://www.udea.edu.co/"
-        }
-    ],
-    "skills": [
-        {
-            "name": "Programming Languages",
-            "skills": ["Python", "R", "SQL", "JavaScript", "C#"],
-            "icon": "icons/programming-icon.svg"
-        },
-        {
-            "name": "Machine Learning",
-            "skills": ["Supervised Learning", "Unsupervised Learning", "Deep Learning", "Reinforcement Learning"],
-            "icon": "icons/ml-icon.svg"
-        },
-        {
-            "name": "Data Tools",
-            "skills": ["Pandas", "NumPy", "TensorFlow", "Scikit-Learn", "PyTorch"],
-            "icon": "icons/tools-icon.svg"
-        },
-        {
-            "name": "Databases",
-            "skills": ["MySQL", "PostgreSQL", "MongoDB", "SQLite"],
-            "icon": "icons/database-icon.svg"
-        }
-    ],
-    "publications": [
-        {
-            "title": "Optimizing Neural Networks for Natural Language Processing: A Case Study",
-            "date": "2020",
-            "publication": "Journal of Machine Learning Research",
-            "link": "https://example.com/neural-networks-nlp",
-            "icon": ""
-        },
-        {
-            "title": "Predictive Modeling for Healthcare Outcomes Using Ensemble Methods",
-            "date": "2019",
-            "publication": "Data Science Quarterly",
-            "link": "https://example.com/healthcare-predictive-modeling",
-            "icon": ""
-        }
-    ], 
-
-    "certifications": [
-        {
-            "date": "Unknown",
-            "title": "DP-100 Azure Machine Learning Using Azure Machine Learning",
-            "school": "Microsoft",
+                {
+                    "organization": "Producción de películas delgadas de TiO2 utilizando la técnica magnetrón sputtering R.F.",
+                    "date": "2015",
+                    "description": "**Conference:** VIII Congreso Internacional de Materiales - CIM 2015 \n\n **Authors:** I. Montoya, M. Arroyave, G. Angarita, C. Palacio",
+                    "link": "",
+                    "title": ""
+                },
+                
+                {
+                    "organization": "Estudio de las propiedades mecánicas de un recubrimiento de Al2O3-TiO2 a partir tres métodos de medida",
+                    "date": "2014",
+                    "description": "**Journal:** Revista Colombiana de Materiales (2014), p 284 – 290, Vol 5 \n\n**Conference:** VIII Congreso Internacional de Materiales - CIM 2013 \n\n **Authors:** Palacio C, Tabares T, Angarita G, Vargas F, Ageorges H, Chicot D, Voda M",
+                    "link": "https://revistas.udea.edu.co/index.php/materiales/article/download/19609/16670/",
+                    "title": ""
+                },
+                {
+                    "organization": "Drilling resistance test as a method to determine mechanical properties of Al2O3-TiO2 plasma spray coatings",
+                    "date": "2013",
+            "description": "**Conference:** 6th Les Rencontres Internationales sur la Projection Thermique  (RIPT) \n\n **Authors:** C.C. Palacio, H. Ageorges,  F. Vargas, D. Chicot, M. Voda, G. Angarita",
             "link": "",
-            "icon": ""
-        },
-        {
-            "title": "Machine Learning",
-            "date": "Unknown",
-            "school": "Unknown",
-            "link": "",
-            "icon": ""
-        },
-        {
-            "title": "Deep learning: Recurrent neural networks in Python",
-            "date": "Unknown",
-            "school": "Unknown",
-            "link": "",
-            "icon": ""
-        },
-        {
-            "title": "Cognotechnics: Tools to think more and better",
-            "date": "Unknown",
-            "school": "Unknown",
-            "link": "",
-            "icon": ""
-        },
-        {
-            "title": "Data Storytelling and Data Visualization",
-            "date": "Unknown",
-            "school": "Unknown",
-            "link": "",
-            "icon": ""
+            "title": ""
         }
-    ],
-    
+        ],
+        "title": "Publications",
+        "type": "cards_with_link",
+        "truncation_limit": 400
+    }    
+],
+    "settings": {
+        "basePath": "/portfolio",
+        "bio": "Data Scientist with 5+ years of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in Python, SQL, and modern cloud/MLOps stacks (AWS, GCP, Azure, Docker, Kubernetes). Previously spent 7 years as a university research assistant in materials science and hydrodynamics, earning a B.S. in Materials Engineering and an M.S. in Applied Physics. \n\nPassionate about NLP and generative AI; built and deployed 50+ LLM-powered applications over the last three years for clients across multiple sectors, I pride myself in delivering applications that consistently uphold the highest standards of performance, reliability, and best practices. I'm always looking for new challenges, things to learn and opportunities to grow as a data scientist and ML Engineer.",
+        "expertises": [
+            "Machine Learning",
+            "Deep Learning",
+            "MLOps",
+            "Python",
+            "NLP",
+            "Computer Vision",
+            "Generative AI and LLMs"
+        ],
+        "name": "Guillermo Angarita",
+        "potrait_image": "images/potrait.jpg",
+        "theme": "ocean-dark",
+        "title": "Data Scientist & ML Engineer",
+        "cards_before_pagination": 3
+    },
     "social": [
-        {
-            "name": "Email",
-            "icon": "icons/email-icon.svg",
-            "link": "guillermo.angarita.gutierrez@gmail.com"
-        },
-        {
-            "name": "Github",
-            "icon": "icons/github-icon.svg",
-            "link": "https://github.com/LGuillermoA"
-        },
-        { 
-            "name": "linkedin",
-            "icon": "icons/linkedin-icon.svg",
-            "link": "https://www.linkedin.com/in/luis-guillermo-angarita-gutierrez-b700001b0/"
-        }
-    ]
+            {
+                "icon": "icons/email-icon.svg",
+                "link": "guillermo.angarita.gutierrez@gmail.com",
+                "name": "Email"
+            },
+            {
+                "icon": "icons/github-icon.svg",
+                "link": "https://github.com/LGuillermoAngaritaG",
+                "name": "Github"
+            },
+            {
+                "icon": "icons/linkedin-icon.svg",
+                "link": "https://www.linkedin.com/in/guillermoangaritag/",
+                "name": "linkedin"
+            },
+            {
+                "icon": "icons/cv-icon.svg",
+                "link": "CV.pdf",
+                "name": "Resume"
+            }
+        ]
 }
