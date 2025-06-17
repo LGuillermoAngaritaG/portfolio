@@ -34,7 +34,7 @@
 			truncationLimit={section.truncation_limit || 150}
 		/>
 	{:else if section.type === 'cards_with_icons'}
-		<CardsWithIcons skillsData={section.content as any} />
+		<CardsWithIcons skillsData={section.content as any} sectionTitle={section.title} />
 	{:else if section.type === 'cards'}
 		<Cards
 			sectionTitle={section.title}
@@ -46,7 +46,6 @@
 		<CardsOutside
 			sectionTitle={section.title}
 			items={content[section.title.toLowerCase()]?.content || []}
-			availableTags={content[section.title.toLowerCase()]?.tags || []}
 			{itemsPerPage}
 			truncationLimit={section.truncation_limit || 150}
 		/>

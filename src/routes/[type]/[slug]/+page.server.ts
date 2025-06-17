@@ -14,6 +14,7 @@ const portfolioData = JSON.parse(readFileSync(join(process.cwd(), 'src', 'conten
     sections: PortfolioSection[];
 };
 
+// Only prerender if there are sections with both path and content
 export const prerender = portfolioData.sections.some(section => section.path);
 
 // Generate all possible routes

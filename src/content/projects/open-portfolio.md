@@ -3,7 +3,7 @@ title: Open Portfolio - Fully Customizable Portfolio Template
 date: 2024/12/01
 link: https://github.com/yourusername/open-portfolio
 tags: SvelteKit, TypeScript, CSS3, Markdown, GitHub Pages, Portfolio
-description: A modern, fully customizable portfolio template with 4 card types, 8 themes, and complete JSON-based configuration
+description: A modern, fully customizable portfolio template with 4 card types, 8 themes, and complete JSON-based configuration - A modern, fully customizable portfolio template with 4 card types, 8 themes, and complete JSON-based configuration -A modern, fully customizable portfolio template with 4 card types, 8 themes, and complete JSON-based configuration A modern, fully customizable portfolio template with 4 card types, 8 themes, and complete JSON-based configuration
 image: 
 skip: False 
 display_order: 1

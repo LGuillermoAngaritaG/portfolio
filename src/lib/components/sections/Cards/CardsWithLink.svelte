@@ -4,6 +4,8 @@
 	export let itemsPerPage: number = 3;
 	export let truncationLimit: number = 150;
 
+	import { marked } from 'marked';
+
 	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import Pagination from '$lib/components/common/Pagination.svelte';
 	import TruncatedMarkdown from '$lib/components/common/TruncatedMarkdown.svelte';
@@ -23,7 +25,7 @@
 	}
 </script>
 
-<section id={sectionTitle.toLowerCase()} class="section" use:fadeIn>
+<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section" use:fadeIn>
 	<h2 class="section-title">{sectionTitle}</h2>
 	{#each paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
 		<div class="timeline-content">
@@ -43,7 +45,7 @@
 								</a>
 								<span class="separator">|</span>
 								<h3 class="title">
-									{item.title}
+									{@html marked.parse(item.title)}
 								</h3>
 							</div>
 						</div>
@@ -58,7 +60,7 @@
 							</a>
 							<span class="separator">|</span>
 							<h3 class="title">
-								{item.title}
+								{@html marked.parse(item.title)}
 							</h3>
 						</div>
 					</div>

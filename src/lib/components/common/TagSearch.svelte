@@ -52,28 +52,25 @@
 		/>
 	</div>
 
-	<div class="tags-container">
-		<button class="tag" class:active={value.length === 0} on:click={clearAllTags} type="button">
+	<div class="search-tags-container">
+		<button class="search-tag" class:active={value.length === 0} on:click={clearAllTags} type="button">
 			All Tags
 		</button>
 
 		<!-- Show selected tags first -->
 		{#each selectedTagsFiltered as selectedTag}
-			<button class="tag active" on:click={() => toggleTag(selectedTag)} type="button">
+			<button class="search-tag active" on:click={() => toggleTag(selectedTag)} type="button">
 				{selectedTag}
 			</button>
 		{/each}
 
 		<!-- Then show non-selected tags -->
 		{#each nonSelectedOptions as option}
-			<button class="tag" on:click={() => toggleTag(option)} type="button">
+			<button class="search-tag" on:click={() => toggleTag(option)} type="button">
 				{option}
 			</button>
 		{/each}
 
-		{#if selectedTagsFiltered.length === 0 && nonSelectedOptions.length === 0 && searchTerm}
-			<div class="no-results">No tags found</div>
-		{/if}
 	</div>
 </div>
 
@@ -107,15 +104,16 @@
 		outline-offset: 1px;
 	}
 
-	.tags-container {
+	.search-tags-container {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
 		overflow: hidden;
 		max-height: 36px;
+		padding: 0 4px;
 	}
 
-	.tag {
+	.search-tag {
 		background: var(--tag-background, #f0f0f0);
 		color: var(--tag-color, #333);
 		border: var(--tag-border, 1px solid #ddd);
@@ -126,21 +124,16 @@
 		transition: all 0.2s ease;
 	}
 
-	.tag:hover {
+	.search-tag:hover {
 		transform: scale(1.05);
 		background: var(--tag-background-hover, #e0e0e0);
 		box-shadow: 0 2px 8px var(--tag-shadow-hover, rgba(0, 0, 0, 0.1));
 	}
 
-	.tag.active {
+	.search-tag.active {
 		background: var(--primary-color, #007bff);
 		color: var(--background-color, #fff);
 		border-color: var(--primary-color, #007bff);
-	}
-
-	.no-results {
-		color: #888;
-		padding: 0.5rem;
 	}
 
 	@media (max-width: 900px) {

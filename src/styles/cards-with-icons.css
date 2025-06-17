@@ -16,7 +16,6 @@
 }
 
 .skill-card {
-    min-height: 250px;
     min-width: 250px;
     background: linear-gradient(145deg, var(--card-gradient-start), var(--card-gradient-end));
     padding: 25px;

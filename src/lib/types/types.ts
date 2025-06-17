@@ -76,6 +76,12 @@ export interface ContentItem {
     nextItem?: ContentReference;
 }
 
+export interface CardItem extends ContentItem {
+    keywords?: string[];
+    title?: string;
+    link?: string;
+}
+
 export interface ContentReference {
     slug: string;
     title: string;
