@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let sectionTitle: string;
 	export let items: any[];
-	export let itemsPerPage: number = 3;
+	export let itemsPerPage: number;
 	export let truncationLimit: number = 150;
+	export let totalItems: number;
 
 	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import Pagination from '$lib/components/common/Pagination.svelte';
@@ -16,6 +17,7 @@
 		currentPage,
 		selectedTags,
 		availableTags,
+		viableTags,
 		paginatedItems,
 		totalPages,
 		handlePageChange,
@@ -28,7 +30,7 @@
 	{#if $availableTags.length > 0}
 		<div class="tag-filter">
 			<SearchableDropdown
-				options={$availableTags}
+				options={$viableTags}
 				value={$selectedTags}
 				onChange={handleTagChange}
 				placeholder="Search tags..."
@@ -52,5 +54,11 @@
 			{/if}
 		{/each}
 	{/if}
-	<Pagination currentPage={$currentPage} totalPages={$totalPages} onPageChange={handlePageChange} />
+	<Pagination
+		currentPage={$currentPage}
+		totalPages={$totalPages}
+		onPageChange={handlePageChange}
+		{totalItems}
+		itemLabel={sectionTitle}
+	/>
 </section>

@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let sectionTitle: string;
 	export let items: any[];
-	export let itemsPerPage: number = 3;
+	export let itemsPerPage: number;
 	export let truncationLimit: number = 150;
+	export let totalItems: number;
 
 	import { base } from '$app/paths';
 	import { fadeIn } from '$lib/utils/fadeInUtils';
@@ -19,6 +20,7 @@
 		currentPage,
 		selectedTags,
 		availableTags,
+		viableTags,
 		paginatedItems,
 		totalPages,
 		handlePageChange,
@@ -44,7 +46,7 @@
 	{#if $availableTags.length > 0}
 		<div class="tag-filter">
 			<SearchableDropdown
-				options={$availableTags}
+				options={$viableTags}
 				value={$selectedTags}
 				onChange={handleTagChange}
 				placeholder="Search tags..."
@@ -54,7 +56,9 @@
 
 	{#if $paginatedItems.length === 0}
 		<div class="no-results">
-			<p>No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.</p>
+			<p>
+				No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.
+			</p>
 		</div>
 	{:else}
 		{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
@@ -100,5 +104,11 @@
 			</a>
 		{/each}
 	{/if}
-	<Pagination currentPage={$currentPage} totalPages={$totalPages} onPageChange={handlePageChange} />
+	<Pagination
+		currentPage={$currentPage}
+		totalPages={$totalPages}
+		onPageChange={handlePageChange}
+		{totalItems}
+		itemLabel={sectionTitle}
+	/>
 </section>

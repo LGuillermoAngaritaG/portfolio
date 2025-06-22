@@ -233,4 +233,10 @@
 	.markdown-content :global(ol:last-child) {
 		margin-bottom: 0;
 	}
+
+	.markdown-content :global(li) {
+		color: var(--text-secondary-color);
+		font-size: 1.2rem;
+		line-height: 1.6;
+	}
 </style>

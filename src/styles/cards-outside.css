@@ -1,6 +1,5 @@
 .slug-section .timeline-content:hover {
-    transform: translateY(-5px) translateX(5px);
-    box-shadow: 0 6px 25px var(--card-shadow-hover); 
+    transform: translateY(-3px) translateX(3px);
 }
 
 .tag-filter {

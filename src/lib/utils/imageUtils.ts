@@ -1,15 +1,16 @@
 import { basename, join } from 'path';
 import { existsSync, copyFileSync, mkdirSync, readFileSync } from 'fs';
 import { dev } from '$app/environment';
+import * as yaml from 'js-yaml';
 
-// Read basePath from portfolio-data.json
+// Read basePath from portfolio-data.yaml
 function getBasePath(): string {
     try {
-        const portfolioDataPath = join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.json');
-        const portfolioData = JSON.parse(readFileSync(portfolioDataPath, 'utf-8'));
+        const portfolioDataPath = join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.yaml');
+        const portfolioData = yaml.load(readFileSync(portfolioDataPath, 'utf-8')) as any;
         return dev ? '' : (portfolioData.settings.basePath || '');
     } catch (e) {
-        console.warn('Could not read basePath from portfolio-data.json:', e);
+        console.warn('Could not read basePath from portfolio-data.yaml:', e);
         return '';
     }
 }

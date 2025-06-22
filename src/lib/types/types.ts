@@ -27,6 +27,7 @@ interface Section {
     type: string;
     content?: BaseContentItem[];
     truncation_limit?: number;
+    cards_before_pagination?: number;
 }
 
 export interface Skill {

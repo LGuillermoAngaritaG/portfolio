@@ -1,55 +1,58 @@
 <script lang="ts">
 	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import type { Skill } from '$lib/types/types';
+	import { onMount, afterUpdate } from 'svelte';
+
 	export let skillsData: Skill[] = [];
 	export let sectionTitle: string;
 
 	import '/src/styles/cards-with-icons.css';
 
-	import { onMount } from 'svelte';
+	let skillsGridElement: HTMLElement;
 
-	let resizeObserver: ResizeObserver;
+	function equalizeCardHeights() {
+		if (!skillsGridElement) return;
 
-	// Match height of all .skill-card elements
-	function matchHeights(): void {
-		const cards = document.querySelectorAll<HTMLElement>('.skill-card');
-		let maxHeight = 0;
+		const skillWrappers = skillsGridElement.querySelectorAll(
+			'.skill-wrapper'
+		) as NodeListOf<HTMLElement>;
 
-		// Reset heights
-		cards.forEach(card => (card.style.height = 'auto'));
+		if (skillWrappers.length === 0) return;
 
-		// Find tallest card
-		cards.forEach(card => {
-			maxHeight = Math.max(maxHeight, card.offsetHeight);
+		// Reset heights first to get natural heights
+		skillWrappers.forEach((wrapper) => {
+			wrapper.style.height = 'auto';
 		});
 
-		// Apply height to all cards
-		cards.forEach(card => {
-			card.style.height = `${maxHeight}px`;
+		// Find the maximum height
+		let maxHeight = 0;
+		skillWrappers.forEach((wrapper) => {
+			const height = wrapper.offsetHeight;
+			if (height > maxHeight) {
+				maxHeight = height;
+			}
+		});
+
+		// Apply the maximum height to all wrappers
+		skillWrappers.forEach((wrapper) => {
+			wrapper.style.height = `${maxHeight}px`;
 		});
 	}
 
+	// Equalize heights after component mounts
 	onMount(() => {
-		matchHeights();
+		equalizeCardHeights();
+	});
 
-		const handleResize = () => matchHeights();
-		window.addEventListener('resize', handleResize);
-
-		// Optional: observe changes inside cards (e.g. if content loads dynamically)
-		const cards = document.querySelectorAll('.skill-card');
-		resizeObserver = new ResizeObserver(() => matchHeights());
-		cards.forEach(card => resizeObserver.observe(card));
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-			resizeObserver.disconnect();
-		};
+	// Re-equalize heights after updates (e.g., when data changes)
+	afterUpdate(() => {
+		equalizeCardHeights();
 	});
 </script>
 
 <section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="skills section" use:fadeIn>
 	<h2 class="section-title">{sectionTitle}</h2>
-	<div class="skills-grid">
+	<div class="skills-grid" bind:this={skillsGridElement}>
 		{#each skillsData as skillCategory}
 			<div class="skill-card">
 				<div class="skill-header">
@@ -60,13 +63,14 @@
 					{/if}
 					<h3>{skillCategory.name}</h3>
 				</div>
-				<div class="skill-tags">
-					{#each skillCategory.skills as subskill}
-						<span class="tag">{subskill}</span>
-					{/each}
+				<div class="skill-wrapper">
+					<div class="skill-tags">
+						{#each skillCategory.skills as subskill}
+							<span class="tag">{subskill}</span>
+						{/each}
+					</div>
 				</div>
 			</div>
 		{/each}
 	</div>
 </section>
-

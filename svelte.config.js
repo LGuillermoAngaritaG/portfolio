@@ -2,15 +2,16 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import fs from 'fs';
 import path from 'path';
+import * as yaml from 'js-yaml';
 
-const dataFilePath = path.join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.json');
+const dataFilePath = path.join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.yaml');
 
 // Add error handling for file reading
 let portfolioData;
 try {
-    portfolioData = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
+    portfolioData = yaml.load(fs.readFileSync(dataFilePath, 'utf-8'));
 } catch (error) {
-    console.error('Error reading portfolio-data.json:', error);
+    console.error('Error reading portfolio-data.yaml:', error);
     portfolioData = { settings: { basePath: '' } };
 }
 /** @type {import('@sveltejs/kit').Config} */
@@ -38,8 +39,8 @@ const config = {
             // Apply '/your-repo-name' only when building for production (npm run build)
             // Use an empty string '' for local development (npm run dev)
             base: process.env.NODE_ENV === 'production' ? portfolioData.settings.basePath : '',
-        }
-    }
+        },
+    },
 };
 
 export default config;

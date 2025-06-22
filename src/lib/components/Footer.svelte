@@ -244,10 +244,10 @@
 		transition: color 0.3s ease;
 	}
 
-	.footer-bottom a {
+	/* .footer-bottom a {
 		color: var(--primary-color);
 		text-decoration: none;
-	}
+	} */
 
 	@media (max-width: 900px) {
 		.footer-content {

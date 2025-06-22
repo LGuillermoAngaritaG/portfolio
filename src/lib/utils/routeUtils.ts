@@ -1,5 +1,5 @@
 import { basename, join } from 'path';
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readdirSync, existsSync } from 'fs';
 import type { PortfolioSection } from '$lib/types/types';
 
 /**

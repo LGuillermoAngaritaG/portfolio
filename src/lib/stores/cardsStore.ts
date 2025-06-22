@@ -37,6 +37,32 @@ export function createCardsStore(items: CardItem[], itemsPerPage: number = 3) {
         });
     });
 
+    // Get tags that would produce results when combined with currently selected tags
+    const viableTags = derived([selectedTags, availableTags], ([$selectedTags, $availableTags]) => {
+        if ($selectedTags.length === 0) return $availableTags;
+        
+        // Find tags that appear in items that already match the selected tags
+        const itemsMatchingSelectedTags = items.filter((item) => {
+            const tags = (item.keywords || item.metadata?.tags || []) as string[];
+            return tags.length > 0 && 
+                $selectedTags.every((selectedTag) =>
+                    tags.map((t: string) => t.toLowerCase()).includes(selectedTag.toLowerCase())
+                );
+        });
+
+        // Get all tags from items that match selected tags
+        const viableTagsSet = new Set<string>();
+        itemsMatchingSelectedTags.forEach((item) => {
+            const tags = (item.keywords || item.metadata?.tags || []) as string[];
+            tags.forEach((tag: string) => {
+                viableTagsSet.add(tag);
+            });
+        });
+
+        // Return available tags that are viable, maintaining the original order
+        return $availableTags.filter((tag) => viableTagsSet.has(tag));
+    });
+
     // Pagination logic
     const totalPages = derived([filteredItems], ([$filteredItems]) => 
         Math.ceil($filteredItems.length / itemsPerPage)
@@ -72,6 +98,7 @@ export function createCardsStore(items: CardItem[], itemsPerPage: number = 3) {
         currentPage,
         selectedTags,
         availableTags,
+        viableTags,
         filteredItems,
         totalPages,
         paginatedItems,

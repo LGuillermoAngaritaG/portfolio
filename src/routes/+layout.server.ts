@@ -1,11 +1,13 @@
 import type { LayoutServerLoad } from './$types';
 import type { PortfolioData } from '$lib/types/types';
-import portfolioData from '../content/data/portfolio-data.json';
+import { join } from 'path';
+import { readFileSync } from 'fs';
+import * as yaml from 'js-yaml';
 
 export const load: LayoutServerLoad = async () => {
-    const typedPortfolioData = portfolioData as PortfolioData;
+    const portfolioData = yaml.load(readFileSync(join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.yaml'), 'utf-8')) as PortfolioData;
     
     return {
-        portfolioData: typedPortfolioData
+        portfolioData
     };
 };

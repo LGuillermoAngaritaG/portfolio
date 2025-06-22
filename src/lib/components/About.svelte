@@ -89,7 +89,6 @@
 		flex-direction: row;
 		align-items: center;
 		flex-wrap: wrap;
-		margin-top: 30px;
 	}
 
 	.bottom-left {
@@ -266,6 +265,9 @@
 		.social-links {
 			justify-content: center;
 		}
+		.top-left {
+			margin: 20px 0 0 30px;
+		}
     .mobile-image {
 			display: flex;
 			justify-content: center;
@@ -291,6 +293,10 @@
 			align-items: flex-start;
 			text-align: left;
 		}
+		.top-left {
+			margin: 10px 0 0 20px;
+		}
+
 		.profile-image {
 			min-width: unset;
 			border-radius: 15px;
@@ -311,6 +317,9 @@
 		}
 		.desktop-image {
 			display: none;
+		}
+		.markdown-content {
+			margin: 0 20px;
 		}
 	}
 </style>

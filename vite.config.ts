@@ -2,7 +2,6 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 // Plugin to copy content images to static folder during build
 function copyContentImages() {
@@ -56,5 +55,5 @@ export default defineConfig({
         }
     },
 
-    assetsInclude: ['**/*.md','**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg'],
+    assetsInclude: ['**/*.md','**/*.yml','**/*.yaml','**/*.jpg', '**/*.png', '**/*.gif', '**/*.svg'],
 });
