@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { marked } from 'marked';
+	import { browser } from '$app/environment';
 
 	export let text: string;
 	export let className: string = '';
@@ -144,12 +145,12 @@
 		try {
 			const fullHtmlContent = marked.parse(text || '');
 			const fullHtml = typeof fullHtmlContent === 'string' ? fullHtmlContent : '';
-			const plainText = stripHtml(fullHtml);
+			const plainText = browser ? stripHtml(fullHtml) : fullHtml.replace(/<[^>]*>/g, '');
 
-			if (isExpanded || !shouldTruncate(plainText)) {
+			if (!browser || isExpanded || !shouldTruncate(plainText)) {
 				htmlContent = fullHtml;
 				needsTruncation = shouldTruncate(plainText);
-				if (needsTruncation) {
+				if (browser && needsTruncation) {
 					htmlContent = injectButtonIntoHtml(htmlContent, 'Show less');
 				}
 			} else {

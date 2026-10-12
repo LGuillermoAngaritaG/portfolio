@@ -33,7 +33,23 @@
 		}
 		// Convert sectionId to the same format used in route generation
 		const routeType = sectionTitle.toLowerCase().replace(/\s+/g, '-');
-		return `${base}/${routeType}/${item.slug}`;
+		return `${base}/${routeType}/${item.slug}/`;
+	}
+
+	// Preserve the original cards and expose the complete list when scripts are disabled.
+	const escapeHtml = (value: unknown) =>
+		String(value)
+			.replaceAll('&', '&amp;')
+			.replaceAll('<', '&lt;')
+			.replaceAll('>', '&gt;')
+			.replaceAll('"', '&quot;');
+	function noJsCards() {
+		return items
+			.map((item) => {
+				const m = item.metadata;
+				return `<a class="timeline-content" href="${escapeHtml(getItemUrl(item))}"><div class="header-container"><span class="date">${escapeHtml(m.date)}</span><div class="tags-container">${m.tags.map((tag: string) => `<span class="card-tag">${escapeHtml(tag)}</span>`).join('')}</div></div><div class="card-container">${m.image ? `<div class="card-image"><img src="${escapeHtml(m.image)}"${m.image_fit === 'contain' ? ' style="object-fit:contain;transform:none"' : ''} alt="${escapeHtml(m.image_alt || `${m.title} project visual`)}" loading="lazy"></div>` : ''}<div class="details"><h3 class="title-ref">${escapeHtml(m.title)}</h3><p class="description">${escapeHtml(m.description)}</p></div></div></a>`;
+			})
+			.join('');
 	}
 </script>
 
@@ -87,7 +103,11 @@
 						<div class="card-image">
 							<img
 								src={item.metadata.image}
-								alt={item.metadata?.title ? `${item.metadata.title} image` : 'Card image'}
+								style={item.metadata?.image_fit === 'contain'
+									? 'object-fit:contain;transform:none'
+									: undefined}
+								alt={item.metadata?.image_alt ||
+									(item.metadata?.title ? `${item.metadata.title} image` : 'Card image')}
 								loading="lazy"
 							/>
 						</div>
@@ -104,6 +124,8 @@
 			</a>
 		{/each}
 	{/if}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	<noscript><div class="nojs-projects">{@html noJsCards()}</div></noscript>
 	<Pagination
 		currentPage={$currentPage}
 		totalPages={$totalPages}

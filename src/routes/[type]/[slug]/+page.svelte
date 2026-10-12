@@ -28,13 +28,18 @@
 				</div>
 			</div>
 		</header>
-		<img src={data.metadata.image} alt={data.metadata.image} />
+		{#if data.metadata.image}
+			<img
+				src={data.metadata.image}
+				alt={data.metadata.image_alt || `${data.metadata.title} project visual`}
+			/>
+		{/if}
 		<div class="content">
 			{@html data.html}
 		</div>
 		{#if data.nextItem}
 			<div class="next-navigation">
-				<a href="{base}/{data.nextItem.type}/{data.nextItem.slug}" class="next-button">
+				<a href="{base}/{data.nextItem.type}/{data.nextItem.slug}/" class="next-button">
 					Next: {data.nextItem.title}
 					<span class="arrow">→</span>
 				</a>
