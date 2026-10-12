@@ -2,7 +2,7 @@
 publication: 'published'
 title: 'Audio Whisperer'
 date: '2026-10-11'
-link: 'https://github.com/Andesprit/audio-whisperer'
+link: 'https://audio-whisperer.andesprit.com/'
 tags: ['Speech Processing', 'NLP', 'Frontend']
 category: 'web-app'
 source_visibility: 'public'
@@ -20,7 +20,7 @@ image_fit: 'contain'
 
 A browser-local text-to-speech narration project.
 
-[View source](https://github.com/Andesprit/audio-whisperer)
+[Open app](https://audio-whisperer.andesprit.com/) · [Public source](https://github.com/Andesprit/audio-whisperer)
 
 ## Scope and ownership
 
@@ -36,10 +36,10 @@ Web app. Open source · GPL-3.0.
 
 ## Current scope
 
-Use the source and setup instructions. The hosted app endpoint needs verification.
+Open the hosted app, or view the source and setup instructions.
 
 _Concept illustration of turning text into speech in a browser. Not a product screenshot._
 
 Public evidence reviewed: 2026-10-11.
 
-[Canonical project](https://github.com/Andesprit/audio-whisperer).
+[Canonical project](https://audio-whisperer.andesprit.com/).
