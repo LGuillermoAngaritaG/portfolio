@@ -30,11 +30,17 @@ sections:
         link: 'https://www.eafit.edu.co'
         title: 'EAFIT University | Research Assistant'
 
-  # - title: 'Projects'
-  #   type: 'cards_outside'
-  #   truncation_limit: 150
-  #   cards_before_pagination: 3
-  #   path: 'src/content/projects/'
+  - title: 'Projects'
+    type: 'cards_outside'
+    truncation_limit: 150
+    cards_before_pagination: 3
+    path: 'src/content/projects/'
+
+  - title: 'Games'
+    type: 'cards_outside'
+    truncation_limit: 150
+    cards_before_pagination: 3
+    path: 'src/content/games/'
 
   - title: 'Skills'
     type: 'cards_with_icons'

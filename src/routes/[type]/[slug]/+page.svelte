@@ -29,13 +29,17 @@
 		</div>
 	</header>
 	{#if data.metadata.image}
-		<img class="cover" src={data.metadata.image} alt="" />
+		<img
+			class="cover"
+			src={data.metadata.image}
+			alt={data.metadata.image_alt || `${data.metadata.title} project visual`}
+		/>
 	{/if}
 	<div class="content">
 		{@html data.html}
 	</div>
 	{#if data.nextItem}
-		<a href="{base}/{data.nextItem.type}/{data.nextItem.slug}" class="next-link">
+		<a href="{base}/{data.nextItem.type}/{data.nextItem.slug}/" class="next-link">
 			<span>Next</span>
 			{data.nextItem.title}
 			<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>

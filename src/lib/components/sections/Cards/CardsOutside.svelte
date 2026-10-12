@@ -29,72 +29,91 @@
 		}
 		// Convert sectionId to the same format used in route generation
 		const routeType = sectionTitle.toLowerCase().replace(/\s+/g, '-');
-		return `${base}/${routeType}/${item.slug}`;
+		return `${base}/${routeType}/${item.slug}/`;
 	}
 </script>
+
+{#snippet card(item: any)}
+	<article class="entry">
+		<div class="entry-date">{item.metadata?.date ?? ''}</div>
+		<div class="entry-main">
+			<div>
+				<h3 class="entry-title">
+					<a
+						href={getItemUrl(item)}
+						target={item.metadata?.skip ? '_blank' : null}
+						rel={item.metadata?.skip ? 'noopener noreferrer' : null}
+					>
+						{item.metadata?.title}
+					</a>
+				</h3>
+				{#if item.metadata?.description}
+					<div class="entry-body">
+						<TruncatedMarkdown text={item.metadata.description} limit={truncationLimit} />
+					</div>
+				{/if}
+				{#if item.metadata?.tags?.length}
+					<ul class="tags">
+						{#each Array.isArray(item.metadata.tags) ? item.metadata.tags : item.metadata.tags
+									.split(/[\s,]+/)
+									.map((t: string) => t.trim()) as tag}
+							<li class="tag">{tag}</li>
+						{/each}
+					</ul>
+				{/if}
+			</div>
+			{#if item.metadata?.image}
+				<img
+					class="entry-image"
+					class:contain={item.metadata.image_fit === 'contain'}
+					src={item.metadata.image}
+					alt={item.metadata.image_alt ||
+						(item.metadata.title ? `${item.metadata.title} image` : 'Card image')}
+					loading="lazy"
+				/>
+			{/if}
+		</div>
+	</article>
+{/snippet}
 
 <section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section">
 	<h2 class="section-title">{sectionTitle}</h2>
 	<div>
-		{#if $availableTags.length > 0}
-			<SearchableDropdown
-				options={$viableTags}
-				value={$selectedTags}
-				onChange={handleTagChange}
-				placeholder="Search tags..."
-			/>
-		{/if}
+		<div class="js-only">
+			{#if $availableTags.length > 0}
+				<SearchableDropdown
+					options={$viableTags}
+					value={$selectedTags}
+					onChange={handleTagChange}
+					placeholder="Search tags..."
+				/>
+			{/if}
 
-		{#if $paginatedItems.length === 0}
-			<p class="no-results">
-				No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.
-			</p>
-		{:else}
-			<div>
-				{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
-					<article class="entry">
-						<div class="entry-date">{item.metadata?.date ?? ''}</div>
-						<div class="entry-main">
-							<div>
-								<h3 class="entry-title">
-									<a
-										href={getItemUrl(item)}
-										target={item.metadata?.skip ? '_blank' : null}
-										rel={item.metadata?.skip ? 'noopener noreferrer' : null}
-									>
-										{item.metadata?.title}
-									</a>
-								</h3>
-								{#if item.metadata?.description}
-									<div class="entry-body">
-										<TruncatedMarkdown text={item.metadata.description} limit={truncationLimit} />
-									</div>
-								{/if}
-								{#if item.metadata?.tags?.length}
-									<ul class="tags">
-										{#each Array.isArray(item.metadata.tags) ? item.metadata.tags : item.metadata.tags
-													.split(/[\s,]+/)
-													.map((t) => t.trim()) as tag}
-											<li class="tag">{tag}</li>
-										{/each}
-									</ul>
-								{/if}
-							</div>
-							{#if item.metadata?.image}
-								<img class="entry-image" src={item.metadata.image} alt="" loading="lazy" />
-							{/if}
-						</div>
-					</article>
-				{/each}
-			</div>
-		{/if}
-		<Pagination
-			currentPage={$currentPage}
-			totalPages={$totalPages}
-			onPageChange={handlePageChange}
-			{totalItems}
-			itemLabel={sectionTitle}
-		/>
+			{#if $paginatedItems.length === 0}
+				<p class="no-results">
+					No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.
+				</p>
+			{:else}
+				<div>
+					{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
+						{@render card(item)}
+					{/each}
+				</div>
+			{/if}
+			<Pagination
+				currentPage={$currentPage}
+				totalPages={$totalPages}
+				onPageChange={handlePageChange}
+				{totalItems}
+				itemLabel={sectionTitle}
+			/>
+		</div>
+		<!-- The complete list, for visitors and crawlers without scripts. -->
+		<noscript>
+			{#each items as item}
+				{@render card(item)}
+			{/each}
+		</noscript>
 	</div>
 </section>
 
@@ -113,6 +132,10 @@
 		border: 1px solid var(--border-color);
 		border-radius: 0.625rem;
 		object-fit: cover;
+	}
+
+	.entry-image.contain {
+		object-fit: contain;
 	}
 
 	@media (max-width: 600px) {

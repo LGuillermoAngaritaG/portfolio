@@ -1,3 +1,4 @@
+import { isPublished } from '$lib/utils/publication';
 import { error } from '@sveltejs/kit';
 import matter from 'gray-matter';
 import { join } from 'path';
@@ -11,91 +12,102 @@ import { loadNavigationItems, findNextItem } from '$lib/utils/navigationUtils';
 import { processImagePath } from '$lib/utils/imageUtils';
 
 // Read portfolio data for route generation
-const portfolioData = yaml.load(readFileSync(join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.yaml'), 'utf-8')) as {
-    sections: PortfolioSection[];
+const portfolioData = yaml.load(
+	readFileSync(join(process.cwd(), 'src', 'content', 'data', 'portfolio-data.yaml'), 'utf-8')
+) as {
+	sections: PortfolioSection[];
 };
 
 // Only prerender if there are sections with both path and content
-export const prerender = portfolioData.sections.some(section => section.path);
+export const prerender = portfolioData.sections.some((section) => section.path);
 
 // Generate all possible routes
 export const entries: EntryGenerator = () => {
-    return generateRoutes(portfolioData);
+	return generateRoutes(portfolioData);
 };
 
 export const load: PageServerLoad = async ({ params }) => {
-    try {
-        const { type, slug } = params;
-        
-        // Find the section configuration from portfolio data
-        const section = findSectionByType(portfolioData, type);
+	try {
+		const { type, slug } = params;
+		if (!/^[a-z0-9-]+$/.test(slug)) throw error(404);
 
-        if (!section) {
-            throw error(404, `Content type "${type}" not found`);
-        }
+		// Find the section configuration from portfolio data
+		const section = findSectionByType(portfolioData, type);
 
-        // Use the same path normalization as in loadMarkdownFiles
-        const normalizedPath = section.path
-            .replace(/\/$/, '')  // remove trailing slash
-            .replace(/^\//, ''); // remove leading slash
+		if (!section) {
+			throw error(404, `Content type "${type}" not found`);
+		}
 
-        // Ensure path starts with src/ (same as loadMarkdownFiles)
-        const pathWithSrc = normalizedPath.startsWith('src/') 
-            ? normalizedPath 
-            : `src/${normalizedPath}`;
+		// Use the same path normalization as in loadMarkdownFiles
+		const normalizedPath = section.path
+			.replace(/\/$/, '') // remove trailing slash
+			.replace(/^\//, ''); // remove leading slash
 
-        const contentDir = join(process.cwd(), pathWithSrc);
-        const fullPath = join(contentDir, `${slug}.md`);
+		// Ensure path starts with src/ (same as loadMarkdownFiles)
+		const pathWithSrc = normalizedPath.startsWith('src/')
+			? normalizedPath
+			: `src/${normalizedPath}`;
 
-        // Read and parse the markdown file
-        const raw = readFileSync(fullPath, 'utf-8');
-        const { data: metadata, content: markdown } = matter(raw);
+		const contentDir = join(process.cwd(), pathWithSrc);
+		const fullPath = join(contentDir, `${slug}.md`);
 
-        // Get all navigation items for this content type
-        const navigationItems = loadNavigationItems(contentDir);
-        
-        // Find next item for navigation
-        const nextItem = findNextItem(navigationItems, slug, type);
+		// Read and parse the markdown file
+		const raw = readFileSync(fullPath, 'utf-8');
+		const { data: metadata, content: markdown } = matter(raw);
+		if (!isPublished(metadata)) throw error(404);
 
-        // Extract section type from path for image processing (same as loadMarkdownFiles)
-        const sectionType = pathWithSrc.split('/').pop() || 'default';
+		// Get all navigation items for this content type
+		const navigationItems = loadNavigationItems(contentDir);
 
-        // Setup marked with syntax highlighting and custom renderer
-        const marked = createMarkedWithHighlight(contentDir, sectionType);
-        const html = await marked.parse(markdown);
-        
-        // Safely process image with error handling
-        let processedImage = '';
-        if (metadata.image) {
-            try {
-                processedImage = processImagePath(metadata.image, contentDir, sectionType);
-            } catch (imageError) {
-                console.warn(`Warning: Could not process image "${metadata.image}" for ${slug}:`, imageError);
-                // Fallback to empty string - this will prevent the image from showing but won't break the page
-                processedImage = '';
-            }
-        }
-        
-        // Return the content with metadata and next project
-        return {
-            slug,
-            type,
-            metadata: {
-                title: metadata.title ?? 'Untitled',
-                date: metadata.date || '',
-                link: metadata.link || '',
-                tags: Array.isArray(metadata.tags) ? metadata.tags : metadata.tags?.split(',').map((t: string) => t.trim()) || [],
-                description: metadata.description || '',
-                skip: metadata.skip || false,
-                display_order: typeof metadata.display_order === 'number' ? metadata.display_order : Infinity,
-                image: processedImage
-            },
-            html,
-            nextItem
-        } satisfies ContentItem;
+		// Find next item for navigation
+		const nextItem = findNextItem(navigationItems, slug, type);
 
-    } catch (e) {
-        console.error(`Error loading content for type "${params.type}" and slug "${params.slug}":`, e);
-        throw error(404, `Content "${params.slug}" not found in ${params.type}. Details: `);
-    }
+		// Extract section type from path for image processing (same as loadMarkdownFiles)
+		const sectionType = pathWithSrc.split('/').pop() || 'default';
+
+		// Setup marked with syntax highlighting and custom renderer
+		const marked = createMarkedWithHighlight(contentDir, sectionType);
+		const html = await marked.parse(markdown);
+
+		// Safely process image with error handling
+		let processedImage = '';
+		if (metadata.image) {
+			try {
+				processedImage = processImagePath(metadata.image, contentDir, sectionType);
+			} catch (imageError) {
+				console.warn(
+					`Warning: Could not process image "${metadata.image}" for ${slug}:`,
+					imageError
+				);
+				// Fallback to empty string - this will prevent the image from showing but won't break the page
+				processedImage = '';
+			}
+		}
+
+		// Return the content with metadata and next project
+		return {
+			slug,
+			type,
+			metadata: {
+				title: metadata.title ?? 'Untitled',
+				date: metadata.date || '',
+				link: metadata.link || '',
+				tags: Array.isArray(metadata.tags)
+					? metadata.tags
+					: metadata.tags?.split(',').map((t: string) => t.trim()) || [],
+				description: metadata.description || '',
+				skip: metadata.skip || false,
+				display_order:
+					typeof metadata.display_order === 'number' ? metadata.display_order : Infinity,
+				image: processedImage,
+				image_alt: metadata.image_alt,
+				image_fit: metadata.image_fit
+			},
+			html,
+			nextItem
+		} satisfies ContentItem;
+	} catch (e) {
+		console.error(`Error loading content for type "${params.type}" and slug "${params.slug}":`, e);
+		throw error(404, `Content "${params.slug}" not found in ${params.type}. Details: `);
+	}
 };

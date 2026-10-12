@@ -9,6 +9,8 @@ export interface Metadata {
     skip: boolean;
     display_order?: number;
     image?: string;
+    image_alt?: string;
+    image_fit?: 'contain' | 'cover';
 }
 
 export type ContentListItem = {
