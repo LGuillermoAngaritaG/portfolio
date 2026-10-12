@@ -2,7 +2,7 @@
 publication: 'published'
 title: 'AnnoLabel'
 date: '2026-10-11'
-link: 'https://github.com/Andesprit/annolabel'
+link: 'https://annolabel.andesprit.com/'
 tags: ['Computer Vision', 'Data Annotation', 'Developer Tools']
 category: 'developer-tool'
 source_visibility: 'public'
@@ -20,7 +20,7 @@ image_fit: 'contain'
 
 Validate and visually review agent-supplied image annotations, then export labels, boxes and polygons as COCO.
 
-[View source](https://github.com/Andesprit/annolabel)
+[View website & docs](https://annolabel.andesprit.com/) · [PyPI package](https://pypi.org/project/annolabel/) · [Public source](https://github.com/Andesprit/annolabel)
 
 ## Scope and ownership
 
@@ -48,4 +48,4 @@ _Concept illustration of reviewing bounding boxes and polygons before COCO expor
 
 Public evidence reviewed: 2026-10-11.
 
-[Canonical project](https://github.com/Andesprit/annolabel).
+[Canonical project](https://annolabel.andesprit.com/).

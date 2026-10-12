@@ -2,7 +2,7 @@
 publication: 'published'
 title: 'Quire Writer'
 date: '2026-10-11'
-link: 'https://github.com/Andesprit/quire-writer'
+link: 'https://quire-writer.andesprit.com/'
 tags: ['Agents', 'Frontend', 'Document Processing']
 category: 'desktop-app'
 source_visibility: 'public'
@@ -20,7 +20,7 @@ image_fit: 'contain'
 
 Write in Typst, LaTeX, Quarto or Markdown with your choice of AI agent, and review every agent edit.
 
-[Get downloads](https://github.com/Andesprit/quire-writer/releases/latest) · [Public source](https://github.com/Andesprit/quire-writer)
+[Visit website](https://quire-writer.andesprit.com/) · [Public source](https://github.com/Andesprit/quire-writer) · [Desktop downloads](https://github.com/Andesprit/quire-writer/releases/latest)
 
 ## Scope and ownership
 
@@ -48,4 +48,4 @@ _Concept illustration of writing documents in Typst, LaTeX, Quarto and Markdown.
 
 Public evidence reviewed: 2026-10-11.
 
-[Canonical project](https://github.com/Andesprit/quire-writer).
+[Canonical project](https://quire-writer.andesprit.com/).

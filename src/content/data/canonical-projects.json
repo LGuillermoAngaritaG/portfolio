@@ -94,11 +94,12 @@
 			"personal": true,
 			"featured": true,
 			"status": "unspecified",
-			"access": "downloads",
+			"access": "website",
 			"urls": {
-				"canonical": "https://github.com/Andesprit/quire-writer",
+				"canonical": "https://quire-writer.andesprit.com/",
 				"source": "https://github.com/Andesprit/quire-writer",
-				"downloads": "https://github.com/Andesprit/quire-writer/releases/latest"
+				"downloads": "https://github.com/Andesprit/quire-writer/releases/latest",
+				"page": "https://quire-writer.andesprit.com/"
 			},
 			"source": {
 				"visibility": "public",
@@ -122,11 +123,13 @@
 			],
 			"en": {
 				"description": "Write in Typst, LaTeX, Quarto or Markdown with your choice of AI agent, and review every agent edit.",
-				"limitation": ""
+				"limitation": "",
+				"actionLabel": "Visit website"
 			},
 			"es": {
 				"description": "Escribe en Typst, LaTeX, Quarto o Markdown con el agente de IA que elijas y revisa cada cambio del agente.",
-				"limitation": ""
+				"limitation": "",
+				"actionLabel": "Visitar sitio web"
 			},
 			"release": {
 				"version": "v0.2.9",
@@ -165,8 +168,8 @@
 			"statusLabel": "",
 			"sourceLabel": "Open source · GPL-3.0-or-later",
 			"action": {
-				"label": "Get downloads",
-				"url": "https://github.com/Andesprit/quire-writer/releases/latest"
+				"label": "Visit website",
+				"url": "https://quire-writer.andesprit.com/"
 			}
 		},
 		{
@@ -182,10 +185,12 @@
 			"personal": true,
 			"featured": true,
 			"status": "unspecified",
-			"access": "source",
+			"access": "documentation",
 			"urls": {
-				"canonical": "https://github.com/Andesprit/annolabel",
-				"source": "https://github.com/Andesprit/annolabel"
+				"canonical": "https://annolabel.andesprit.com/",
+				"source": "https://github.com/Andesprit/annolabel",
+				"docs": "https://annolabel.andesprit.com/",
+				"package": "https://pypi.org/project/annolabel/"
 			},
 			"source": {
 				"visibility": "public",
@@ -201,11 +206,13 @@
 			],
 			"en": {
 				"description": "Validate and visually review agent-supplied image annotations, then export labels, boxes and polygons as COCO.",
-				"limitation": ""
+				"limitation": "",
+				"actionLabel": "View website & docs"
 			},
 			"es": {
 				"description": "Valida y revisa visualmente anotaciones de imágenes entregadas por agentes; exporta etiquetas, cajas y polígonos en formato COCO.",
-				"limitation": ""
+				"limitation": "",
+				"actionLabel": "Ver sitio y documentación"
 			},
 			"release": {
 				"version": "v0.5.1",
@@ -244,8 +251,8 @@
 			"statusLabel": "",
 			"sourceLabel": "Open source · MIT",
 			"action": {
-				"label": "View source",
-				"url": "https://github.com/Andesprit/annolabel"
+				"label": "View website & docs",
+				"url": "https://annolabel.andesprit.com/"
 			}
 		},
 		{
@@ -842,10 +849,12 @@
 			"personal": true,
 			"featured": false,
 			"status": "unspecified",
-			"access": "source",
+			"access": "demo",
 			"urls": {
-				"canonical": "https://github.com/Andesprit/open-portfolio",
-				"source": "https://github.com/Andesprit/open-portfolio"
+				"canonical": "https://open-portfolio.andesprit.com/",
+				"source": "https://github.com/Andesprit/open-portfolio",
+				"page": "https://open-portfolio.andesprit.com/",
+				"demo": "https://open-portfolio-demo.andesprit.com/"
 			},
 			"source": {
 				"visibility": "public",
@@ -876,8 +885,8 @@
 			"statusLabel": "",
 			"sourceLabel": "Open source · MIT",
 			"action": {
-				"label": "View source",
-				"url": "https://github.com/Andesprit/open-portfolio"
+				"label": "View demo",
+				"url": "https://open-portfolio-demo.andesprit.com/"
 			}
 		},
 		{

@@ -2,7 +2,7 @@
 publication: 'published'
 title: 'Open Portfolio'
 date: '2026-10-11'
-link: 'https://github.com/Andesprit/open-portfolio'
+link: 'https://open-portfolio.andesprit.com/'
 tags: ['Frontend', 'Developer Tools', 'Static Site Generation']
 category: 'template'
 source_visibility: 'public'
@@ -20,7 +20,7 @@ image_fit: 'contain'
 
 A SvelteKit portfolio template configured with YAML and Markdown.
 
-[View source](https://github.com/Andesprit/open-portfolio)
+[View demo](https://open-portfolio-demo.andesprit.com/) · [Project website](https://open-portfolio.andesprit.com/) · [Public source](https://github.com/Andesprit/open-portfolio)
 
 ## Scope and ownership
 
@@ -42,4 +42,4 @@ _Concept illustration of YAML and Markdown becoming a portfolio website. Not a p
 
 Public evidence reviewed: 2026-10-11.
 
-[Canonical project](https://github.com/Andesprit/open-portfolio).
+[Canonical project](https://open-portfolio.andesprit.com/).

@@ -13,7 +13,15 @@ export interface Project {
 	statusLabel: string;
 	sourceLabel: string;
 	source: { visibility: string; license: string | null };
-	urls: { canonical: string; source?: string; downloads?: string; page?: string };
+	urls: {
+		canonical: string;
+		source?: string;
+		downloads?: string;
+		page?: string;
+		docs?: string;
+		demo?: string;
+		package?: string;
+	};
 	action: { label: string; url: string };
 	en: { description: string; limitation: string };
 	platforms: { en: string; es: string }[];
