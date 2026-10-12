@@ -297,7 +297,7 @@ sections:
 settings:
   basePath: '/portfolio'
   bio: |
-    **Data Scientist** with **5+ years** of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in **Python**, **SQL**, and modern cloud/MLOps stacks (**AWS**, **GCP**, **Azure**, **Docker**, **Kubernetes**). Previously spent **7 years** as a university research assistant in materials science and hydrodynamics, earning a Bacherlor in Materials Engineering and an Masters in Applied Physics.
+    **Data Scientist** with **5+ years** of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in **Python**, **SQL**, and modern cloud/MLOps stacks (**AWS**, **GCP**, **Azure**, **Docker**, **Kubernetes**). Previously spent **7 years** as a university research assistant in materials science and hydrodynamics, earning a Bachelor's in Materials Engineering and a Master's in Applied Physics.
 
     Passionate about **NLP and generative AI**; built and deployed **50+ LLM-powered applications** over the last three years for clients across multiple sectors around the world, I pride myself in delivering applications that consistently uphold the highest standards of performance, reliability, and best practices. I'm always looking for new challenges, things to learn and opportunities to grow as a **Data Scientist** and **ML Engineer**.
   expertises:
@@ -310,7 +310,7 @@ settings:
     - "Generative AI and LLMs"
   name: 'Guillermo Angarita'
   potrait_image: 'images/potrait.jpg'
-  theme: 'ocean-dark'
+  theme: 'minimal-dark'
   title: 'Data Scientist & ML Engineer'
   favicon: 'favicon.png'
 
@@ -321,11 +321,11 @@ social:
 
   - icon: 'icons/github-icon.svg'
     link: 'https://github.com/LGuillermoAngaritaG'
-    name: 'Github'
+    name: 'GitHub'
 
   - icon: 'icons/linkedin-icon.svg'
     link: 'https://www.linkedin.com/in/guillermo-angarita/'
-    name: 'linkedin'
+    name: 'LinkedIn'
 
   - icon: 'icons/cv-icon.svg'
     link: 'CV.pdf'

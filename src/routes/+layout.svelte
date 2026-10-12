@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { theme, themeLoading } from '$lib/stores/themeStore';
+	import { theme } from '$lib/stores/themeStore';
 	import type { LayoutData } from './$types';
+	import '../styles/themes.css';
 	import '../styles/global.css';
 	import Navbar from '../lib/components/NavBar.svelte';
 	import Footer from '../lib/components/Footer.svelte';
@@ -40,18 +41,9 @@
 	});
 </script>
 
-<svelte:head>
-	<!-- Pass portfolio theme to the blocking script -->
-	<meta name="portfolio-theme" content={data.portfolioData.settings?.theme || 'light'} />
-</svelte:head>
-
-<!-- Show content only after theme is properly initialized -->
-{#if !$themeLoading}
-	<Navbar portfolioData={data.portfolioData} />
+<Navbar portfolioData={data.portfolioData} />
+<main>
 	<slot />
-	<Footer portfolioData={data.portfolioData} />
-	<ChatBotWidget portfolioData={data.portfolioData} />
-{:else}
-	<!-- Optional: minimal loading state -->
-	<div class="theme-loading-spinner"></div>
-{/if}
+</main>
+<Footer portfolioData={data.portfolioData} />
+<ChatBotWidget portfolioData={data.portfolioData} />

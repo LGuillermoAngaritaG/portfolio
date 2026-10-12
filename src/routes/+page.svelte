@@ -7,7 +7,7 @@
     const { portfolioData, content } = data;
 </script>
 
-<div class="page-container">
+<div class="container">
     <About {portfolioData} />
     <DisplaySections {portfolioData} {content} />
 </div>

@@ -1,11 +1,9 @@
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
-export type Theme = 'light' | 'dark' | 'forest-light' | 'ocean-light' |'sunset-light' | 'forest-dark' | 'ocean-dark' | 'sunset-dark';
-export const availableThemes: Theme[] = ['light', 'dark', 'forest-light', 'ocean-light', 'sunset-light', 'forest-dark', 'ocean-dark', 'sunset-dark'];
+export type Theme = 'light' | 'dark' | 'minimal-light' | 'minimal-dark' | 'forest-light' | 'ocean-light' |'sunset-light' | 'forest-dark' | 'ocean-dark' | 'sunset-dark';
+export const availableThemes: Theme[] = ['light', 'dark', 'minimal-light', 'minimal-dark', 'forest-light', 'ocean-light', 'sunset-light', 'forest-dark', 'ocean-dark', 'sunset-dark'];
 const defaultTheme: Theme = 'light';
-
-export const themeLoading = writable(true);
 
 // Theme storage interface
 interface ThemeStorage {
@@ -193,7 +191,6 @@ function createThemeStore() {
                 initializeTheme(portfolioTheme, overrideUserPreference) : 
                 portfolioTheme;
             set(currentTheme);
-            themeLoading.set(false);
         }
     };
 }

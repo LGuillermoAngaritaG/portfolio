@@ -51,6 +51,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			}
 			
 			return html
+				.replaceAll('%portfolio.theme%', portfolioData.settings?.theme || 'light')
 				.replace(
 					'<link rel="icon" href="favicon.png" />',
 					`<link rel="icon" href="${absoluteFaviconUrl}" />`

@@ -1,325 +1,148 @@
 <script lang="ts">
 	import type { PortfolioData } from '../types/types.js';
 	import { marked } from 'marked';
+	import { asset } from '$lib/utils/assetUtils';
 	export let portfolioData: PortfolioData;
 </script>
 
 <section id="about" class="intro">
-	<div class="intro-content">
-		<div class="left-content">
-			<div class="top-left">
-				<span class="title-tag">{portfolioData.settings.title}</span>
-				<div class="social-links">
-					{#each portfolioData.social as social}
-						{#if social.name.toLowerCase() !== 'email'}
-							<a
-								href={social.link}
-								class="social-link"
-								title={social.name}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img src={social.icon} alt={social.name + ' icon'} />
-							</a>
-						{/if}
-					{/each}
-				</div>
-				<h2>{portfolioData.settings.name}</h2>
-			</div>
-			<div class="right-content mobile-image">
-				<img
-					src={portfolioData.settings.potrait_image}
-					alt={portfolioData.settings.name}
-					class="profile-image"
-				/>
-			</div>
-			<div class="bottom-left">
-				<div class="markdown-content">
-					{@html marked.parse(portfolioData.settings.bio)}
-				</div>
-				<div class="expertise-tags">
-					{#each portfolioData.settings.expertises as expertise}
-						<span class="expertise-tag">{expertise}</span>
-					{/each}
-				</div>
-			</div>
+	<div class="intro-text">
+		<h1>{portfolioData.settings.name}</h1>
+		<p class="title">{portfolioData.settings.title}</p>
+		<div class="bio">
+			{@html marked.parse(portfolioData.settings.bio)}
 		</div>
-		<div class="right-content desktop-image">
-			<img
-				src={portfolioData.settings.potrait_image}
-				alt={portfolioData.settings.name}
-				class="profile-image"
-			/>
+		<div class="actions">
+			{#each portfolioData.social as social}
+				{#if social.name.toLowerCase() === 'email'}
+					<a class="btn btn-primary" href={`mailto:${social.link}`}>Email me</a>
+				{:else}
+					<a class="btn" href={asset(social.link)} target="_blank" rel="noopener noreferrer">
+						{#if social.icon}<img class="icon" src={asset(social.icon)} alt="" />{/if}
+						{social.name}
+					</a>
+				{/if}
+			{/each}
 		</div>
+		<ul class="tags">
+			{#each portfolioData.settings.expertises as expertise}
+				<li class="tag">{expertise}</li>
+			{/each}
+		</ul>
 	</div>
+	<img
+		class="portrait"
+		src={asset(portfolioData.settings.potrait_image)}
+		alt={portfolioData.settings.name}
+	/>
 </section>
 
 <style>
 	.intro {
-		max-width: 100%;
-		padding: 80px 20px;
-		font-family: var(--font-system);
-		margin-top: 100px;
-		background: linear-gradient(
-			145deg,
-			var(--card-background, white),
-			var(--background-color, #f8f9fa)
-		);
-		transition: background-color 0.3s ease;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) min(34%, 21rem);
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
+		padding-top: calc(var(--nav-height) + clamp(2.5rem, 8vw, 6rem));
+		padding-bottom: clamp(3.5rem, 8vw, 6rem);
 	}
 
-	.intro-content {
-		display: flex;
-		flex-direction: row;
-		height: 100%;
-	}
-
-	.left-content {
-		display: flex;
-		flex-direction: column;
-		flex: 1 1 0;
-		min-width: 0;
-		text-align: left;
-		padding: 20px;
-		animation: slideIn 0.8s ease-out;
-	}
-
-	.top-left {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		flex-wrap: wrap;
-	}
-
-	.bottom-left {
-		display: flex;
-		flex-direction: column;
-		flex: 1 1 0;
-	}
-
-	.right-content {
-		flex: 1 1 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		animation: fadeIn 1s ease-out;
-	}
-
-	.social-links {
-		display: flex;
-		flex-direction: row;
-		gap: 10px;
-		margin-left: 6px;
-	}
-
-	.social-link img {
-		width: 30px;
-		height: 30px;
-		transition: filter 0.3s ease;
-		filter: var(--icon-filter, invert(0%) brightness(1));
-	}
-
-	@keyframes slideIn {
-		from {
-			opacity: 0;
-			transform: translateX(-30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	.left-content h2 {
-		font-size: 4rem;
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		margin: 0px 0;
-		width: 100%;
-		margin-top: 5px;
-	}
-
-	.markdown-content {
+	h1 {
 		margin: 0;
+		font-size: clamp(2.5rem, 1.6rem + 4.2vw, 4.5rem);
+		font-weight: 700;
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	.title {
+		margin: 0.75rem 0 0;
 		color: var(--text-secondary-color);
-		font-size: 1.2rem;
-		margin-top: 0px;
-		font-family: var(--font-system);
-		line-height: 1.6;
+		font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+		letter-spacing: -0.01em;
 	}
 
-	.title-tag {
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		color: var(--text-on-primary, white);
-		box-shadow: 0 4px 15px var(--shadow-primary-medium, rgba(34, 139, 230, 0.2));
-		padding: 8px 16px;
-		border-radius: 20px;
-		font-size: 1.1rem;
-		font-weight: 500;
-		display: inline-block;
-		transition:
-			transform 0.2s ease,
-			box-shadow 0.2s ease,
-			background 0.3s ease,
-			color 0.3s ease;
+	.bio {
+		max-width: 62ch;
+		margin-top: 1.75rem;
+		color: var(--text-secondary-color);
+		font-size: 1.0625rem;
+		line-height: 1.65;
 	}
 
-	.expertise-tags {
-		padding: 10px 0;
+	.bio :global(p) {
+		margin: 0 0 1em;
+	}
+
+	.bio :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.bio :global(strong) {
+		color: var(--text-color);
+		font-weight: 600;
+	}
+
+	.actions {
 		display: flex;
-		gap: 12px;
 		flex-wrap: wrap;
-		max-width: 100%;
+		gap: 0.5rem;
+		margin-top: 1.75rem;
 	}
 
-	.expertise-tag {
-		background: var(--tag-background);
-		color: var(--tag-color);
-		border: var(--tag-border);
-		padding: 8px 16px;
-		border-radius: 20px;
-		font-size: 1rem;
-		font-weight: 500;
-		transition: all 0.2s ease;
+	.tags {
+		margin-top: 1.5rem;
 	}
 
-	.profile-image {
+	.portrait {
 		width: 100%;
-		max-width: 500px;
-		min-width: 400px;
-		min-height: 300px;
-		height: auto;
-		border-radius: 20px;
-
-		box-shadow: var(--image-shadow, var(--card-shadow));
-		transition: all 0.3s ease;
+		aspect-ratio: 1;
+		border: 1px solid var(--border-color);
+		border-radius: 1.5rem;
+		object-fit: cover;
 	}
 
-	/* Hide mobile image by default, show desktop image */
-	.mobile-image {
-		display: none;
-	}
-	.desktop-image {
-		display: flex;
-	}
-
-	.top-left .social-links {
-		margin-left: 10px;
-		gap: 10px;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	@media (max-width: 1400px) {
-		.intro {
-			padding: 20px 10px;
-			margin-top: 80px;
-		}
-		.intro-content {
-			flex-direction: column;
-			align-items: center;
-		}
-		.left-content,
-		.right-content {
-			max-width: 100%;
-			text-align: center;
-		}
-		.left-content {
-			padding: 0px;
-		}
-		.left-content h2 {
-			font-size: 3rem;
-		}
-		.profile-image {
-			width: 80%;
+	@media (prefers-reduced-motion: no-preference) {
+		.intro-text > *,
+		.portrait {
+			animation: rise 0.7s var(--ease-out) both;
 		}
 
-		.title-tag {
-			font-size: 14px;
+		.intro-text > :nth-child(2) {
+			animation-delay: 0.05s;
 		}
 
-		.expertise-tags {
-			max-width: 100%;
-			justify-content: center;
+		.intro-text > :nth-child(3),
+		.portrait {
+			animation-delay: 0.1s;
 		}
 
-		.profile-image {
-			width: 90%;
-			max-width: 800px;
+		.intro-text > :nth-child(4) {
+			animation-delay: 0.15s;
 		}
 
-		.social-links {
-			justify-content: center;
+		.intro-text > :nth-child(5) {
+			animation-delay: 0.2s;
 		}
-		.top-left {
-			margin: 20px 0 0 30px;
-		}
-    .mobile-image {
-			display: flex;
-			justify-content: center;
-			width: 100%;
-			margin: 20px 0;
+
+		@keyframes rise {
+			from {
+				opacity: 0;
+				transform: translateY(0.75rem);
+			}
 		}
 	}
 
 	@media (max-width: 900px) {
 		.intro {
-			margin-top: 100px;
-		}
-		.title-tag {
-			font-size: 12px;
-			position: relative;
-			left: 0;
-			align-self: flex-start;
-			z-index: 1;
-		}
-		.left-content {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			text-align: left;
-		}
-		.top-left {
-			margin: 10px 0 0 20px;
+			grid-template-columns: minmax(0, 1fr);
 		}
 
-		.profile-image {
-			min-width: unset;
-			border-radius: 15px;
-		}
-
-		.expertise-tag {
-			font-size: 0.9rem;
-			padding: 6px 12px;
-		}
-		.intro-content {
-			flex-direction: column;
-		}
-		.mobile-image {
-			display: flex;
-			justify-content: center;
-			width: 100%;
-			margin: 20px 0;
-		}
-		.desktop-image {
-			display: none;
-		}
-		.markdown-content {
-			margin: 0 20px;
+		.portrait {
+			order: -1;
+			width: 7.5rem;
+			border-radius: 1.25rem;
 		}
 	}
 </style>

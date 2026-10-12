@@ -41,68 +41,56 @@
 		>
 			Next
 		</button>
-    <span class="total-items">
-      ({totalItems}
-      {itemLabel})
-    </span>
+		<span class="total-items">{totalItems} {itemLabel}</span>
 	</div>
 {/if}
-
-
 
 <style>
 	.pagination {
 		display: flex;
-		gap: 0.5rem;
-		justify-content: center;
-		margin-top: 2rem;
-		flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem;
+		margin-top: 1.75rem;
 	}
 
 	.pagination-button {
-		padding: 0.5rem 1rem;
-		border: 1px solid var(--border-color, #ccc);
-		border-radius: 4px;
-		background-color: var(--background-color, #fff);
-		color: var(--text-color, #333);
+		min-width: 2.25rem;
+		height: 2.25rem;
+		padding-inline: 0.625rem;
+		border: 0;
+		border-radius: 0.5rem;
+		background: none;
+		color: var(--text-secondary-color);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 500;
+		font-variant-numeric: tabular-nums;
 		cursor: pointer;
-		transition: all 0.2s ease;
-		font-size: 0.9rem; /* Slightly smaller for more buttons */
+		transition:
+			color 0.15s ease,
+			background-color 0.15s ease;
+	}
+
+	.pagination-button:hover:not(:disabled):not(.active) {
+		background: var(--hover-background-subtle);
+		color: var(--text-color);
 	}
 
 	.pagination-button:disabled {
-		opacity: 0.5;
+		opacity: 0.4;
 		cursor: not-allowed;
 	}
 
 	.pagination-button.active {
-		background-color: var(--primary-color, #007bff);
-		color: var(--background-color, #fff); /* Or a contrasting color for primary */
-		border-color: var(--primary-color, #007bff);
-		font-weight: bold;
-	}
-
-	.pagination-button:hover:not(:disabled):not(.active) {
-		border-color: var(--primary-color, #007bff);
-		color: var(--primary-color, #007bff);
-	}
-
-	.pagination-button.active:hover {
-		/* Keep active styles on hover or slightly adjust if needed */
-		color: var(--background-color, #fff);
-	}
-
-	.pagination-button:focus-visible {
-		outline: 2px solid var(--primary-color, #007bff);
-		outline-offset: 1px;
+		background: var(--primary-color);
+		color: var(--text-on-primary);
 	}
 
 	.total-items {
-		margin-left: 1rem;
-		color: var(--text-color);
-		font-family: var(--font-family);
-		font-size: 1.2rem;
-		align-self: center;
+		margin-left: auto;
+		color: var(--text-secondary-color);
+		font-size: 0.875rem;
 		white-space: nowrap;
 	}
 </style>

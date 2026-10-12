@@ -47,13 +47,19 @@
 			autocomplete="off"
 			autocapitalize="off"
 			spellcheck="false"
+			aria-label={placeholder}
 			{placeholder}
 			class="search-input"
 		/>
 	</div>
 
 	<div class="search-tags-container">
-		<button class="search-tag" class:active={value.length === 0} on:click={clearAllTags} type="button">
+		<button
+			class="search-tag"
+			class:active={value.length === 0}
+			on:click={clearAllTags}
+			type="button"
+		>
 			All Tags
 		</button>
 
@@ -70,79 +76,77 @@
 				{option}
 			</button>
 		{/each}
-
 	</div>
 </div>
 
 <style>
 	.tags-wrapper {
 		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-		align-items: center;
-		margin: 0 20px;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+		margin-bottom: 1.75rem;
 	}
 
-	.search-container {
-		width: 100%;
-		max-width: 300px;
+	/* The search box and the tags share one wrapping row. */
+	.search-container,
+	.search-tags-container {
+		display: contents;
+	}
+
+	.search-input,
+	.search-tag {
+		height: 2rem;
+		padding-inline: 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: 999px;
+		background: none;
+		color: var(--text-secondary-color);
+		font: inherit;
+		font-size: 0.8125rem;
+		font-weight: 500;
 	}
 
 	.search-input {
-		width: 100%;
-		padding: 0.6rem;
-		border: 2px solid var(--primary-color, #ccc);
-		border-radius: 20px;
-		background-color: var(--background-color, #fff);
-		color: var(--text-color, #333);
-		font-size: 1rem;
-		outline: none;
+		width: 10rem;
+		color: var(--text-color);
 	}
 
-	.search-input:focus {
-		outline: 2px solid var(--primary-color, #007bff);
-		outline-offset: 1px;
-	}
-
-	.search-tags-container {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		overflow: hidden;
-		max-height: 36px;
-		padding: 0 4px;
+	.search-input::placeholder {
+		color: var(--text-secondary-color);
 	}
 
 	.search-tag {
-		background: var(--tag-background, #f0f0f0);
-		color: var(--tag-color, #333);
-		border: var(--tag-border, 1px solid #ddd);
-		padding: 8px 12px;
-		border-radius: 20px;
-		font-size: 0.85rem;
 		cursor: pointer;
-		transition: all 0.2s ease;
+		transition:
+			color 0.15s ease,
+			background-color 0.15s ease;
 	}
 
-	.search-tag:hover {
-		transform: scale(1.05);
-		background: var(--tag-background-hover, #e0e0e0);
-		box-shadow: 0 2px 8px var(--tag-shadow-hover, rgba(0, 0, 0, 0.1));
+	.search-tag:hover:not(.active) {
+		background: var(--hover-background-subtle);
+		color: var(--text-color);
 	}
 
 	.search-tag.active {
-		background: var(--primary-color, #007bff);
-		color: var(--background-color, #fff);
-		border-color: var(--primary-color, #007bff);
+		border-color: transparent;
+		background: var(--primary-color);
+		color: var(--text-on-primary);
 	}
 
-	@media (max-width: 900px) {
+	/* On phones the row scrolls sideways instead of pushing the list down. */
+	@media (max-width: 600px) {
 		.tags-wrapper {
-			flex-direction: column;
-			align-items: flex-start;
+			flex-wrap: nowrap;
+			margin-inline: calc(-1 * var(--gutter));
+			padding-inline: var(--gutter);
+			overflow-x: auto;
+			scrollbar-width: none;
 		}
-		.search-container {
-			max-width: 200px;
+
+		.search-input,
+		.search-tag {
+			flex-shrink: 0;
+			white-space: nowrap;
 		}
 	}
 </style>

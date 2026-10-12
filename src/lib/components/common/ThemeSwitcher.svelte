@@ -10,92 +10,62 @@
 	$: isDark = $theme === 'dark' || $theme.endsWith('-dark');
 </script>
 
-<div class="theme-switcher">
-	<button
-		on:click={toggleTheme}
-		title="Switch to {isDark ? 'light' : 'dark'} mode"
-		aria-label="Toggle between light and dark theme"
-	>
-		<span class="toggle-icon" class:dark={isDark}>
-			{isDark ? '☀️' : '🌙'}
-		</span>
-	</button>
-</div>
+<button
+	class="theme-switcher"
+	on:click={toggleTheme}
+	title="Switch to {isDark ? 'light' : 'dark'} mode"
+	aria-label="Switch to {isDark ? 'light' : 'dark'} mode"
+>
+	<svg class="sun" viewBox="0 0 24 24" aria-hidden="true">
+		<circle cx="12" cy="12" r="4" />
+		<path
+			d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+		/>
+	</svg>
+	<svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+		<path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z" />
+	</svg>
+</button>
 
 <style>
 	.theme-switcher {
-		display: flex;
-		align-items: center;
-		position: relative;
-		z-index: 1001;
-	}
-
-	.theme-switcher button {
+		display: grid;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		padding: 0;
+		border: 0;
+		border-radius: 0.5rem;
 		background: none;
-		border: none;
-		cursor: pointer;
 		color: var(--text-secondary-color);
-		font-size: 1.1rem;
-		font-weight: 500;
-		padding: 8px 12px;
-		border-radius: 8px;
-		transition: all 0.3s ease;
-		display: flex;
-		align-items: center;
-		position: relative;
-		z-index: inherit;
+		cursor: pointer;
+		transition:
+			color 0.15s ease,
+			background-color 0.15s ease;
 	}
 
-	.theme-switcher button::after {
-		content: '';
-		position: absolute;
-		bottom: -2px;
-		left: 0;
-		width: 0;
-		height: 2px;
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		transition: width 0.3s ease;
+	.theme-switcher:hover {
+		background: var(--hover-background-subtle);
+		color: var(--text-color);
 	}
 
-	.theme-switcher button:hover {
-		color: var(--link-hover-color, var(--primary-color));
+	svg {
+		width: 1.125rem;
+		height: 1.125rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.75;
+		stroke-linecap: round;
+		stroke-linejoin: round;
 	}
 
-	.theme-switcher button:hover::after {
-		width: 100%;
+	/* The icon follows the theme class set before first paint, so it never flickers on load. */
+	.sun,
+	:global(html[class*='dark']) .moon {
+		display: none;
 	}
 
-	.theme-switcher button:focus-visible {
-		outline: 2px solid var(--primary-color);
-		outline-offset: 2px;
-	}
-
-	.toggle-icon {
-		font-size: 1.1em;
-		transition: transform 0.2s ease;
-	}
-
-	.toggle-icon.dark {
-		transform: rotate(180deg);
-	}
-
-	@media (max-width: 1400px) {
-		.theme-switcher button {
-			display: block;
-			padding: 12px;
-			font-size: 1.1rem;
-			border-radius: 8px;
-			width: 100%;
-			text-align: center;
-		}
-
-		.theme-switcher button:hover {
-			background: var(--hover-background-subtle, rgba(34, 139, 230, 0.1));
-			color: var(--link-hover-color, var(--primary-color));
-		}
-
-		.theme-switcher button::after {
-			display: none;
-		}
+	:global(html[class*='dark']) .sun {
+		display: block;
 	}
 </style>

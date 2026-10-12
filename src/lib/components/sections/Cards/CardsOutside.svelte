@@ -6,15 +6,11 @@
 	export let totalItems: number;
 
 	import { base } from '$app/paths';
-	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import { createCardsStore } from '$lib/stores/cardsStore';
 
 	import SearchableDropdown from '$lib/components/common/TagSearch.svelte';
 	import TruncatedMarkdown from '$lib/components/common/TruncatedMarkdown.svelte';
 	import Pagination from '$lib/components/common/Pagination.svelte';
-
-	import '/src/styles/cards.css';
-	import '/src/styles/cards-outside.css';
 
 	const {
 		currentPage,
@@ -37,78 +33,96 @@
 	}
 </script>
 
-<section
-	id={sectionTitle.toLowerCase().replace(/\s+/g, '-')}
-	class="section slug-section"
-	use:fadeIn
->
+<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section">
 	<h2 class="section-title">{sectionTitle}</h2>
-	{#if $availableTags.length > 0}
-		<div class="tag-filter">
+	<div>
+		{#if $availableTags.length > 0}
 			<SearchableDropdown
 				options={$viableTags}
 				value={$selectedTags}
 				onChange={handleTagChange}
 				placeholder="Search tags..."
 			/>
-		</div>
-	{/if}
+		{/if}
 
-	{#if $paginatedItems.length === 0}
-		<div class="no-results">
-			<p>
+		{#if $paginatedItems.length === 0}
+			<p class="no-results">
 				No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.
 			</p>
-		</div>
-	{:else}
-		{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
-			<a
-				class="timeline-content"
-				href={getItemUrl(item)}
-				target={item.metadata?.skip ? '_blank' : null}
-				rel={item.metadata?.skip ? 'noopener noreferrer' : null}
-			>
-				<div class="header-container">
-					{#if item.metadata?.date}
-						<span class="date">{item.metadata.date}</span>
-					{/if}
-					{#if item.metadata?.tags}
-						<div class="tags-container">
-							{#each Array.isArray(item.metadata.tags) ? item.metadata.tags : item.metadata.tags
-										.split(/[\s,]+/)
-										.map((t) => t.trim()) as tag}
-								<span class="card-tag">{tag}</span>
-							{/each}
+		{:else}
+			<div>
+				{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
+					<article class="entry">
+						<div class="entry-date">{item.metadata?.date ?? ''}</div>
+						<div class="entry-main">
+							<div>
+								<h3 class="entry-title">
+									<a
+										href={getItemUrl(item)}
+										target={item.metadata?.skip ? '_blank' : null}
+										rel={item.metadata?.skip ? 'noopener noreferrer' : null}
+									>
+										{item.metadata?.title}
+									</a>
+								</h3>
+								{#if item.metadata?.description}
+									<div class="entry-body">
+										<TruncatedMarkdown text={item.metadata.description} limit={truncationLimit} />
+									</div>
+								{/if}
+								{#if item.metadata?.tags?.length}
+									<ul class="tags">
+										{#each Array.isArray(item.metadata.tags) ? item.metadata.tags : item.metadata.tags
+													.split(/[\s,]+/)
+													.map((t) => t.trim()) as tag}
+											<li class="tag">{tag}</li>
+										{/each}
+									</ul>
+								{/if}
+							</div>
+							{#if item.metadata?.image}
+								<img class="entry-image" src={item.metadata.image} alt="" loading="lazy" />
+							{/if}
 						</div>
-					{/if}
-				</div>
-				<div class="card-container">
-					{#if item.metadata?.image}
-						<div class="card-image">
-							<img
-								src={item.metadata.image}
-								alt={item.metadata?.title ? `${item.metadata.title} image` : 'Card image'}
-								loading="lazy"
-							/>
-						</div>
-					{/if}
-					<div class="details">
-						<h3 class="title-ref">{item.metadata?.title}</h3>
-						{#if item.metadata?.description}
-							<p class="description">
-								<TruncatedMarkdown text={item.metadata.description} limit={truncationLimit} />
-							</p>
-						{/if}
-					</div>
-				</div>
-			</a>
-		{/each}
-	{/if}
-	<Pagination
-		currentPage={$currentPage}
-		totalPages={$totalPages}
-		onPageChange={handlePageChange}
-		{totalItems}
-		itemLabel={sectionTitle}
-	/>
+					</article>
+				{/each}
+			</div>
+		{/if}
+		<Pagination
+			currentPage={$currentPage}
+			totalPages={$totalPages}
+			onPageChange={handlePageChange}
+			{totalItems}
+			itemLabel={sectionTitle}
+		/>
+	</div>
 </section>
+
+<style>
+	.entry-main {
+		display: flex;
+		gap: 1.5rem;
+		align-items: start;
+		justify-content: space-between;
+	}
+
+	.entry-image {
+		flex-shrink: 0;
+		width: 9rem;
+		aspect-ratio: 3 / 2;
+		border: 1px solid var(--border-color);
+		border-radius: 0.625rem;
+		object-fit: cover;
+	}
+
+	@media (max-width: 600px) {
+		.entry-main {
+			flex-direction: column-reverse;
+			gap: 0.75rem;
+		}
+
+		.entry-image {
+			width: 100%;
+		}
+	}
+</style>

@@ -1,0 +1,172 @@
+/*
+ * Themes.
+ *
+ * A theme is a palette: six colors plus `color-scheme`. Everything else is
+ * derived from the palette below, and a theme may override any derived token.
+ * Dark themes also set `--icon-filter` so the black SVG icons turn white.
+ *
+ * To add a theme: add a `.theme-<name>-light` / `.theme-<name>-dark` pair here
+ * and list both names in `src/lib/stores/themeStore.ts`.
+ */
+
+/* Derived tokens */
+:root {
+	--font-system: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+	--border-color: color-mix(in srgb, var(--text-color) 14%, transparent);
+	--hover-background-subtle: color-mix(in srgb, var(--text-color) 6%, transparent);
+	--navbar-background: color-mix(in srgb, var(--background-color) 82%, transparent);
+	--text-on-primary: var(--background-color);
+
+	--tag-background: var(--hover-background-subtle);
+	--tag-color: var(--text-secondary-color);
+	--tag-border: 1px solid transparent;
+
+	--icon-filter: none;
+}
+
+/* light: also the fallback palette before a theme class is set */
+:root {
+	color-scheme: light;
+	--background-color: #f4f4f4;
+	--card-background: #fff;
+	--text-color: #333;
+	--text-secondary-color: #666;
+	--primary-color: #34b1eb; /* fills: buttons, selected states */
+	--secondary-color: #002fff; /* links and accent text */
+}
+
+.theme-light {
+	--tag-background: linear-gradient(135deg, #e0f2ff 0%, #d6edff 100%);
+	--tag-color: #0066cc;
+	--tag-border: 1px solid rgba(0, 102, 204, 0.1);
+}
+
+.theme-dark {
+	color-scheme: dark;
+	--background-color: #121212;
+	--card-background: #1e1e1e;
+	--text-color: #e0e0e0;
+	--text-secondary-color: #aaaaaa;
+	--primary-color: #4fc3f7;
+	--secondary-color: #64b5f6;
+
+	--tag-background: linear-gradient(135deg, #3a3a3a 0%, #303030 100%);
+	--tag-color: #bbdefb;
+	--tag-border: 1px solid rgba(255, 255, 255, 0.15);
+
+	--icon-filter: invert(1);
+}
+
+.theme-minimal-light {
+	color-scheme: light;
+	--background-color: #f9f9fb;
+	--card-background: #fff;
+	--text-color: #16181d;
+	--text-secondary-color: #5b616e;
+	--primary-color: #2a4fd7;
+	--secondary-color: #2a4fd7;
+}
+
+.theme-minimal-dark {
+	color-scheme: dark;
+	--background-color: #0d0e11;
+	--card-background: #16181d;
+	--text-color: #ececf1;
+	--text-secondary-color: #9da3b0;
+	--primary-color: #8eaaff;
+	--secondary-color: #8eaaff;
+
+	--icon-filter: invert(1);
+}
+
+.theme-forest-light {
+	color-scheme: light;
+	--background-color: #f1f8e9;
+	--card-background: #c8e7c9;
+	--text-color: #333;
+	--text-secondary-color: #555;
+	--primary-color: #4caf50;
+	--secondary-color: #2e7d32;
+
+	--tag-background: linear-gradient(135deg, #e8f5e9 0%, #dcedc8 100%);
+	--tag-color: #388e3c;
+	--tag-border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.theme-forest-dark {
+	color-scheme: dark;
+	--background-color: #0d1b0f;
+	--card-background: #1b2e1f;
+	--text-color: #e8f5e9;
+	--text-secondary-color: #a5d6a7;
+	--primary-color: #66bb6a;
+	--secondary-color: #4caf50;
+
+	--tag-background: linear-gradient(135deg, #2e4a32 0%, #243527 100%);
+	--tag-color: #81c784;
+	--tag-border: 1px solid rgba(76, 175, 80, 0.3);
+
+	--icon-filter: invert(1);
+}
+
+.theme-ocean-light {
+	color-scheme: light;
+	--background-color: #e3f2fd;
+	--card-background: #fff;
+	--text-color: #1a237e;
+	--text-secondary-color: #546e7a;
+	--primary-color: #2196f3;
+	--secondary-color: #0d47a1;
+
+	--tag-background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+	--tag-color: #1565c0;
+	--tag-border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.theme-ocean-dark {
+	color-scheme: dark;
+	--background-color: #0a1218;
+	--card-background: #1a2332;
+	--text-color: #e3f2fd;
+	--text-secondary-color: #90caf9;
+	--primary-color: #64b5f6;
+	--secondary-color: #42a5f5;
+
+	--tag-background: linear-gradient(135deg, #2d3e50 0%, #243447 100%);
+	--tag-color: #90caf9;
+	--tag-border: 1px solid rgba(33, 150, 243, 0.3);
+
+	--icon-filter: invert(1);
+}
+
+.theme-sunset-light {
+	color-scheme: light;
+	--background-color: #ffebee;
+	--card-background: #ffdfdf;
+	--text-color: #263238;
+	--text-secondary-color: #455a64;
+	--primary-color: #d32f2f;
+	--secondary-color: #b71c1c;
+
+	--tag-background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+	--tag-color: #c62828;
+	--tag-border: 1px solid rgba(183, 28, 28, 0.2);
+}
+
+.theme-sunset-dark {
+	color-scheme: dark;
+	--background-color: #1a0e0e;
+	--card-background: #2d1818;
+	--text-color: #ffebee;
+	--text-secondary-color: #ffcdd2;
+	--primary-color: #ff6b6b;
+	--secondary-color: #ff5252;
+
+	--tag-background: linear-gradient(135deg, #3d2020 0%, #332020 100%);
+	--tag-color: #ffab91;
+	--tag-border: 1px solid rgba(255, 107, 107, 0.3);
+
+	--icon-filter: invert(1);
+}

@@ -53,7 +53,7 @@
 		...portfolioData.sections.map((section) => ({
 			title: section.title,
 			href: `${base}/#${titleToAnchor(section.title)}`
-		})),
+		}))
 	];
 
 	onMount(() => {
@@ -76,16 +76,19 @@
 	});
 </script>
 
-<div class="navigation" bind:this={navElement}>
-	<nav>
-		<div class="nav-left">
-			<a href="{base}/" class="home-link" on:click={closeMenu}>
-				<div class="logo">
-					<span class="initial">{portfolioData.settings.name[0].toUpperCase()}</span>
-				</div>
-				<h1 class="name">{portfolioData.settings.name.toUpperCase()}</h1>
-			</a>
+<header class="navigation" bind:this={navElement}>
+	<nav class="container">
+		<a href="{base}/" class="home-link" on:click={closeMenu}>{portfolioData.settings.name}</a>
+
+		<div class="nav-right" class:open={isOpen}>
+			<ul class="nav-links">
+				{#each navLinks as link}
+					<li><a href={link.href} on:click={closeMenu}>{link.title}</a></li>
+				{/each}
+			</ul>
 		</div>
+
+		<ThemeSwitcher />
 
 		<button
 			class="burger"
@@ -93,233 +96,140 @@
 			aria-label="Toggle navigation menu"
 			aria-expanded={isOpen}
 		>
-			<div></div>
-			<div></div>
-			<div></div>
+			<span></span>
+			<span></span>
 		</button>
-
-		<div class="nav-right {isOpen ? 'open' : ''}">
-			<ul class="nav-links">
-				{#each navLinks as link}
-					<li><a href={link.href} on:click={closeMenu}>{link.title}</a></li>
-				{/each}
-				<li><ThemeSwitcher /></li>
-			</ul>
-		</div>
 	</nav>
-</div>
+</header>
 
 <style>
 	.navigation {
 		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		width: 100%;
-		background: var(--navbar-background, rgba(255, 255, 255, 0.95));
-		backdrop-filter: blur(10px);
-		box-shadow: 0 1px 15px var(--navbar-shadow, var(--card-shadow, rgba(0, 0, 0, 0.1)));
+		inset: 0 0 auto;
 		z-index: 1000;
-		transition:
-			background-color 0.3s ease,
-			box-shadow 0.3s ease;
+		border-bottom: 1px solid var(--border-color);
+		background: var(--navbar-background);
+		-webkit-backdrop-filter: blur(12px) saturate(1.6);
+		backdrop-filter: blur(12px) saturate(1.6);
 	}
 
 	nav {
-		max-width: 70%;
-		min-width: 1300px;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 15px 0;
-	}
-
-	.nav-left {
 		display: flex;
 		align-items: center;
+		gap: 0.5rem;
+		height: var(--nav-height);
 	}
 
 	.home-link {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-		text-decoration: none;
+		margin-right: auto;
 		color: var(--text-color);
-		transition:
-			transform 0.3s ease,
-			color 0.3s ease;
-		padding: 8px;
-		border-radius: 12px;
+		font-weight: 650;
+		letter-spacing: -0.01em;
 	}
 
 	.home-link:hover {
-		transform: translateX(3px);
-	}
-
-	.logo {
-		width: 35px;
-		height: 35px;
-		padding: 3px;
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		box-shadow: var(--icon-shadow, rgba(0, 0, 0, 0.1));
-		border-radius: 12px;
-		transition:
-			transform 0.3s ease,
-			box-shadow 0.3s ease,
-			background 0.3s ease;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.initial {
-		color: var(--text-on-primary, white);
-		font-size: 1.5rem;
-		font-weight: bold;
-		font-family: var(--font-system);
-		transition: color 0.3s ease;
-	}
-
-	.name {
-		flex-shrink: 0;
-		font-size: 1.5rem;
-		font-weight: 700;
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		font-family: var(--font-system);
+		text-decoration: none;
 	}
 
 	.nav-links {
-		list-style: none;
 		display: flex;
-		gap: 5px;
+		gap: 0.125rem;
 		margin: 0;
 		padding: 0;
-		align-items: center;
+		list-style: none;
 	}
 
-	.nav-links li a {
-		text-decoration: none;
+	.nav-links a {
+		display: block;
+		padding: 0.375rem 0.625rem;
+		border-radius: 0.5rem;
 		color: var(--text-secondary-color);
-		font-size: 1.1rem;
+		font-size: 0.875rem;
 		font-weight: 500;
-		padding: 8px 12px;
-		border-radius: 8px;
-		transition: all 0.3s ease;
-		position: relative;
+		transition:
+			color 0.15s ease,
+			background-color 0.15s ease;
 	}
 
-	.nav-links li a::after {
-		content: '';
-		position: absolute;
-		bottom: -2px;
-		left: 0;
-		width: 0;
-		height: 2px;
-		background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-		transition: width 0.3s ease;
-	}
-
-	.nav-links li a:hover {
-		color: var(--link-hover-color, var(--primary-color));
-	}
-
-	.nav-links li a:hover::after {
-		width: 100%;
+	.nav-links a:hover {
+		background: var(--hover-background-subtle);
+		color: var(--text-color);
+		text-decoration: none;
 	}
 
 	.burger {
 		display: none;
-		flex-direction: column;
-		gap: 6px;
+		place-content: center;
+		gap: 0.375rem;
+		width: 2.25rem;
+		height: 2.25rem;
+		padding: 0;
+		border: 0;
+		border-radius: 0.5rem;
 		background: none;
-		border: none;
-		padding: 8px;
-		border-radius: 8px;
-		transition: background-color 0.3s ease;
 		cursor: pointer;
 	}
 
-	.burger:hover {
-		background-color: var(--hover-background-subtle, rgba(0, 0, 0, 0.05));
+	.burger span {
+		width: 1.125rem;
+		height: 1.5px;
+		border-radius: 1px;
+		background: var(--text-color);
+		transition: transform 0.25s var(--ease-out);
 	}
 
-	.burger div {
-		width: 32px;
-		height: 3px;
-		background: var(--text-secondary-color);
-		border-radius: 2px;
-		transition:
-			0.3s ease,
-			background-color 0.3s ease;
-		margin-right: 30px;
+	.burger[aria-expanded='true'] span:first-child {
+		transform: translateY(0.234rem) rotate(45deg);
 	}
 
-	@media (max-width: 1400px) {
-		nav {
-			max-width: 100%;
-			min-width: 100%;
-			padding: 15px;
-		}
+	.burger[aria-expanded='true'] span:last-child {
+		transform: translateY(-0.234rem) rotate(-45deg);
+	}
 
+	@media (max-width: 960px) {
 		.burger {
-			display: flex;
+			display: grid;
 		}
 
 		.nav-right {
-			position: fixed;
-			top: 70px;
-			right: -100%;
-			width: 100%;
-			height: calc(100vh - 70px);
-			background: var(
-				--navbar-mobile-background,
-				var(--navbar-background, rgba(255, 255, 255, 0.98))
-			);
-			backdrop-filter: blur(10px);
-			box-shadow: 0 4px 20px var(--navbar-shadow, var(--card-shadow, rgba(0, 0, 0, 0.1)));
+			position: absolute;
+			top: 100%;
+			right: 0;
+			left: 0;
+			padding: 0.5rem var(--gutter) 1rem;
+			border-bottom: 1px solid var(--border-color);
+			background: var(--background-color);
+			visibility: hidden;
+			opacity: 0;
+			transform: translateY(-0.5rem);
 			transition:
-				right 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-				background-color 0.3s ease,
-				box-shadow 0.3s ease; /* Updated transition */
-			display: flex;
-			flex-direction: column;
+				opacity 0.2s ease,
+				transform 0.25s var(--ease-out),
+				visibility 0s 0.25s;
 		}
 
 		.nav-right.open {
-			right: 0;
+			visibility: visible;
+			opacity: 1;
+			transform: none;
+			transition-delay: 0s;
 		}
 
 		.nav-links {
 			flex-direction: column;
-			padding: 20px;
-			gap: 15px;
-			align-items: stretch;
-			flex-grow: 1;
-			overflow-y: auto;
+			gap: 0;
 		}
 
-		.nav-links li {
-			width: 100%;
-			text-align: center;
+		.nav-links a {
+			padding: 0.75rem 0;
+			border-radius: 0;
+			color: var(--text-color);
+			font-size: 1.0625rem;
 		}
 
-		.nav-links li a {
-			display: block;
-			padding: 12px;
-			font-size: 1.1rem;
-			border-radius: 8px;
-		}
-
-		.nav-links li a:hover {
-			background: var(--hover-background-subtle, rgba(34, 139, 230, 0.1));
-			color: var(--link-hover-color, var(--primary-color));
-		}
-		.nav-links li a::after {
-			display: none;
+		.nav-links a:hover {
+			background: none;
+			color: var(--secondary-color);
 		}
 	}
 </style>

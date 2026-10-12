@@ -5,13 +5,10 @@
 	export let truncationLimit: number = 150;
 	export let totalItems: number;
 
-	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import Pagination from '$lib/components/common/Pagination.svelte';
 	import SearchableDropdown from '$lib/components/common/TagSearch.svelte';
 	import BaseCard from './BaseCard.svelte';
 	import { createCardsStore } from '$lib/stores/cardsStore';
-
-	import '/src/styles/cards.css';
 
 	const {
 		currentPage,
@@ -25,40 +22,34 @@
 	} = createCardsStore(items, itemsPerPage);
 </script>
 
-<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section" use:fadeIn>
+<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section">
 	<h2 class="section-title">{sectionTitle}</h2>
-	{#if $availableTags.length > 0}
-		<div class="tag-filter">
+	<div>
+		{#if $availableTags.length > 0}
 			<SearchableDropdown
 				options={$viableTags}
 				value={$selectedTags}
 				onChange={handleTagChange}
 				placeholder="Search tags..."
 			/>
-		</div>
-	{/if}
-	{#if $paginatedItems.length === 0}
-		<div class="no-results">
-			<p>
+		{/if}
+		{#if $paginatedItems.length === 0}
+			<p class="no-results">
 				No {sectionTitle} match the selected tags. Try selecting different tags or clear the filter.
 			</p>
-		</div>
-	{:else}
-		{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
-			{#if item.link}
-				<a href={item.link} class="card-link" target="_blank" rel="noopener noreferrer">
+		{:else}
+			<div>
+				{#each $paginatedItems as item, index (`${item.title || 'untitled'}-${index}`)}
 					<BaseCard {item} {truncationLimit} />
-				</a>
-			{:else}
-				<BaseCard {item} {truncationLimit} />
-			{/if}
-		{/each}
-	{/if}
-	<Pagination
-		currentPage={$currentPage}
-		totalPages={$totalPages}
-		onPageChange={handlePageChange}
-		{totalItems}
-		itemLabel={sectionTitle}
-	/>
+				{/each}
+			</div>
+		{/if}
+		<Pagination
+			currentPage={$currentPage}
+			totalPages={$totalPages}
+			onPageChange={handlePageChange}
+			{totalItems}
+			itemLabel={sectionTitle}
+		/>
+	</div>
 </section>

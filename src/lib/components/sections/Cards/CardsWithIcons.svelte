@@ -1,76 +1,52 @@
 <script lang="ts">
-	import { fadeIn } from '$lib/utils/fadeInUtils';
 	import type { Skill } from '$lib/types/types';
-	import { onMount, afterUpdate } from 'svelte';
+	import { asset } from '$lib/utils/assetUtils';
 
 	export let skillsData: Skill[] = [];
 	export let sectionTitle: string;
-
-	import '/src/styles/cards-with-icons.css';
-
-	let skillsGridElement: HTMLElement;
-
-	function equalizeCardHeights() {
-		if (!skillsGridElement) return;
-
-		const skillWrappers = skillsGridElement.querySelectorAll(
-			'.skill-wrapper'
-		) as NodeListOf<HTMLElement>;
-
-		if (skillWrappers.length === 0) return;
-
-		// Reset heights first to get natural heights
-		skillWrappers.forEach((wrapper) => {
-			wrapper.style.height = 'auto';
-		});
-
-		// Find the maximum height
-		let maxHeight = 0;
-		skillWrappers.forEach((wrapper) => {
-			const height = wrapper.offsetHeight;
-			if (height > maxHeight) {
-				maxHeight = height;
-			}
-		});
-
-		// Apply the maximum height to all wrappers
-		skillWrappers.forEach((wrapper) => {
-			wrapper.style.height = `${maxHeight}px`;
-		});
-	}
-
-	// Equalize heights after component mounts
-	onMount(() => {
-		equalizeCardHeights();
-	});
-
-	// Re-equalize heights after updates (e.g., when data changes)
-	afterUpdate(() => {
-		equalizeCardHeights();
-	});
 </script>
 
-<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="skills section" use:fadeIn>
+<section id={sectionTitle.toLowerCase().replace(/\s+/g, '-')} class="section">
 	<h2 class="section-title">{sectionTitle}</h2>
-	<div class="skills-grid" bind:this={skillsGridElement}>
+	<div class="skills-grid">
 		{#each skillsData as skillCategory}
-			<div class="skill-card">
-				<div class="skill-header">
+			<div>
+				<h3>
 					{#if skillCategory.icon}
-						<div class="skill-icon">
-							<img src={skillCategory.icon} alt={`${skillCategory.name} logo`} />
-						</div>
+						<img class="icon" src={asset(skillCategory.icon)} alt="" />
 					{/if}
-					<h3>{skillCategory.name}</h3>
-				</div>
-				<div class="skill-wrapper">
-					<div class="skill-tags">
-						{#each skillCategory.skills as subskill}
-							<span class="tag">{subskill}</span>
-						{/each}
-					</div>
-				</div>
+					{skillCategory.name}
+				</h3>
+				<ul class="tags">
+					{#each skillCategory.skills as subskill}
+						<li class="tag">{subskill}</li>
+					{/each}
+				</ul>
 			</div>
 		{/each}
 	</div>
 </section>
+
+<style>
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2.25rem 3rem;
+	}
+
+	h3 {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 600;
+	}
+
+	@media (max-width: 600px) {
+		.skills-grid {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1.75rem;
+		}
+	}
+</style>

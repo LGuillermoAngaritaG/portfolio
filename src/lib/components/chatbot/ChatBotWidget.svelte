@@ -185,7 +185,7 @@
 	 */
 	function renderMarkdown(content: string): string {
 		try {
-			const html = marked(content);
+			const html = marked.parse(content, { async: false, breaks: true });
 			return DOMPurify.sanitize(html);
 		} catch (error) {
 			console.error('Error rendering markdown:', error);
@@ -234,29 +234,34 @@
 
 <!-- Chatbot Widget Container -->
 {#if showChatbotWidget}
-	<div class="chatbot-widget-container">
-		<div class="chat-container">
-			<h1>{portfolioData.settings.name}'s Agent</h1>
-			<div class="messages" bind:this={messagesContainer}>
-				{#each messageHistory as message (message.id)}
-					<div class="message {message.role}-message">
-						{@html renderMarkdown(message.content)}
-					</div>
-				{/each}
-			</div>
-			<div class="input-container">
-				<input
-					type="text"
-					bind:value={userInput}
-					placeholder="Type your message..."
-					on:keypress={handleKeyPress}
-					disabled={isLoading}
-				/>
-				<button on:click={sendMessage} disabled={isLoading}>
-					{#if isLoading}...{:else}Send{/if}
-				</button>
-				<button class="reset-btn" on:click={resetHistory} disabled={isLoading}>Reset</button>
-			</div>
+	<div
+		class="chatbot-widget-container"
+		role="dialog"
+		aria-label="{portfolioData.settings.name}'s Agent"
+	>
+		<div class="chat-header">
+			<h2>{portfolioData.settings.name}'s Agent</h2>
+			<button class="reset-btn" on:click={resetHistory} disabled={isLoading}>Reset</button>
+		</div>
+		<div class="messages" bind:this={messagesContainer}>
+			{#each messageHistory as message (message.id)}
+				<div class="message {message.role}-message">
+					{@html renderMarkdown(message.content)}
+				</div>
+			{/each}
+		</div>
+		<div class="input-container">
+			<input
+				type="text"
+				bind:value={userInput}
+				placeholder="Type your message..."
+				aria-label="Message"
+				on:keypress={handleKeyPress}
+				disabled={isLoading}
+			/>
+			<button class="btn btn-primary" on:click={sendMessage} disabled={isLoading}>
+				{#if isLoading}...{:else}Send{/if}
+			</button>
 		</div>
 	</div>
 {/if}
@@ -264,250 +269,193 @@
 <style>
 	.chatbot-launcher {
 		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		background-color: var(--primary-color);
-		color: white;
-		border: none;
+		right: 1.25rem;
+		bottom: 1.25rem;
+		z-index: 1001;
+		display: grid;
+		place-items: center;
+		width: 3.25rem;
+		height: 3.25rem;
+		border: 0;
 		border-radius: 50%;
-		width: 60px;
-		height: 60px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		background: var(--primary-color);
+		color: var(--text-on-primary);
+		box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.35);
 		cursor: pointer;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-		z-index: 1001; /* Higher than widget container when widget is closed */
-		transition: transform 0.2s ease-in-out;
+		transition: transform 0.2s var(--ease-out);
 	}
+
 	.chatbot-launcher:hover {
-		transform: scale(1.1);
-	}
-	.chatbot-launcher svg {
-		pointer-events: none; /* So clicks go to the button */
+		transform: scale(1.06);
 	}
 
 	.chatbot-widget-container {
 		position: fixed;
-		bottom: 90px; /* Position above the launcher */
-		right: 20px;
-		width: 380px; /* Adjust as needed */
-		height: 600px; /* Adjust as needed */
-		background-color: var(--card-background);
-		border-radius: 12px;
-		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-		overflow: hidden; /* Crucial for border-radius and clipping */
+		right: 1.25rem;
+		bottom: 5.25rem;
 		z-index: 1000;
-		animation: slideIn 0.3s ease-out;
+		display: flex;
+		flex-direction: column;
+		width: min(23.75rem, 100vw - 2.5rem);
+		height: min(37.5rem, 100dvh - 6.5rem);
+		border: 1px solid var(--border-color);
+		border-radius: 1rem;
+		background: var(--card-background);
+		box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.35);
+		overflow: hidden;
+		animation: slideIn 0.3s var(--ease-out);
 	}
 
 	@keyframes slideIn {
 		from {
 			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+			transform: translateY(0.75rem);
 		}
 	}
 
-	.chat-container {
-		height: 100%;
-		width: 100%;
+	.chat-header {
 		display: flex;
-		flex-direction: column;
-		padding: 16px;
-		background-color: var(--card-background);
-		color: var(--text-color);
-		font-family: var(--font-primary, var(--font-system, Arial, sans-serif));
-		box-sizing: border-box;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.75rem 0.75rem 0.75rem 1rem;
+		border-bottom: 1px solid var(--border-color);
 	}
 
-	.chat-container h1 {
-		color: var(--primary-color);
-		text-align: center;
-		margin: 0 0 16px 0;
-		font-size: 1.4rem;
-		font-family: var(--font-secondary, var(--font-system, Arial, sans-serif));
+	.chat-header h2 {
+		margin: 0;
+		font-size: 0.9375rem;
+		font-weight: 600;
+	}
+
+	.reset-btn {
+		padding: 0.25rem 0.5rem;
+		border: 0;
+		border-radius: 0.375rem;
+		background: none;
+		color: var(--text-secondary-color);
+		font: inherit;
+		font-size: 0.8125rem;
+		cursor: pointer;
+	}
+
+	.reset-btn:hover:not(:disabled) {
+		background: var(--hover-background-subtle);
+		color: var(--text-color);
 	}
 
 	.messages {
 		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1rem;
 		overflow-y: auto;
-		margin-bottom: 12px;
-		padding: 12px;
-		border: var(--card-border);
-		border-radius: 8px;
-		background-color: var(--background-color);
 	}
 
 	.message {
-		margin-bottom: 10px;
-		padding: 8px 12px;
-		border-radius: 16px;
-		word-wrap: break-word;
-		white-space: pre-wrap;
-		line-height: 1.4;
 		max-width: 85%;
+		padding: 0.5rem 0.75rem;
+		border-radius: 1rem;
 		font-size: 0.9rem;
+		line-height: 1.45;
+		overflow-wrap: break-word;
 	}
 
-	/* Add markdown-specific styles */
+	.user-message {
+		align-self: flex-end;
+		border-bottom-right-radius: 0.25rem;
+		background: var(--primary-color);
+		color: var(--text-on-primary);
+	}
+
+	.assistant-message {
+		align-self: flex-start;
+		border-bottom-left-radius: 0.25rem;
+		background: var(--hover-background-subtle);
+	}
+
+	/* Markdown inside a message */
+	.message :global(:first-child) {
+		margin-top: 0;
+	}
+
+	.message :global(:last-child) {
+		margin-bottom: 0;
+	}
+
+	.message :global(p),
+	.message :global(ul),
+	.message :global(ol),
+	.message :global(pre),
+	.message :global(blockquote) {
+		margin: 0.5em 0;
+	}
+
 	.message :global(h1),
 	.message :global(h2),
 	.message :global(h3),
-	.message :global(h4),
-	.message :global(h5),
-	.message :global(h6) {
-		margin: 0.5em 0 0.3em 0;
+	.message :global(h4) {
+		margin: 0.6em 0 0.3em;
+		font-size: 1em;
 		font-weight: 600;
-	}
-
-	.message :global(p) {
-		margin: 0.5em 0;
 	}
 
 	.message :global(ul),
 	.message :global(ol) {
-		margin: 0.5em 0;
 		padding-left: 1.2em;
 	}
 
-	.message :global(li) {
-		margin: 0.2em 0;
-	}
-
 	.message :global(code) {
-		background-color: rgba(0, 0, 0, 0.1);
 		padding: 0.1em 0.3em;
-		border-radius: 3px;
-		font-family: 'Courier New', Courier, monospace;
+		border-radius: 0.25rem;
+		background: var(--hover-background-subtle);
+		font-family: var(--font-mono);
 		font-size: 0.85em;
 	}
 
 	.message :global(pre) {
-		background-color: rgba(0, 0, 0, 0.1);
-		padding: 0.8em;
-		border-radius: 6px;
+		padding: 0.75em;
+		border-radius: 0.5rem;
+		background: var(--hover-background-subtle);
 		overflow-x: auto;
-		margin: 0.5em 0;
 	}
 
 	.message :global(pre code) {
-		background-color: transparent;
 		padding: 0;
+		background: none;
 	}
 
 	.message :global(blockquote) {
-		border-left: 3px solid var(--primary-color);
-		padding-left: 1em;
-		margin: 0.5em 0;
-		font-style: italic;
-		opacity: 0.9;
+		padding-left: 0.75em;
+		border-left: 2px solid var(--border-color);
 	}
 
 	.message :global(a) {
-		color: var(--primary-color);
+		color: inherit;
 		text-decoration: underline;
-	}
-
-	.message :global(a:hover) {
-		color: var(--link-hover-color);
-	}
-
-	.message :global(strong) {
-		font-weight: 600;
-	}
-
-	.message :global(em) {
-		font-style: italic;
-	}
-
-	.user-message {
-		background-color: var(--primary-color);
-		color: white;
-		margin-left: auto;
-		text-align: left;
-		border-bottom-right-radius: 4px;
-	}
-
-	.assistant-message {
-		background-color: var(--hover-background-subtle);
-		color: var(--text-color);
-		margin-right: auto;
-		text-align: left;
-		border-bottom-left-radius: 4px;
 	}
 
 	.input-container {
 		display: flex;
-		gap: 6px;
+		gap: 0.5rem;
+		padding: 0.75rem;
+		border-top: 1px solid var(--border-color);
 	}
 
 	input[type='text'] {
 		flex: 1;
-		padding: 10px 8px;
-		border: var(--card-border);
-		border-radius: 6px;
-		background-color: var(--card-background);
+		min-width: 0;
+		height: 2.5rem;
+		padding-inline: 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.625rem;
+		background: var(--background-color);
 		color: var(--text-color);
+		font: inherit;
 		font-size: 0.9rem;
-		font-family: var(--font-primary, var(--font-system, sans-serif));
 	}
 
 	input[type='text']::placeholder {
 		color: var(--text-secondary-color);
-		opacity: 0.8;
-	}
-
-	button {
-		padding: 8px 12px;
-		background-color: var(--primary-color);
-		color: white;
-		border: none;
-		border-radius: 6px;
-		cursor: pointer;
-		transition: background-color 0.2s ease;
-		font-weight: 500;
-		font-family: var(--font-primary, var(--font-system, sans-serif));
-		font-size: 0.85rem;
-	}
-
-	button:hover:not(:disabled) {
-		background-color: var(--link-hover-color);
-	}
-
-	button:disabled {
-		background-color: var(--hover-background-color);
-		color: var(--text-secondary-color);
-		cursor: not-allowed;
-		opacity: 0.7;
-	}
-
-	.reset-btn {
-		background-color: var(--destructive-color);
-	}
-
-	.reset-btn:hover:not(:disabled) {
-		background-color: var(--destructive-color-hover);
-	}
-
-	/* Custom Scrollbar */
-	.messages::-webkit-scrollbar {
-		width: 6px;
-	}
-	.messages::-webkit-scrollbar-track {
-		background: transparent;
-		border-radius: 6px;
-	}
-	.messages::-webkit-scrollbar-thumb {
-		background-color: var(--text-secondary-color);
-		border-radius: 6px;
-		opacity: 0.5;
-	}
-	.messages::-webkit-scrollbar-thumb:hover {
-		background-color: var(--primary-color);
-		opacity: 0.8;
 	}
 </style>

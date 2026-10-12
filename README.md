@@ -63,7 +63,7 @@ A fully customizable, modern portfolio website built with **SvelteKit** and **Ty
 ## ✨ Features
 
 - 🎯 **Zero-code customization** through JSON configuration
-- 🎨 **Multiple Themes**: 8 beautiful themes (4 light + 4 dark variants)
+- 🎨 **Multiple Themes**: 10 beautiful themes (5 light + 5 dark variants)
 - 📱 **Fully Responsive**: Perfect on desktop, tablet, and mobile
 - 🃏 **4 Card Types**: Different layouts for various content types
 - 📄 **Blog & Project Support**: Markdown-based content management
@@ -139,6 +139,7 @@ Dynamic cards that load content from markdown files.
 
 ### Light Themes
 
+- **Minimal Light**: Neutral and flat with one accent color
 - **Light**: Clean and professional
 - **Ocean Light**: Blue oceanic tones
 - **Forest Light**: Green nature-inspired
@@ -146,6 +147,7 @@ Dynamic cards that load content from markdown files.
 
 ### Dark Themes
 
+- **Minimal Dark**: Neutral and flat with one accent color
 - **Dark**: Elegant dark mode
 - **Ocean Dark**: Deep blue darkness
 - **Forest Dark**: Rich forest greens
@@ -388,9 +390,9 @@ The `settings` object in `portfolio-data.json` controls global portfolio behavio
 - **`name`** _(required)_ - Your full name displayed in navigation, footer, and about section
 - **`title`** _(required)_ - Your professional title shown prominently in the about section
 - **`bio`** _(required)_ - Your professional biography (supports markdown formatting)
-- **`theme`** _(optional)_ - Select any of the 8 available themes (defaults to "light")
-  - Light themes: `"light"`, `"ocean-light"`, `"forest-light"`, `"sunset-light"`
-  - Dark themes: `"dark"`, `"ocean-dark"`, `"forest-dark"`, `"sunset-dark"`
+- **`theme`** _(optional)_ - Select any of the 10 available themes (defaults to "light")
+  - Light themes: `"minimal-light"`, `"light"`, `"ocean-light"`, `"forest-light"`, `"sunset-light"`
+  - Dark themes: `"minimal-dark"`, `"dark"`, `"ocean-dark"`, `"forest-dark"`, `"sunset-dark"`
 - **`basePath`** _(Required)_ - **Only** for GitHub Pages deployment (use your repository name)
   - Local development: `""` (empty string)
   - GitHub Pages: `"/your-repository-name"`
