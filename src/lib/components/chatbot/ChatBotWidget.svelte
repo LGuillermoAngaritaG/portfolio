@@ -185,7 +185,7 @@
 	 */
 	function renderMarkdown(content: string): string {
 		try {
-			const html = marked(content);
+			const html = marked.parse(content, { async: false });
 			return DOMPurify.sanitize(html);
 		} catch (error) {
 			console.error('Error rendering markdown:', error);
