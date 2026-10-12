@@ -15,8 +15,13 @@
 		tag.toLowerCase().includes(searchTerm.toLowerCase())
 	);
 
-	// Get non-selected tags from filtered options
-	$: nonSelectedOptions = filteredOptions.filter((option) => !value.includes(option));
+	// Options arrive most used first, so the cut keeps the top tags; search reaches the rest.
+	const MAX_TAGS = 10;
+
+	// Get non-selected tags from filtered options, filling what the selected ones leave free
+	$: nonSelectedOptions = filteredOptions
+		.filter((option) => !value.includes(option))
+		.slice(0, Math.max(0, MAX_TAGS - selectedTagsFiltered.length));
 
 	function handleInput(event: Event) {
 		const target = event.target as HTMLInputElement;
