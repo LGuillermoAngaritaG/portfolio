@@ -303,9 +303,9 @@ sections:
 settings:
   basePath: '/portfolio'
   bio: |
-    **Data Scientist** with **5+ years** of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in **Python**, **SQL**, and modern cloud/MLOps stacks (**AWS**, **GCP**, **Azure**, **Docker**, **Kubernetes**). Previously spent **7 years** as a university research assistant in materials science and hydrodynamics, earning a Bachelor's in Materials Engineering and a Master's in Applied Physics.
+    **Data Scientist** with **6+ years** of industry experience delivering production-ready AI solutions—ranging from high-throughput APIs to full-stack applications. Skilled in **Python**, **SQL**, and modern cloud/MLOps stacks (**AWS**, **GCP**, **Azure**, **Docker**, **Kubernetes**). Previously spent **7 years** as a university research assistant in materials science and hydrodynamics, earning a Bachelor's in Materials Engineering and a Master's in Applied Physics.
 
-    Passionate about **NLP and generative AI**; built and deployed **50+ LLM-powered applications** over the last three years for clients across multiple sectors around the world, I pride myself in delivering applications that consistently uphold the highest standards of performance, reliability, and best practices. I'm always looking for new challenges, things to learn and opportunities to grow as a **Data Scientist** and **ML Engineer**.
+    Passionate about **NLP and generative AI**; built and deployed **50+ LLM-powered applications** over the last three years for clients across multiple sectors around the world, I pride myself in delivering applications that consistently uphold the highest standards of performance, reliability, and best practices. I'm always looking for new challenges, things to learn and opportunities to grow as a **Data Scientist** and **AI Engineer**.
   expertises:
     - "Machine Learning"
     - "Deep Learning"
@@ -317,7 +317,7 @@ settings:
   name: 'Guillermo Angarita'
   potrait_image: 'images/potrait.jpg'
   theme: 'minimal-dark'
-  title: 'Data Scientist & ML Engineer'
+  title: 'Data Scientist & AI Engineer'
   favicon: 'favicon.png'
 
 social:
