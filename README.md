@@ -1,6 +1,6 @@
 # Open Portfolio
 
-A fully customizable, modern portfolio website built with **SvelteKit** and **TypeScript**. Create your professional portfolio by simply editing a single JSON configuration file - no coding required!
+A fully customizable, modern portfolio website built with **SvelteKit** and **TypeScript**. Create your professional portfolio by simply editing a single YAML configuration file - no coding required!
 
 ## 📚 Table of Contents
 
@@ -12,7 +12,7 @@ A fully customizable, modern portfolio website built with **SvelteKit** and **Ty
   - [3. Cards with Icons](#3-cards-with-icons-cards_with_icons)
   - [4. Cards Outside](#4-cards-outside-cards_outside)
 - [🎨 Available Themes](#-available-themes)
-- [🔧 JSON Configuration](#-json-configuration)
+- [🔧 YAML Configuration](#-yaml-configuration)
 - [📂 Project Structure](#-project-structure)
 - [🔄 Section Ordering & Management](#-section-ordering--management)
 - [📁 Custom Pages](#-custom-pages)
@@ -52,7 +52,7 @@ A fully customizable, modern portfolio website built with **SvelteKit** and **Ty
    npm run dev
     ```
 4. **Configure your portfolio**
-   Edit `src/content/data/portfolio-data.json` with your information
+   Edit `src/content/data/portfolio-data.yaml` with your information
 
 5. **Add your assets**
 
@@ -62,7 +62,7 @@ A fully customizable, modern portfolio website built with **SvelteKit** and **Ty
 
 ## ✨ Features
 
-- 🎯 **Zero-code customization** through JSON configuration
+- 🎯 **Zero-code customization** through YAML configuration
 - 🎨 **Multiple Themes**: 10 beautiful themes (5 light + 5 dark variants)
 - 📱 **Fully Responsive**: Perfect on desktop, tablet, and mobile
 - 🃏 **4 Card Types**: Different layouts for various content types
@@ -153,40 +153,36 @@ Dynamic cards that load content from markdown files.
 - **Forest Dark**: Rich forest greens
 - **Sunset Dark**: Dramatic red highlights
 
-## 🔧 JSON Configuration
+## 🔧 YAML Configuration
 
-The entire portfolio is configured through `src/content/data/portfolio-data.json`. This single file controls everything from content to styling.
+The entire portfolio is configured through `src/content/data/portfolio-data.yaml`. This single file controls everything from content to styling.
 
-### JSON Architecture
+### YAML Architecture
 
-```json
-{
-  "sections": [
-    {
-      "title": "Section Name",
-      "type": "card_type",
-      "content": [...],
-      "truncation_limit": 150
-    }
-  ],
-  "settings": {
-    "name": "Your Name",
-    "title": "Your Title",
-    "bio": "Your bio...",
-    "theme": "theme-name",
-    "basePath": "/your-repo-name",
-    "potrait_image": "path/to/image.png",
-    "expertises": ["skill1", "skill2"],
-    "cards_before_pagination": 3
-  },
-  "social": [
-    {
-      "name": "Platform",
-      "link": "URL",
-      "icon": "path/to/icon.svg"
-    }
-  ]
-}
+```yaml
+sections:
+  - title: 'Section Name'
+    type: 'card_type'
+    truncation_limit: 150
+    content:
+      - ...
+
+settings:
+  name: 'Your Name'
+  title: 'Your Title'
+  bio: 'Your bio...'
+  theme: 'theme-name'
+  basePath: '/your-repo-name'
+  potrait_image: 'path/to/image.png'
+  expertises:
+    - 'skill1'
+    - 'skill2'
+  cards_before_pagination: 3
+
+social:
+  - name: 'Platform'
+    link: 'URL'
+    icon: 'path/to/icon.svg'
 ```
 
 ### Section Configuration
@@ -203,35 +199,32 @@ Each section in the `sections` array supports:
 
 #### For `cards` and `cards_with_link`:
 
-```json
-{
-	"title": "Position/Title",
-	"organization": "Company/Institution",
-	"date": "Time period",
-	"description": "Detailed description",
-	"link": "https://example.com",
-	"icon": "icons/my-icon.svg",
-}
+```yaml
+- title: 'Position/Title'
+  organization: 'Company/Institution'
+  date: 'Time period'
+  description: 'Detailed description'
+  link: 'https://example.com'
+  icon: 'icons/my-icon.svg'
 ```
 
 #### For `cards_with_icons`:
 
-```json
-{
-	"name": "Category Name",
-	"icon": "icons/my-icon.svg",
-	"skills": ["skill1", "skill2", "skill3"]
-}
+```yaml
+- name: 'Category Name'
+  icon: 'icons/my-icon.svg'
+  skills:
+    - 'skill1'
+    - 'skill2'
+    - 'skill3'
 ```
 
 #### For `cards_outside`:
 
-```json
-{
-	"path": "src/content/projects/",
-	"title": "Projects",
-	"type": "cards_outside"
-}
+```yaml
+- title: 'Projects'
+  type: 'cards_outside'
+  path: 'src/content/projects/'
 ```
 
 ## 📂 Project Structure
@@ -240,7 +233,7 @@ Each section in the `sections` array supports:
 src/
 ├── content/
 │   ├── data/
-│   │   └── portfolio-data.json    # Main configuration
+│   │   └── portfolio-data.yaml    # Main configuration
 │   ├── projects/                  # Markdown project files
 │   ├── blogs/                     # Markdown blog files
 │   └── custom-section/            # Custom section files (optional)
@@ -261,18 +254,14 @@ static/                            # Static assets
 
 ### Adding Sections
 
-Simply add a new object to the `sections` array in `portfolio-data.json`:
+Simply add a new item to the `sections` list in `portfolio-data.yaml`:
 
-```json
-{
-  "sections": [
-    {
-      "title": "New Section",
-      "type": "cards",
-      "content": [...]
-    }
-  ]
-}
+```yaml
+sections:
+  - title: 'New Section'
+    type: 'cards'
+    content:
+      - ...
 ```
 
 ### Removing Sections
@@ -313,14 +302,12 @@ You can create unlimited custom routes beyond projects and blogs:
 1. **Create a new folder** in `src/content/` (e.g., `src/content/research/`)
 2. **Add markdown files** with metadata to your folder
 3. **Add images folder** (optional): Create an `images/` subfolder within your section folder
-4. **Add the section** to your `portfolio-data.json`:
-   ```json
-   {
-   	"path": "src/content/research/",
-   	"title": "Research",
-   	"type": "cards_outside",
-   	"truncation_limit": 120
-   }
+4. **Add the section** to your `portfolio-data.yaml`:
+   ```yaml
+   - title: 'Research'
+     type: 'cards_outside'
+     truncation_limit: 120
+     path: 'src/content/research/'
    ```
 
 The system will automatically discover and display all markdown files in your custom folder!
@@ -356,7 +343,7 @@ image: 'images/project-cover.jpg' # Displayed on card and page header
 
 To delete a custom route section:
 
-1. **Remove from JSON**: Delete the section object from `portfolio-data.json`
+1. **Remove from the config**: Delete the section from `portfolio-data.yaml`
 2. **Delete folder** (optional): Remove the entire content folder (e.g., `src/content/research/`)
 
 **To remove individual pages** within a section:
@@ -366,23 +353,23 @@ To delete a custom route section:
 
 ## ⚙️ Settings Configuration
 
-The `settings` object in `portfolio-data.json` controls global portfolio behavior, appearance, and metadata.
+The `settings` block in `portfolio-data.yaml` controls global portfolio behavior, appearance, and metadata.
 
 ### Complete Settings Structure
 
-```json
-{
-	"settings": {
-		"name": "Your Full Name",
-		"title": "Your Professional Title",
-		"bio": "Your professional bio in markdown format",
-		"theme": "light",
-		"basePath": "/your-repo-name",
-		"potrait_image": "images/your-photo.jpg",
-		"expertises": ["skill1", "skill2", "skill3"],
-		"cards_before_pagination": 3
-	}
-}
+```yaml
+settings:
+  name: 'Your Full Name'
+  title: 'Your Professional Title'
+  bio: 'Your professional bio in markdown format'
+  theme: 'light'
+  basePath: '/your-repo-name'
+  potrait_image: 'images/your-photo.jpg'
+  expertises:
+    - 'skill1'
+    - 'skill2'
+    - 'skill3'
+  cards_before_pagination: 3
 ```
 
 ### Settings Breakdown
@@ -412,14 +399,11 @@ The portfolio uses **GitHub Actions** for automatic deployment. Simply push your
 
 ### Step 1: Configure Repository Name
 
-1. **Update `portfolio-data.json`**:
+1. **Update `portfolio-data.yaml`**:
 
-   ```json
-   {
-   	"settings": {
-   		"basePath": "/your-repository-name"
-   	}
-   }
+   ```yaml
+   settings:
+     basePath: '/your-repository-name'
    ```
 
 ### Step 2: Push to GitHub
